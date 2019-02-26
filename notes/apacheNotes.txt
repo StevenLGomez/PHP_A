@@ -1,0 +1,222 @@
+
+devserver     ip addr 10.1.1.26
+
+Apache Control:
+apachectl start
+apachectl stop
+apachectl restart
+
+If desired (left at default)
+Changing Document Root:
+Set to user document root ~/Sites
+To: /home/developer/Sites
+
+Edit:
+/etc/httpd/conf/httpd.conf
+Add <Directory "/var/www"> to <Directory "/home/developer/Sites">
+    Options Indexes MultiViews
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+</Directory>
+
+# ---------
+Apache configuration directory
+/etc/httpd/conf/httpd.conf
+
+userdir module not in this file (as discussed in the video - for Mac)
+
+LoadModule
+httpd-userdir
+
+httpd-userdir.conf    also not found
+Found:  /etc/httpd/conf.d/userdir.conf
+
+Video: users/kevinskoglund.conf
+<Directory "/Users/kevinskoglund/Sites/">
+    Options Indexes MultiViews
+    AllowOverride AllowOverrideRequire all granted
+</Directory>
+
+mysql_secure_installation
+FoundAPeanut1984  Y Y Y Y
+
+Enabling PHP video used same phpinfo() statement as in install script.  This seems to be OK.
+Upgrading PHP Video (5.4.11)  Centos already has 5.4.16, so this will be deferred.
+
+PHP configuration /etc/php.ini
+display_errors = On
+error_reporting = E_ALL
+html_errors = On
+output_buffering = Off    (default value: 4096)
+date.timezone = "America/Chicago"
+
+MySQL Settings
+Set password:  mysqladmin -u root password
+Change password:  mysqladmin -u root -p password
+
+Embedding PHP code in a page
+<?php            ?>
+
+# Variables
+http://php.net/manual/en/reserved.php
+
+# PHP troubleshooting
+No output at all, try:
+    Try to access an HTML (only) page
+    Try to access a PHP page with only <?php phpinfo(); ?>
+    Make sure display errors is on and confingured
+
+    Look close for typos (missing semicolons & $ signs, etc)
+    = versus == (same problem as with C)
+
+Warnings & Errors:
+    Turn on error reporting
+    in php.ini file   display_errors = On    error_reporting = E_ALL
+    In PHP code   ini_set('display_errors', "On');
+    error_reporting(E_ALL);
+
+    // E_STRICT added in PHP 5
+    // but not in E_ALL until PHP 5.4
+    // For 5.4+, | #_STRICT can be omitted.
+    error_reporting(E_ALL | E_STRICT);
+
+    // Use ! for "omit"
+    error_reporting(E_ALL & ~E_DEPRECATED);
+
+    // Return the current level (returns a number)
+    // http://php.net/manual/en/errorfunc.constants.php
+    error_reporting();
+
+    Fatal Errors: PHP understood the code but could not execute it.
+    Syntax Errors: PHP could not understand or process the code (typos, etc)
+    Warnings: PHP found a problem, but was able to recover (should be investigated!)
+    Notices: PHP is offering advice (may include deprecation notices)
+
+    Need to be aware of where the PHP log files are located (is probably in httpd.conf)
+
+Debugging & Troubleshooting
+    echo $variable;      // variable value
+    print_r($array;      // print readable array
+    gettype(Rvariable);  // variable type
+    var_dump($variable); // variable type and value
+    get_defined_vars();  // array of defined variables
+    debug_backtrace();   // show backtrace
+
+Third party tools:
+    Xdebug    http://xdebug.org    (probably the most popular)
+    DBG       http://php-debugger.com/dbg
+    FirePHP   http://www.firephp.org  (Uses Firebug for Firefox)
+
+#Reserved Characters in URLs
+
+!   #   $   %   &   '   (   )   *   +   ,   /   :   ;   =   ?   @   [   ]
+%21 %23 %24 %25 %26 %27 %28 %29 %2A %2B %2C %2F %3A %3B %3D %3F %40 %5B %5D
+
+urlencode() for right of ? (the query string)
+    Letters, numbers, underscore and dash are unchanged
+    Reserved characters become % + 2-digit hexidecimal
+    Spaces become "+"
+
+rawurlencode() for left of ? (the path string)
+    Letters, numbers, underscore and dash are unchanged
+    Reserved characters become % + 2-digit hexidecimal
+    Spaces become "%20"
+
+rawurlencode is more compatible generally
+
+# Cross Site Scripting 
+Also known as "XSS".
+Attacker tricks a web page into outputting JavaScript.
+Code is trusted by the browser and executed.
+==>> Major Security vulnerability !!
+
+# Reserved Characters in HTML
+     <    >    &     "
+    &lt; &gt; &amp; &quot;
+
+htmlspecialchars()  <= used to keep your html correct
+
+htmlentities()      <= used to display special chars, such as extended ASCII
+
+# include -- Things that are good to include
+    Functions
+    Layout sections (headers, footers)
+    Reusable HTML/PHP code
+    CSS and JavaScript
+
+require() -- Raises fatal page error if include file is not found
+include_once() -- Maintains an array of included files
+require_once() -- Maintains an array of included files
+
+# Headers
+    Headers are sent before page
+    Changes must be made before ANY HTML output
+        Before a single space or line return
+        Before whitespace in included files
+    Can come after whitespace inside PHP tags
+
+302 Redirect
+    HTTP 1.1/ 302 found
+    Location: path
+
+    header("Location: login.php:);
+
+#Output Buffering
+    php.ini, search for output_buffering
+    set output_buffering = 4096 (On gives unlimited buffering, not necessarily good)
+
+    Allows sending whitespace before header updates
+
+    Page by page buffer control
+    ob_start()     Programmatically starts buffering
+    ob_end_flush() "                flushes buffer
+
+#Type juggling during comparisons
+
+    * string versus null:   converts null to ""
+    * boolean versus other: converts other to boolean
+    * number versus other:  converts other to number
+
+    empty()
+    ""
+    0
+    "0"
+    null
+    false
+    array()
+
+#Cookies
+    Unsetting:
+    Wrong way   unset($_COOKIE["user_id"];  // Only changes local value, not the browser's value
+
+    Right ways:
+
+    setcookie($name);   // With no value will set it to nothing
+    setcookie($name, null);   // Preferred, provide explcit value
+    setcookie($name, value, (time() - 3600);  // Set an expired time value
+
+#Sessions
+    A file that is saved on the web server.
+    Pros
+        More storage
+        Smaller request sizes (only sends reference to session file)
+        Conceals data values (more secure)
+
+    Cons
+        Slower to access, have to locally look up referenced file
+        Expire when browser is closed (by design)
+        Session files can accumulate
+
+    Session is most useful for:
+        * User authentication
+        $logged_in, $user_id
+
+        * Holding data during a redirect
+        $message, $errors
+
+        * Frequently referred to data
+        $username, $account_type
+
+
+

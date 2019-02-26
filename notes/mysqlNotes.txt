@@ -1,0 +1,130 @@
+
+Database
+    Set of tables
+    typically 1 database per application
+    Example: widget_corp
+    Access permissions are granted at database level
+
+Table
+    Set of columns and rows
+    Represents a single concept (a noun)
+    Examples: products, customers, orders
+    Relationships between tables
+
+Column
+    Set of data of a single simple type
+    Example, first_name, last_name, email....
+    columns have types: strings, integers...
+
+Row
+    single record of data
+    Example "kevin", "Skoglund", ....
+
+Field
+    Intersection of a row and column
+    Example first name "Kevin"
+
+Index
+    Data structure on a table to increase look up speed
+    Like the index at the back of a book
+
+Foreign key
+    Table column whose values reference rows in another table
+    The foundtion of relational dtabases
+
+CRUD
+    Create
+    Read       SELECT
+    Update     INSERT, UPDATE
+    Delete
+
+SHOW DATABASES;
+CREATE DATABASE db_name;
+USE db_name;
+DROP DATABASE db_name;
+
+#####
+CREATE DATABASE widget_corp;
+USE widget_corp;
+
+GRANT ALL PRIVILEGES ON widget_corp.* TO 'developer'@'localhost' IDENTIFIED BY 'holstein';
+SHOW GRANTS FOR 'developer'@'localhost';
+
+mysql -u developer -p widget_corp
+
+CREATE TABLE (........);
+SHOW COLUMNS FROM table;
+DROP TABLE table;
+
+Tables:
+    subjects - id, menu_name, position, visible
+
+Database APIs
+    mysql - original mysql API (earliest on the scene)
+    mysqli - mysql improved api (introduced with v5.0)
+    pdo - PHP data objects (newest flavor, uses other databases, postgress, sqlite...)
+    Video demonstration uses mysqli (procedural version)
+
+API overview (Procedural versus Object Oriented)
+     Procedural                  Object Oriented
+     mysqli_connect              $mysqli = new mysqli
+     mysqli_connect_errno        $mysqli->connect_errno
+     mysqli_connect_error        $mysqli->connect_error
+     mysqli_real_escape_string   $mysqli->real_escape_string
+     mysqli_query                $mysqli->query
+     mysqli_fetch_assoc          $mysqli->fetch_assoc
+     mysqli_close                $mysqli->close
+
+    http://php.net/manual/en/mysqlinfo.api.choosing.php
+
+PHP Database Interaction in Five Steps
+    1.) Create a database connection
+    2.) Perform database query
+    3.) Use returned dta (if any)
+    4.) Release returned data
+    5.) Close database connection
+
+Functions for a 'connected' database
+    mysqli_query()
+    mysqli_fetch_row()   - Results are in a standard array, Keys are integers 
+    mysqli_free_result()
+    mysqli_fetch_assoc() - (Author's favorite) Results in associative array, Keys are column names
+    mysqli_fetch_array() - Results in either or both types of arrays
+        MYSQL_NUM, MYSQL_ASSOC, MYSQL_BOTH
+
+    $id = mysqli_insert_id($connection) - Returns id of most recently inserted record
+    addslashes($string) - OBSOLETE - intended to help with single quotes within single quoted strings
+    mysqli_real_escape_string($db, $string) - fixes strings for MySQL (single quotes and a few other chars too)
+
+Prepared statements
+    Create once, reuse many times
+    Separate query from dynamic data
+    PREVENTS SQL Injection !!!!!!
+
+#Resetting root password
+
+As root
+systemctl stop mariadb.service
+mysqld_safe --skip-grant-tables --skip-network &
+
+mysql -u root    (will be in mysql prompt)
+use mysql;
+UPDATE user SET password=PASSWORD("r0nas1984?")
+FLUSH PRIVILEGES;
+exit
+
+systemctl stop mariadb.service
+systemctl start mariadb.service
+mysql -u root -p
+
+# Create widget_corp database, then grant privileges...
+
+mysql -u developer -p widget_corp
+
+
+
+
+
+
+
+

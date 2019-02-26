@@ -1,0 +1,24 @@
+
+# Add pages necessary to edit Pages, similar to what exists for Subjects
+
+Pages:
+    manage_content.php (Already exists)
+    new_page.php (but note that new_subject was a two step process)
+    edit_page.php
+    delete_page.php
+
+-> Single page submission sounds best..
+
+Watch out for:
+    pages.content (new database field to manage)
+    Display, validate, escape whenever appropriate
+    Edit using HTML textarea field
+
+Subject ID
+    New pages: send it and save it (to save heirarchy dependency intent)
+    Existing pages: look it up
+
+Page Position
+    Only count pages with the same parent Subject
+
+
