@@ -1,0 +1,188 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+	Version="10.0"
+	VendorName="SlickEdit"
+	TemplateName="PHP"
+	WorkingDir="."
+	VCSProject="Subversion:">
+	<Config
+		Name="Debug"
+		DebugCallbackName="xdebug"
+		Type="php"
+		OutputFile=""
+		CompilerConfigName="">
+		<Menu>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_php_options_form Run"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveNone"
+				RunFromDir="%rw"
+				Deletable="0">
+				<Exec
+					CmdLine="php_execute %(SLICKEDIT_PHP_EXECUTE_ARGS)"
+					Type="Slick-C"/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_php_options_form Debug"
+				CaptureOutputWith="ProcessBuffer"
+				SaveOption="SaveNone"
+				RunFromDir="%rw"
+				Deletable="0">
+				<Exec
+					CmdLine="php_debug"
+					Type="Slick-C"/>
+			</Target>
+			<Target
+				Name="PHP Options"
+				MenuCaption="PHP &amp;Options"
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0">
+				<Exec
+					CmdLine="phpoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+		<List Name="PHP Options">
+			<Item
+				Name="AppType"
+				Value="web-remote"/>
+			<Item
+				Name="DefaultFile"
+				Value=""/>
+			<Item
+				Name="ScriptArguments"
+				Value=""/>
+			<Item
+				Name="InterpreterArguments"
+				Value=""/>
+			<List Name="Map">
+				<Item
+					Name="RemoteUrl"
+					Value="http://10.17.20.104"/>
+				<Item
+					Name="LocalRoot"
+					Value="/home/gomez/projects/PHPEssentialTraining/"/>
+			</List>
+		</List>
+		<List Name="Xdebug Options">
+			<Item
+				Name="ServerHost"
+				Value="127.0.0.1"/>
+			<Item
+				Name="ServerPort"
+				Value="9000"/>
+			<Item
+				Name="ListenInBackground"
+				Value="1"/>
+			<Item
+				Name="StayInDebugger"
+				Value="1"/>
+			<Item
+				Name="AcceptConnections"
+				Value="prompt"/>
+			<Item
+				Name="BreakInSession"
+				Value="step-into"/>
+			<Item
+				Name="show_hidden"
+				Value="1"/>
+			<List Name="Map">
+				<Item
+					Name="RemoteRoot"
+					Value="/var/www.html/"/>
+				<Item
+					Name="LocalRoot"
+					Value="/home/gomez/projects/PHPEssentialTraining/"/>
+			</List>
+		</List>
+	</Config>
+	<Files AutoFolders="DirectoryView">
+		<Folder Name="includes">
+			<Folder Name="layouts">
+				<F N="includes/layouts/footer.php"/>
+				<F N="includes/layouts/header.php"/>
+			</Folder>
+			<F N="includes/db_connection.php"/>
+			<F N="includes/functions.php"/>
+			<F N="includes/session.php"/>
+			<F N="includes/validation_functions.php"/>
+		</Folder>
+		<Folder Name="notes">
+			<F N="notes/apacheNotes.txt"/>
+			<F N="notes/mysqlNotes.txt"/>
+		</Folder>
+		<Folder Name="public">
+			<Folder Name="stylesheets">
+				<F N="public/stylesheets/public.css"/>
+			</Folder>
+			<F N="public/admin.php"/>
+			<F N="public/create_subject.php"/>
+			<F N="public/delete_page.php"/>
+			<F N="public/delete_subject.php"/>
+			<F N="public/edit_page.php"/>
+			<F N="public/edit_subject.php"/>
+			<F N="public/index.php"/>
+			<F N="public/manage_content.php"/>
+			<F N="public/new_page.php"/>
+			<F N="public/new_subject.php"/>
+		</Folder>
+		<Folder Name="sandbox">
+			<F N="sandbox/array_pointers.php"/>
+			<F N="sandbox/arrays.php"/>
+			<F N="sandbox/assoc_arrays.php"/>
+			<F N="sandbox/basic.html"/>
+			<F N="sandbox/break.php"/>
+			<F N="sandbox/continue.php"/>
+			<F N="sandbox/cookies.php"/>
+			<F N="sandbox/databases.php"/>
+			<F N="sandbox/databases_delete.php"/>
+			<F N="sandbox/databases_insert.php"/>
+			<F N="sandbox/databases_update.php"/>
+			<F N="sandbox/debugging.php"/>
+			<F N="sandbox/false_positives.php"/>
+			<F N="sandbox/first_page.php"/>
+			<F N="sandbox/floats.php"/>
+			<F N="sandbox/foreachloops.php"/>
+			<F N="sandbox/forloops.php"/>
+			<F N="sandbox/form.php"/>
+			<F N="sandbox/form_processing.php"/>
+			<F N="sandbox/form_single.php"/>
+			<F N="sandbox/form_with_validation.php"/>
+			<F N="sandbox/functions_arguments.php"/>
+			<F N="sandbox/functions_defaults.php"/>
+			<F N="sandbox/functions_defining.php"/>
+			<F N="sandbox/functions_multiple_returns.php"/>
+			<F N="sandbox/functions_return_values.php"/>
+			<F N="sandbox/functions_scope.php"/>
+			<F N="sandbox/headers.php"/>
+			<F N="sandbox/helloworld.php"/>
+			<F N="sandbox/htmlencoding.php"/>
+			<F N="sandbox/included_functions.php"/>
+			<F N="sandbox/included_header.php"/>
+			<F N="sandbox/includes.php"/>
+			<F N="sandbox/info.php"/>
+			<F N="sandbox/integers.php"/>
+			<F N="sandbox/logical.php"/>
+			<F N="sandbox/redirect.php"/>
+			<F N="sandbox/second_page.php"/>
+			<F N="sandbox/sessions.php"/>
+			<F N="sandbox/string_functions.php"/>
+			<F N="sandbox/strings.php"/>
+			<F N="sandbox/switch.php"/>
+			<F N="sandbox/urlencode.php"/>
+			<F N="sandbox/validation_errors.php"/>
+			<F N="sandbox/validation_functions.php"/>
+			<F N="sandbox/validations.php"/>
+			<F N="sandbox/variables.php"/>
+			<F N="sandbox/whileloops.php"/>
+		</Folder>
+		<Folder Name="schema">
+			<F N="schema/ddl.sql"/>
+			<F N="schema/dml.sql"/>
+		</Folder>
+	</Files>
+</Project>
