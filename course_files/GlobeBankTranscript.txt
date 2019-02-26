@@ -21,7 +21,7 @@ So you can just work along with me, and your files will mirror what's in the exe
 
 1. Start a Database Driven Project
 
-Blueprint the Application
+1.1 Blueprint the Application
 
 We will begin creating our database driven project by learning how to blueprint an application. The web application that we're going to be building is a Content Management System. Or CMS, for short. The idea is to have private webpages which administrators can use to create and edit website content. But the public has different pages where they can read the content but which are not editable. An essential first step when beginning any web project is to create a project blueprint. If the site is simple, you may be able to simply type up a few notes or draw a picture on a single piece of paper.
 
@@ -45,7 +45,7 @@ When I click on Subjects, you'll see I get a list of the subjects that are in th
 
 There's also an option up here for creating a new subject. If I want to add a new subject to the database as well. So those are the basic ways we're going to interact with this content. We're going to do it for both subjects and, also, for our page content. Now that we have an overall understanding of what we're going to be creating, let's get started by creating the beginnings of our project.
 
-Establish Your Work Area
+1.2 Establish Your Work Area
 
 Now that we have a blueprint for our application, let's begin creating the project files that we're going to need. I use a standard structure for all of my php projects and it looks something like this. I have the main project directory, here I've just called it basic_php_project/, but I would rename it to be whatever the project name was. But then, inside of there, I've got two subdirectories, or folders. One is called public/ and one is called private/. The idea is that we configure our web server to serve content from the public directory.
 
@@ -71,7 +71,7 @@ And I think I can do that, just drop it right in there. No, it came out here, bu
 
 Okay, so now we have our basic project structure together. In the next movie, let's start working with the content of these pages.
 
-Create and Style the First Page
+1.3 Create and Style the First Page
 
 In the previous movie, we created the starting structure of the files that we're going to need, the basics of our project. Now we want to bring those up in a text editor, so that we can work with them. For most text editors, you can simply drag the directory onto the icon for the text editor, in order to open up the entire project in a project view, all at once, I've already done that here. It works the same way whether you're using TextMate, or Sublime, or something else. The overall idea is that my project is now visible in one column, I can navigate the files that I want to edit, and I can edit them over in the window on the right.
 
@@ -103,7 +103,7 @@ Now this href is telling it to go backwards in the URL. This is a browser path, 
 
 Let's add that, div id="content". And there we go, save it, go back, and I think that should probably give it, yeah, a nice big chunk of space here, that we can fill in below. And then we've got one link on the page, which is Menu. If we click that, you can see it just brings us back to this same page, index.php. So for now, make sure that you're able to bring up pages in your browser, make sure that PHP works, so that you have a date at the bottom of the footer, and that you are able to access the style sheet, that you do have the ability to link to the staff style sheet.
 
-Include and Require Files
+1.4 Include and Require Files
 
 One useful feature in PHP is the ability to include code from other files into a PHP page. It's an important feature because it helps us to stay organized, and to not repeat ourselves. For example, if we define a function that we want to use on one webpage of our site, and we need to use it again on another page, we don't want to copy and paste that a second time. That would mean that we now have two versions of the function, and if we find a bug or we make an improvement, we have to remember to update the code in more than one place. That leads to bugs and code that's hard to maintain.
 
@@ -139,7 +139,7 @@ And I'm just going to take away the indentation there. So now we've got our basi
 
 You can see how this keeps our code well organized, and gives us reusable parts. In the next movie, we'll talk more about this idea.
 
-Make Page Assets Reusable
+1.5 Make Page Assets Reusable
 
 In the previous movie, we learned to use include and require. In this movie, we'll learn some additional techniques that can help you to use them better in your projects. So, the first thing I want to show you is how we can use variables in PHP to work with these included and required files. Specifically, I want to be able to set a page title on this page, $page_title and I'm going to set it equal to, let's just call it Staff menu. I'll make it capital, Menu. Okay, so I'm setting this variable, $page_title, what I want to show you is that that variable is available inside this file.
 
@@ -167,7 +167,7 @@ Now, the style sheets still are broken, and in the next chapter, we're going to 
 
 2. Build Web pages with PHP
 
-Links and URLs
+2.1 Links and URLs
 
 In the previous chapter, we built a simple web page and learned how to create reusable page assets. In this chapter, we're going to work on building webpages using PHP. Let's begin by learning how to create links between pages. You should already know how to code a simple HTML link. We use a tags around the word that we want to link, and then we use the href attribute of the a tag to define where we want the link to go to, in this case, index.php. Now, the first thing you should know is that there's no such thing as a PHP link.
 
@@ -205,7 +205,7 @@ And menu works correctly. So, let's just review, why does all that work correctl
 
 It's a really handy tool to have.
 
-Use URL Parameters
+2.2 Use URL Parameters
 
 In this movie, we'll learn send a value from one page to the next by using URL parameters. This can also be referred to as query parameters. The URL parameters are the part of the URL which comes after the question mark. The format is always name of the parameter, then an equal sign and then the value of the parameter, so here we have page equals two. URL parameters generally modify the behavior of the code used for the response, so, in this example, the same PHP code would be run, but its behavior would probably be modified, so that it return the second page of results.
 
@@ -239,7 +239,7 @@ I'll click Go back; let's click two and it says two, so we're passing that data 
 
 But I'll leave that as an exercise for you to do on your own.
 
-Default Values for URL Parameters
+2.3 Default Values for URL Parameters
 
 In this movie, I want to talk about how to work with missing URL parameters and how to set default values for them. In the last movie, we learned how we can retrieve values from the associative array inside the GET super global. This process of retrieval and assignment works great, provided that there is a value to be found. In other words, if page wasn't sent in the URL, then a value would not be set inside the associative array and when PHP went to look for this value, it would raise either a warning or a notice to us telling us that the index can't be found.
 
@@ -259,7 +259,7 @@ Let me take GET id and just paste it right in here. So check and see if it's set
 
 I'll hit my back arrow. If I click on this one, it works to id=3. But if no id was sent at all, it goes back to default to one. So this is considered a best practice and a good habit to get in. Whenever you're pulling a value out of the super global, you want to check and make sure that it's there. And if you want, you can set a default value for it instead. You can also set it equal to null if you didn't want to set it to anything at all, but most of the time you're probably going to want to set it to some kind of a value.
 
-Encode URL Parameters
+2.4 Encode URL Parameters
 
 Over the last few movies, we learned to send a value as a URL parameter. So far we used it to send simple data, like an ID or a page number. In this movie, I want us to discuss how to handle data, which could include certain special characters that require extra attention. And the reason why is because they might have special meaning to the URL. Let me give you an example. Let's imagine that we have a link that we want to use that passes along a query parameter that is the name of a company, so company equals, and then the name of the company. And one of our links happens to use the company name Widgets&More, and the name of the company is Widgets & More.
 
@@ -293,7 +293,7 @@ And then I'd like to do another version of that that I call raw_u, that just doe
 
 The problem here, is that at the top of my page I have not required those functions yet, so let's just do that real quick right here at the top. Require once initialized, let's come back and let's try it. There we go, and now it works just fine, and we get our encoded version.
 
-Encode for HTML
+2.5 Encode for HTML
 
 Over the last few movies, we learned to send a value as a URL parameter. So far we used it to send simple data, like an ID or a page number. In this movie, I want us to discuss how to handle data, which could include certain special characters that require extra attention. And the reason why is because they might have special meaning to the URL. Let me give you an example. Let's imagine that we have a link that we want to use that passes along a query parameter that is the name of a company, so company equals, and then the name of the company. And one of our links happens to use the company name Widgets&More, and the name of the company is Widgets & More.
 
@@ -327,7 +327,7 @@ And then I'd like to do another version of that that I call raw_u, that just doe
 
 The problem here, is that at the top of my page I have not required those functions yet, so let's just do that real quick right here at the top. Require once initialized, let's come back and let's try it. There we go, and now it works just fine, and we get our encoded version.
 
-Challenge: Add Pages
+2.6 Challenge -> Add Pages
 
 It's time for your first challenge assignment. Over the last two chapters, we've covered the basics of building web pages with PHP. I've been demonstrating concepts by working with the subjects area of our content management system. From our initial project blueprint, we know that our content will be divided into subjects and into pages and we'll need to be able to manage the pages of our project as well. Your challenge assignment is to do the same work that I did on the subjects area, but to do it for the pages area. Let's run through some of the points that you'll want to make sure that you hit.
 
@@ -343,7 +343,7 @@ Also make sure that you encode any dynamic data that's being used for links and 
 
 In the next movie, I'll show you the results that I came up with.
 
-Solution: Add Pages
+2.7 Solution -> Add Pages
 
 I hope you were able to complete the challenge assignment. In this movie, I'm going to show you the solution that I came up with. Make sure you watch it, because there are going to be a few extra points that I want to make along the way. Let's start by looking at it in a browser, and then we'll look at the code second. First, you can see that on the staff menu area, I've added a new link for my main menu to pages. When I click on that link, it takes me to staff/pages/index.php. And I've replaced the placeholder content that we had there, with a list of the pages. So now, I've got a list of pages, showing me the basic attributes of these four different pages we would potentially manage in the future.
 
@@ -375,7 +375,7 @@ Right before I drop it onto my page, let's escape that value, and make sure that
 
 3. Headers and Redirects
 
-Modify Headers
+3.1 Modify Headers
 
 In this chapter, we will learn about page headers and page redirects. Page redirects in particular are an essential web development skill. We're going to begin by learning about headers and how to modify them. Let's begin by reviewing the way in which a web server processes a request that comes from a browser. A request goes from the browser, to the web server software. The web server software looks for the correct PHP file and then reads that file, processes the PHP code that's inside, assembles an HTML response and sends it back to the browser.
 
@@ -411,7 +411,7 @@ curl --head http://devserver/globe_bank/public/staff/pages/new.php
 curl --head http://devserver/globe_bank/public/staff/pages/new.php?test=404
 curl --head http://devserver/globe_bank/public/staff/pages/new.php?test=500
 
-Page Redirection
+2.2 Page Redirection
 
 In this movie we're going to build on what we just learned about modifying header information to learn how to perform Page Redirection. In http a webserver can tell a webrowser that it ought to go to a new URL by something known as a "302 redirect". A 302 redirect has two parts to it, both of which are items that are in the header information that's sent back to the browser. The first is a status code of 302 Found and the second is a location attribute indicating the new URL that the browser ought to try instead.
 
@@ -439,7 +439,7 @@ See how that works? So it gives me an easy way to say redirect to, and it's very
 
 Let's try it out and make sure that it works. Let's go back here, let's go to new.php first and then let's tack on, test=redirect. Watch how fast this happens. Boom, right away I'm redirected to the new spot. Page redirection is an important skill to have in your web development toolbox.
 
-Output Buffering
+2.3 Output Buffering
 
 In this chapter, we've been discussing headers and page redirection. One of the important points, which has come up a few times, is that it's essential that any changes to the headers come before any output to the HTML. In this movie, we'll look at that a little closer and also learn how we can use output buffering to help us. Let me start by giving you a metaphor for illustration. Let's imagine that our PHP code is a faucet, and our web server is a glass. Every time our PHP code outputs some data, it goes into the glass like drops of water.
 
@@ -463,5 +463,183 @@ We wouldn't want our code to stop working because we depend on having output buf
 
 Ob_start and that lets us know that output buffering is turned on. Let's save our file. Let's just make sure that we haven't broken anything, we'll come back to FireFox, we'll click on our menu page, and everything works just fine. Click around, now our output buffering is on. It's buffering the page contents, but then in the end, it's taking those and flushing them to the web server, and then the web server is then returning them to the browser.
 
+4. Build Forms with PHP
 
+4.1 Build Forms
+
+In this chapter, we will learn to use PHP to build pages which have forms for submitting data, and we'll begin, by reviewing the basics of HTML forms and then adding some forms to our project. There are two main ways in which we can interact with websites using the HTTP protocol. The first is what we've been doing in the last few movies and that is, GET requests. Whenever you type a URL into your browser bar or when you click on a link, you're going to be issuing a GET request for the server, and it's called GET because the idea is that we're getting back information.
+
+We're making a request to read information back from the server. Forms work differently, because with forms, we're not just reading data back, we want to submit data to the server, so they use a different method, they use POST. So those are the two main ways that we communicate with the web server. They're not the only ones but they're by far and away the most common. Links allow us to GET data; forms allow us to POST data. This is what a basic HTML form looks like, and you'll notice that inside those form tags, I have attributes for action and method, and the method here is post.
+
+It doesn't have to be post, but most of the time that's what you're going to want it to be. The action is where were going to submit this form data to. It's a lot like the href that's inside the link. It says where this data will be submitted. Inside the form, we've got all of the form tags. All of the places we want the user to fill out so that we could submit that information. You can see I've got inputs of type text for city, state, and zip code. Those names are going to be used to label the data that's submitted, and then the last one you can see is just a big Submit button, and the value that's on that attribute is what the button text is going to say, in this case, it'll just say Submit.
+
+Let's add a form to our project. I want to start by adding one to our staff subjects new page. We were working with this in the last chapter and we went ahead and added some code at the top. We can leave all of that, but let's take out this last bit here that says echo 'No error' and the else that comes right before it, so that it won't actually output anything except for our form. Now right below all that php, I'm going to paste in some code, quite a lot of code actually, and it's included in the Exercise Files if you want to get it from there. Let's take a look at what we've got. It's very similar to what we had for other pages. You can see I'm setting $page_title to 'Create Subject'.
+
+We've got the header being put in the top, inside my content div. I've got a back-link to take me back to the subjects list, and then, I've got another div here with an h1 for Create Subject, and then my form, this is the key part of this page. You can see that my form has a blank action for now. We'll come back and talk about the action later, and my form has a method of post for submitting it, and then I've got a series of form fields. You see I've got an input of type text here from menu_name, and I'm also using some HTML just to maintain the structure of that on the page.
+
+I like to use these dl, dt, and dd tags, that stands for data list, data term, and data definition. You could also use div's or span's or table, whatever you want, but the overall idea is that we just have a label here followed by the field that we're going to fill out next to it. I've also got one for position, which is going to be a select option, where we can pull down a list of choices, and then, I've got a checkbox here for whether the item ought to be visible. So it's an input of type checkbox, the name is Visible, and the value is 1.
+
+Now you'll notice that in addition to the checkbox, I also have an input of type hidden right above it, which has the same name. What's that about? Well here's the thing and this is a very important point to remember. When we have a checkbox, if the checkbox is checked, then our form data will send this value, so it'll have a value of visible=1 in the form data that it sends, but if our checkbox is not checked, it's not going to send visible equals nothing, it's going to send no attribute for visible whatsoever.
+
+It just won't be included in our form data as if we never put it on the form at all. That's just how HTML works. That can be undesirable when you're processing the form because we want to know that visible was there and that the user chose not to check it. So in order to do that, one work around is to put a hidden field right before it, a hidden input with the same name and with a default value. So now what happens is if the form is checked, then this value takes precedence because it comes later on the form, that's the value that's going to be submitted with the form.
+
+If it's not checked, than this line, is not going to output anything at all, and the only thing submitted in the form data is going to be visible=0, because it's still in the hidden input. It's a handy trick and it's an important part of any web developer's toolbox, and then down here, you can see I've got an input of type submit and my footer at the bottom. Let's save our page and before we go look in our browser, let's also go to subjectsindex.php, and right here, you can see I've got a place holder for a Create New Subject link.
+
+Let's go ahead and put a link there for that. So php echo url_for() and what is our URL going to be? '/staff/subjects/new.php', that's going to be the link to it. Let's go try it out. I'll go into Subjects, Create New Subject, when I click on the link, now I get a form that allows me to create a new subject. I can type the Menu Name here, I can choose the Position, and I can check whether it's Visible or not, and then submit the form.
+
+So this form will allow us to create a new subject in the database. Now let's give some thought to once we create that subject, what happens if we want to make changes to it? We want to edit the existing data that's in the database. We would want to have a form for that as well right? Let's do that by creating a new page here. Let's call it edit.php, and I'm going to go to new.php, and I'm going to copy all of this information, and then let's go over to edit.php, and let's paste it all in there.
+
+Then let's go up to the top of the file, and let's go down, and see what changes we need to make to make it an edit page. Obviously it's not going to be called Create Subject, it'll be called Edit Subject. Scroll down a little further, and we can change this class to say edit, and change this h1 to say edit. Let's scroll down further. Now all these form fields are the same. We still want to be able to edit the menu-name, we still want to be able to edit the position and the visibility, so those are going to get reused. The label on the button will also say Edit Subject, and that's it.
+
+Let's save it, and let's go over and let's take a look. I'm going to change new.php to be edit.php, and there we are. Now we have our Edit Subject form. This is what would allow us to edit the subject. Now, eventually, we're going to want to actually go to the database and get that existing subject data and pre-populate those fields with the current values. That's what's different between the new and the edit forms. New, will not need to have an existing object in the database, right, we're creating one from scratch.
+
+Edit, is going to be using existing data and just allow us to make modifications to it. So, let's keep that in mind. Most of the time, the forms between the two are going to be almost identical, because data that we create in the database is probably data that we want to edit later on, but they're not going to be exactly the same. For one thing, we know that our edit subject is going to need to find an existing record in the database. So when we come back over here, let's go take our link from Create New Subject, let's copy it, let's scroll down here to where we have a place holder for an edit link and let's paste that in there.
+
+It's not just going to be going to the edit.php page we just created, it's also going to need to look up the existing record. So we're going to need to tell it which record that is, and we know how to do that 'cause we did it up here for show. Let me just copy all of this right here, and there, now you can see it's going to append the subject id to the end. So now the edit page is going to know what our current subject is, what are we looking for? It's going to go to the database, it'll get that information out, it'll pre-populate our form with it.
+
+We didn't need that up here for new. New didn't need to have any additional information, it just needed to display a blank form. Let's save that page. Let's go over here and let's try it out. Let's go back to this, and now when I click on Edit, next to Small Business, you can see it says id=3, So now it would know to go to the database and retrieve the subject that had id 3, and use that to pre-populate these fields. There's another difference too which is that this action is going to be different here at the top as well, because the action involved with creating a new subject in the database, is probably going to be different than the php code that we need to edit an existing subject in the database.
+
+So the form action is likely to be different as well. So while there are a number of similarities between our new and edit forms, they're not exactly the same. 
+
+4.2 Use Form Parameters
+
+In the last movie, we added some forms to our project. When one of those forms is submitted, the page that receives the form is going to need to work with the form values. PHP takes these form values and automatically assigns them to an associative array where we can access them. That array is stored in a super global variable called $_POST, or dollar-sign, underscore, and then in all caps P-O-S-T. Remember, for URLS and links, which were GET requests, we access the URL parameters using the super global $_GET.
+
+It makes sense, then, that with forms, which are POST requests, we would expect to find the form parameters stored in the super global for $_POST and PHP puts these values into the $_POST super global before our page code starts processing, so they're there right from the start. But, unlike GET parameters, we do not need to do any special encoding on form parameters before we send them. There are no reserved characters that we need to worry about. HTML takes care of all of that for us already. The way that we access these values is just like we did with the $_GET super global.
+
+We simply ask for the name of the attribute we want to get out of the associative array. So here I'm getting the value that was sent in for name. It's also a good practice to make sure that value exists so we don't accidentally get a warning or an error so we can use either the ternary operator that'll check to see if it's set before we use it or if not use a default value, or if you're using PHP greater than 7, you can take advantage of that null coalescing operator, which does the same thing. If $_POST['name'] is there, use it; otherwise, go to the default value.
+
+In my project, I've already added a page called create.php in the subjects directory and you'll also find this in your exercise files. It's a very simple page. It doesn't even load up our initialize file or anything like that. All it does is it simply accesses this $_POST super global and it asks for the values that have been sent in for menu name, for position, and visible and assigns them to local variables and then we have a bit more PHP that just simply displays those back to us on the page so we can see what they look like. So that's it, we're just simply doing a simple exercise to read values that have been submitted to this page by a form.
+
+So this page is called create.php. We just need to submit our values there. So let's go to new.php and let's just change our action link here to go to that new page. So I'm going to use "<?php echo" and I'm going to use my "url_for" function again here, make sure that I have a good URL that I can use, and it's going to be called /staff/subjects/create.php. That's it, I don't need to provide anything else, I just tell it what page to send, the package of all of this form data.
+
+Let's try it out. Let's save it, let's go to Firefox, let's click on "Create new subject." If you already had this page loaded, make sure you reload it because we want to make sure that we have that action at the top of our form so it knows where to submit it. Now let's try "Testing," position 1, visible true. Click "Create subject." Look, it took us to create.php, it read in the form parameters, here's "Testing," position, visible 1. We can click back, we can change it to "Testing Again," change it to not visible, and click "Create subject." There we go, again, create.php, our menu name, our position, and visible.
+
+That's all there is to reading back these form parameters. Now you may be wondering, well, what about when we take this code here and we want to put it on our edit form right here, I'm not going to paste it in yet, but for this action, the edit action needs to be a little bit different because the edit action needs to also be able to pull up the existing subject from the database. It needs to know which one we want to edit. We've given it a menu name and a position and visible in our form data, but we didn't tell it which one. Well, our action here would need to include the ID, the ID of the subject we want to edit, so we would want to include that as part of the URL.
+
+So you may be wondering, what about the fact that we're using both GET parameters and POST parameters? That's not a problem. PHP will take the URL parameters that come in from the URL and put those in the $_GET super global and it will take all of the parameters that come in from the form and put them in the $_POST super global. We can use both of them together. For now, we'll leave this edit action blank because I have a different idea in mind for what we'll do with it later on. 
+
+4.3 Detect Form Submission
+
+In this movie, we'll discuss how we can tell when a form has been submitted. Let's begin by understanding why we might want to know that. Here I am on the create.php page that we created and used in the last movie. The way that we used it is that we had a new dot php page that submitted its form data over to create.php, so this was a POST request to create.php, which contained the form data here and then we had create.php that processed that data. It did some very simple processing, it just simply read the values back and put them on the screen for us.
+
+But I want you to notice that even though we made a POST request to create.php, it's also possible for us to make a get request. All we have to do is click on the URL up here in the browser bar at the top and hit return and now I've issued a get request to the same URL. In this case, our create.php handled the page just fine, we didn't get any errors back or anything like that, but that's not always necessarily the case. It might be that we want this page to be dedicated to form processing and not respond to simple requests that are not from a form.
+
+Maybe we want to redirect do another page in that case. To do that, we need to be able to detect whether the form has been submitted or not. There are three main techniques that developers use to know whether a form has been submitted. The first is that you can test to see whether a key parameter is present in the form data and whether it has a value. The second is you can see whether there's a submit parameter that's been sent. I'll show you what that means in just a moment, and then the third is we can check to see whether the request method was a POST request.
+
+The first of these is to check and see whether or not a key attribute has been submitted. For example, let's say we have a login form. We would expect that some value would be in the form data for username when the person goes to log in. So if we don't see username in the POST super global then we'll know that the form wasn't submitted. Because even if they left username blank, something should've been submitted for it. Another way people handle it is by adding a name attribute to their submit button. If we don't put any name attribute, our submit button doesn't submit any data for itself, it's just not included in the form data, but as soon as we add name equals something, now that value will be included in the form data.
+
+When the form is submitted, there will be something present for that submit button. So we can check to see if it's there, we can check to see if that value is present. If it is, we'll know that the submit button had to have been clicked. But I think an even better way to do it, and the way that I'm going to recommend is to actually check and see whether the request method was a POST, and we can do that using the server super global and asking it for the request method, in all caps with the underscore between the two words. So if the request method is equal to POST, then we'll know that a form has been submitted.
+
+If the request method is GET, then we'll know that it was a link or a URL. I like to take this and wrap it all up in a handy function, so here I have a function called request is post, and it just does that evaluation to see is the request method equal to post. And that's a nice handy convenient method we can put into any of our pages to find out whether the form has been submitted or not. Let's try adding this to our project. So I'm going to add this function into our private functions.php page, I'm just going to scroll down here after our redirect, I'm going to paste them in.
+
+They're also available in the exercise files or you can pause the movie to copy this down, it's not a lot of text. But you can see that I'm actually providing two different functions, one for whether is a POST request the other is it a GET request, and it just returns the result of this evaluation. It's either going to return true or false, this is just a condition to check and see, is this equal to this, so we'll return that value back and then we can use it as a condition inside our page. So let's go to create.php. Now in order to have access to that function, we also need to come to new.php and just grab this require once line.
+
+Let me make sure we have that, and then let's come back here, now we'll call initialize, that'll give us our functions, so now it has access to the function, and then we can put something in here for it, let's say if is post request, then and we're going to do all of this and I'll just indent it a bit, but if not, then what do we want it to do, let's have it redirect, redirect, and we wrote a helper method for that redirect to URL four and where do we want to send it, let's send them to staff subjects new.php.
+
+Alright, so either if it's a POST request, display the parameters, if not, redirect them back to the form. Let's save this page and let's try it out. Let's come back over here and let's start by going backwards so that we have our form again, you can fill it out with any simple data you want, we're going to click create subject. And you see that I get my parameters, it displays them on the page. Now let's click up here at the top, and let's hit return, and look at that. It redirected me. It no longer processed my form, we were able to detect that this was not a POST request, and so it redirected instead.
+
+Having these two functions in your standard library can be really useful, to check to see whether something is a POST request or a GET request and respond appropriately based on each one. 
+
+4.4 Single Page Form Processing
+
+In the last movie we learned how to detect when a form was being submitted to a page or whether the page was being loaded directly. We used it to redirect whenever it was not a post request. We can also use this same technique to do something I call single-page form processing. The idea is that we have a single page which contains both the form and the code to process that form. In other words, we'll have a form that submits to itself. There's nothing wrong with having the form and the form processing on two separate pages like we did with new and create, but having them on one page adds a few nice perks.
+
+The first is just that all of the logic related to the form, how it's displayed and how it's processed, is all self contained in a single file. We haven't talked about form errors yet and when we do we'll realize that when there's a problem with the form we're going to want to redisplay the form back to the user so that they can fix it. We don't want that data to just simply disappear, we want to represent the form to the user pre-populated with their values so that they can fix the problems. So the idea here is that when we have a get request to the page it's going to simply show the form.
+
+But when it's a post request we're going to have all the form processing take place at the top and if something goes wrong the form will be further down on the page. So we can simply redisplay the form again as needed with all of the values and error messages that it might need. Let me demonstrate. So we already have new and create as a form and a form processing page. Now for edit I want to make the edit be a single-page processor. So what I want to do is I want to take all of this code from create.php that we have and all of this is post request right here.
+
+I'm going to take and just copy. I'm going to come back over here to edit.php, I'm going to take all of this code where we were testing things out, I'm just going to remove that and instead paste in my new code into the post request, then we're going to get those values and we're going to be able to display them. If not, right now we have something that says redirect, but we don't want to do that redirect, I'm going to just comment that out. So if it was not a post request then we want to just display the page. So process it if we've got it, if not display the page.
+
+Let's try that out. In order to make it work we'll need to first put in a form action. Remember we didn't have that before. I'm going to cheat and just copy this link that we had up here down here and then I can just edit it. So it's already got all the URL for and instead it's going to go to edit.php. Remember though that edit.php needs to know what we're editing, so we need to pass in an ID as well. So I'm going to include an ID here. And for that ID I'm going to want to make sure that I escape it for HTML and URL encode it and I'm just going to use a value for ID.
+
+Now that ID hasn't been set yet. We need to have a variable for the ID. So we need something that's going to read that in. So in every case, not just when it's a post request, we're always to want to have ID equals and get ID. Now if ID's not set, we know we could do something like this and have a default value, but if it's not set I want to do something more extreme than that. I want to say, if not is set get ID, then let's redirect.
+
+Let's redirect to, and actually I'm going to copy this line down here just to save me some time. I'll remove that and let's come up here. Redirect to and I'm going to redirect back to index.php. So it'll go back to the list. So if I don't have an ID, don't show this page. ID is required or else we're going to redirect back to the index. Then I know I have an ID. If this is present I can assign it confidently. If it's a post request then I'll process it, if not then I'm going to show the page.
+
+See how that works? Let's save it and let's try it all out. Go to our list and let's click on small business, click edit, ID is equal to three, you see we get our edit subject page. Let's try it, test, let's click edit subject. Look at that, it tested our form parameters. Now if I do a get request to it again, hit return up here, it doesn't do the form processing. Now let's take away our ID and let's just see that not having an ID is a show stopper, it takes us back to the subjects list page.
+
+So we've now implemented single-page form processing. However, we don't really see the benefits of this yet. Let me drop down here though and show you that if in this value if instead of having nothing what if we put in echo, dollar sign, menu name. Now that will display whatever menu name has been submitted for us automatically. It'll appear right there. Now we also want to go up and make sure that we have a value for menu name set in all cases.
+
+So I'm just going to come up here and before any of this page starts I'm going to make sure that menu name is initialized to just an empty string. And position, just so these don't blow up on us. And same thing with visible. Its not a bad idea whenever you have a form to just make sure that there are default values there. So if it's not a post request, then those will get handled. We could also put these here in this else statement, they could go there, but I like to go ahead and just put them at the top of the page. I'll remove that else statement 'cause we don't need it anymore.
+
+Let's go back and let's try it out and see how it works. Click on edit. So now we're going to submit testing, testing. Edit subject and look at that. My form value stuck around. So if there had been a problem with it and that's why the editing didn't actually take place then you can see how we'd have the opportunity to edit it. We'll talk more about that in a future chapter when we talk about validations and errors. For now I just want you to see that we're setting ourselves up for taking advantage of that by having the form processing take place on the same page.
+
+Our page can do double duty, it does one thing when it's a get request, it does a different thing when it's a post request. If you're still not convinced about the advantages that this offer, think for a moment about how you would do this with new.php and create.php. Once you process create.php how would you get this value to redisplay in the form? You can't just redirect back to the form because that's a new request when we do our redirect and those values would be lost. You can't really send those values in the URL string because there might be dozens of them.
+
+You could potentially store these values and retrieve them, but that's really making something much harder that could be very easy. Single-page submission solves the problem for us in a simple way. 
+
+4.5 Challenge -> Add Forms
+
+It's time for another challenge assignment and like the challenge assignment that we had before, your goal is going to be to take the work that we did inside the subjects management area and to do the same thing inside the pages management area. Let's go over the points that you need to make sure you hit. The first is that you'll want to add a form under staff/pages/new.php. Replace any placeholder code you might have there and put in the correct page to display a form for creating a new page. Then you'll want to take that form and modify it so that you can also have an edit form so that you can edit an existing page.
+
+You want to make sure that you add links to both pages from pages/index.php and remember that in the link to the edit.php page, editing will require having a page ID so that that's accessible and that eventually that page can go to the database and retrieve an existing page. Once you've got that, then work on the form processing. Use single-page form processing for both of the forms. When we were working with the subjects, we only did it for the edit page. The new page actually used two pages: new and create.
+
+You're not going to use create.php. Do both of them as single-page form processing. So if a form was not submitted, you're just going to display the form, but if a form was submitted, then you'll display the form parameters at the top just like we did for subjects and then the form below that. Then inside the form, go ahead and display any submitted menu name that might have been sent in when the form was submitted. And then if you're up for a real challenge, as a bonus assignment you can display the submitted position and visible on the forms as well.
+
+Right now we were only working with that text input. This requires you to work with select options and check boxes. So we'll need to write some PHP to check and see if the select option value and the checkbox value match the submitted value for those two attributes. Do your best. Remember that you can refer to my work on subjects if you need to, but try to write as much of it on your own as possible. That's the way that you learn. And then in the next movie I'll show you the results that I came up with. 
+
+4.6 Solution -> Add Forms
+
+I hope that you were successful with your challenge assignment. In this movie, I'm going to show you the solution that I came up with. First, let's look in a browser and then we'll take a look at the code. You can see, in the browser, I can click on Pages and I come up with my Pages area and I have a new link here now for Create New Page. And when I click on it, takes me to new.php and I get back a form to allow me to create a new page. So, I can add the Menu Name, I can type Position, and I can type Visible. So let's try just write Testing and I'll put in Visible true, and I'll click Create Page.
+
+Now this submits to the same page, new.php, that's different than what we did throughout the rest of this chapter where we used create.php. We're using single-page submission here. Single-page form processing. So it's going to submit to itself, new.php and you can see that it lists the form parameters that came in. It says it received Testing, Position: 1, Visible: 1. And then it redisplays the page and you can see that it redisplayed the Menu Name here. And we have the Position and Visible is checked. If we were to uncheck it and click Create Page, we see Visible's now zero and it's not checked.
+
+I added that detection in there. Let's go Back to List now and let's do the same thing for Edit. I'll click on leadership and you see, for here, we have Edit Page, we have our form, once again, we can type in Testing. Notice here that it also says id=3, it is passing along the ID of the page that it would look up in the database later on. And let's click Edit Page. You can see that it submits back to itself. It includes the ID, so that it can be found in the database again, using that URL parameter, but then we have the Form parameters here: Testing, Position: 1, Visible: 1, and those show up down here in the form as well.
+
+Let's go look at the code. So, the first thing was that on that index.php page, I needed to add links so I just added a link right here that'll take me to staff/pages/new.php and I added a link down here that would take me to edit.php and also include the ID that I'm going to need to look up in the database. So, I've got the ID included as well. Then, in new.php, I have a form. So, the first thing I actually did was I added the form itself. So I have all the form down here, page title, the page header.
+
+And then I've got my form with this action, then I've got all my form fields. Then, when that field submits, it's going to submit to itself, to new.php. And up here, I have code that says if it's a post request, then get those values and display them. Eventually, we would get those values and do something else with them. We would submit them to the database, for example. But for right now, we're just displaying them at the top of the page. If it's not a post request, then it just displays the form. So we only get that part when it's a post request but we go ahead and set default values for all of these just in case.
+
+Because, further down the page, I'm going to echo back the menu name. Now, notice that I've also put an h in front of this as well. I need to make sure that I escape this for html. I did not do that in the last movie when we were talking about outputting this value; that was an oversight on my part. So we do need to escape these values for html, so I've got the h there. I also did the bonus assignment, which is that I checked to see if position was equal to one and if so, it's going to echo selected next to this option.
+
+That'll mark this option as being selected. If the check box for visible is equal to one, then it's going to echo checked there. So that was the bonus assignment that I asked you to do. And then I did the same thing for edit.php. I've got my form, it just says edit page instead. It's going to submit to itself. It includes the ID with it. We did the same thing down here in the form, echoing back any existing menu name, checking to see whether these items were, in fact, the current values before outputting selected or checked. And then at the top, I've got my form processing.
+
+If it's a post request, then display this information. And I've got some default settings here. I also had this additional bit of code at the top of the edit page to just make sure that we have an ID and, if not, it redirects to pages/index.php. Once I had done that and completed the assignment, I also went back to the subjects page and just made the changes here so that I made sure that this was escaped using h, and added in the parts for selected and for visible.
+
+So that same code now applied to edit.php. On new.php, I did not change the code to make it single submission, you could do that if you wanted. And I did not bother putting in these additional values because if it's not single-page form submission, then there's really no way to redisplay these values on the page. That's the problem that we ran into. It's up to you whether you want to revise this page now, but we're going to come back to it a little later on. Hopefully, you were able to complete this challenge assignment on your own. If not, take a few minutes to figure out what you did wrong.
+
+Look at my code, pause the movie if you need to to compare, and make sure that you get everything right before you meet me in the next chapter. 
+
+5. MySQL Basics
+
+
+
+
+5.1 MySQL Introduction 
+
+
+
+
+
+5.2 Create a Database
+
+
+
+
+5.3 Create a Database Table
+
+
+
+5.4 CRUD in MySQL
+
+
+
+
+5.5 Populate a MySQL Table
+
+
+
+
+5.6 Relational Database Tables
+
+
+
+
+5.7 Challenge -> Pages Table
+
+
+
+
+5.8 Solution -> Pages Table
 
