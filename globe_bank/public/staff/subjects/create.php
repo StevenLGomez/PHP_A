@@ -21,7 +21,7 @@ if (is_post_request())
 }
 else
 {
-    redirect_to(url_for('staff/subjects/new.php'));
+    redirect_to(url_for('/staff/subjects/new.php'));
 }
 
 ?>
