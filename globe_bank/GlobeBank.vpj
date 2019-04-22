@@ -100,12 +100,19 @@
         </List>
     </Config>
     <Files AutoFolders="DirectoryView">
+        <Folder Name="../course_files">
+            <F N="../course_files/db_connect_guide.php"/>
+        </Folder>
         <Folder Name="private">
             <Folder Name="shared">
+                <F N="private/shared/staff_footer.php"/>
                 <F N="private/shared/staff_header.php"/>
             </Folder>
+            <F N="private/database.php"/>
+            <F N="private/db_credentials.php"/>
             <F N="private/functions.php"/>
             <F N="private/initialize.php"/>
+            <F N="private/query_functions.php"/>
         </Folder>
         <Folder Name="public">
             <Folder Name="staff">
