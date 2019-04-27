@@ -902,18 +902,92 @@ It's able to find those exactly like it ought to. And then our loop ends down he
 
 6.5 Error Handling
 
+Over the last several movies, we've learned how to connect to a database, how to make a query for data, and then how to use that data in our website. Now, I want to talk about what to do when something goes wrong in that process and how can we handle it when it does. There are two more functions that we're going to to use from the MySQLi API for this. The first is mysqli_connect_errno, that's short for error number, E-R-R-N-O, short for error number. And then mysqli_connect_error. Errorno is going to return the error code from the last call that we made to connect to the database.
 
+So, whatever that was, whatever the last call to connect to the database was, we're going to be able to retrieve the error code that was there. If there is no error code, then it'll come back and return nothing. There's nothing there. The mysqli_connect_error function is going to return a string description of that last connect error. So it does the exact same thing, it looks to see what the error was, but it also does one additional thing, which is that it goes and looks up a string associated with it. So errorno is slightly faster because it just goes and finds the number.
+
+The second one takes that number and then matches it up with some kind of a string that will tell you what went wrong. We're going to add both of these to our project. So if you want to see it fail and see what might happen, one easy way to do that is just go into your database credentials and just add something at the end here to make the password or the user name wrong. I just added a $ at the end; let's save it. I'll go back to Firefox and let's just reload this page. Wow, look at that, all sorts of errors. I get a mysqli_connect error, Access denied for the user. I had a password but it came back it didn't work.
+
+And then down here you can see I also got an error then in mysqli_query function because it was expecting to have a handler that it could use, a handle for the connection, but instead it was boolean, probably false is what I got back. And then same thing, another error down here on fetch association and so on. You see this page is awful. This is definitely not something we'd want to show to our users, and we wouldn't even want to let them see this page at all. You don't want to have a broken page of any sort. So, how can we handle this better? Let's leave it broken and then find out how to fix it. I'm going to start out by actually going back to this guide that we've been creating, connection guide.
+
+And in this guide, I'll just show you what code I've added. So after we've got the connection, the next thing we do is just use an if statement with that mysqli_connect_errorno. So if there is an error number, do this code. I use errorno here just because it is slightly faster than using mysql_connect_error, which I also use when constructing the message. So, "Database connection failed:" and then whatever that string is. And then I went ahead and for good measure, just went ahead and put that error number, inside parenthesis after it. So I'm just building that up into this string for message, and then I'm calling exit with that message.
+
+And that's it. It'll just stop php cold at that point; it isn't able to make a connection. So, we want to add the same thing to our project. I'm actually going to go into database.php and I'm going to create a new function that we can use here. I'm going to call it confirm_db_connect. This'll be a custom function. And let's go back over to that guide, just going to copy all of those lines, and let's just paste them in. There we are. So, it's just going to check and see, it's going to check the most recent connection.
+
+We don't tell it which connection 'cause we didn't actually make one, so there is nothing to pass in. It's just going to check to see what was the most recent connection, was there an error, and, if so, display this error message and exit. So, confirm_db_connect could be something that we could put right here in our connection. Right after we connect, let's just call confirm_db_connect. So anytime we make a connection, it should handle it for us. Let's go back over to Firefox and let's try reloading our page. Look at that. Now, I still got an error mysql_connect failed, but this is a warning.
+
+We probably would remove this in production. You can see here I got, Database connection failed: Access denied for, this user, so it tells me what was the error, here's the error. That tells me exactly what the problem was and then you can see the error number that came back was right there. That's usually not meaningful to you, but sometimes you can Google for that to find out a little more details about what exactly went wrong if you run into a problem. So that handles the possibility that we weren't able to connect to the database at all. So let's go back to our credentials and let's just fix our credentials and then our page should load again.
+
+Now, what about the possibility when we make our database query. What if we submit our SQL and we have a problem getting back data? We also want to have some error checking for that. Let's go back to our connection guide here, and you'll see that I've added a bit of code, right here. After step two, performing the database query, I'm just going to check and see if there is a result set. So, if we got back a result set, then this won't run, but if we didn't, if we got back false for some reason, then this will run. It'll come up and say database query failed and it'll just exit.
+
+That's all it does. It just says, oops, there was a problem, you got back false. Now, obviously we only want to use this on a result set because we might get false back for other reasons. But if we're trying to get back a set of data using select, then we would expect there to be a set. So let's just save this. Let's go back over to our code here into database.php and let's add another function. I'm going to call this one confirm_result_set and guess what it's going to do, it's going to do that exact same code to check and see whether we got anything back.
+
+You could also just retype this, it's not a lot of code. We'll come in here; there, if not result_set, and of course we need to pass in result_set as an argument. Save that. Now we can put our confirm_result_set inside query functions right after we do our query. It will take the query, it gets back a result, confirm_result_set of the result, and now, we'll get our error message instead. So let's try it, let's remove this space from right here. Remember I told you before that would not work.
+
+Let's try that and see what kind of error we get. Let's come back to our page, reload the page: Database query failed; our SQL was no good. It's also worth noting, that if you ever want to check your SQL, one great technique for being able to troubleshoot it is just to put it in a line here that will echo it. Just echo back the SQL to the page and then you'll see what this string looks like before you execute it. Let's just come back over here, let's reload our page, and there it is: SELECT * FROM subjects... Oh, I see my problem. I'm missing that space right there; I can see that I have malformed SQL.
+
+I add back in my space, I can take out my troubleshooting code, just comment it out, come back over, reload the page, and now everything works correctly. So that'll handle the two most common types of errors. One is that you're not able to connect to the database for some reason. The second is that you're able to connect, but there's something wrong with the query that you made.
 
 
 6.6 Challenge: List Pages
 
+t's time for another challenge assignment. Your challenge this time is to take what we've learned in this chapter so that you're able to connect to the database, retrieve records from the pages table, and then use that data to make a list of the key page attributes using PHP. Let's go over the points you want to make sure that you hit. The first is that you want to use the database connection that we've already set up, and you will remember, we assigned it to a variable in initialize dot PHP. Review that code, make sure that you understand it and that you know how to use it.
 
+Once you have that, you'll be able to query the pages table for all records sorted by their position so that we can generate a list of the pages. And what's the right place for a list? Well, that's going to be in our pages directory inside index dot PHP. You'll remember that we had some placeholder code in there to begin with. You can go ahead and remove that placeholder pages array because we're not going to need it anymore. Once you've got your query together, you can go ahead and package it up into a reusable function and put it inside the private directory in query underscore functions dot PHP.
+
+Give it a name like find all pages, and then whenever we call find all pages, it'll perform your query and retrieve a result set. Then, you'll want to loop through that result set. Remember, we do that using a special kind of loop, and then when you're done using the data, free the result set so that MySQL and PHP can have that memory back. Next, you'll want to confirm that the database connection is being closed, and finally, make sure that you handle errors on the connection and the query appropriately. It's a good idea to go ahead and break those, put in some bad information for the connection, or put in a bad query so that you can see what happens and make sure that you're handling it well.
+
+Now, if you get stuck, you can either use the database connection guide that we created, or you can refer to the work that we did on subjects, but try not to copy and paste it. You will learn the material better if you take the time to type it out. In the next movie, I'll show you the solution that I came up with.
 
 
 6.7 Solution: List Pages
 
+Hopefully you were able to complete the challenge assignment on your own. If not, in this movie, I'm going to show you the solution that I came up with; and you can follow along with me. The first thing we know we need to do is we need to make a connection to the database. We had already created much of this functionality already in the chapter, and we're just going to reuse it; but it's good to review it to make sure that you understand it. The key part is here, what we're calling mysqli_connect, and we're passing in our credentials. Those are constants that we're getting out of the DB credentials file, and then I'm getting back from that connection a connection.
+
+So if the connection succeeded, I'll have a connection handle that I can use to work with; and then I'll return that down here in this line. I've also still got this error checking code in here, so it's going to confirm that there wasn't an error. So if, for some reason, something went wrong with the connection, it'll just handle the error appropriately inside that function. If not, it returns back that database handle that we can work with. So in order to trigger all this functionality, we need to call the DB connect function; and, if you remember, I was already doing that at the bottom of initialize.php.
+
+So any file that loads initialize.php will automatically have a connection to the database that's live and ready to make queries on. Remember, I also called that and assigned that handle to this variable DB. Throughout the rest of my application, it's DB that I'm going to be using in order to reference that. Not connection; the variable's not called connection. That was only inside the function. Here it's going to be called DB. Then I went over to my query_functions.php, and I wrote a new function called find_all_pages. It needs to bring in that DB variable from the global scope into the function scope so that we can make use of it; otherwise, the function wouldn't be able to see it.
+
+I then constructed the SQL here. I broke it into two parts, select all from pages, space, and then on a new line, order by position ascending, A-S-C. Once I have that SQL assembled in the string SQL, I use that database handle and SQL; and I pass it in to the mysql_query. I get back a result set, or at least I hope I do. I've got confirm result set to make sure. So I pass in the result set. If it's not a result set for some reason and I didn't get back anything, then I'll handle that error; but, if I did, then it's going to return the result back to whatever called this function.
+
+The place I want to call find all pages, at least for right now, is inside the pages directory on index.php. Up here at the top, I replaced the placeholder that we had for hard-coded pages, and instead now I'm querying the database to find all the pages and set it equal to page set. Scroll down a bit and you'll see where I used to have a loop that would loop through using four each. I've replaced it instead with this wild loop. So what it's going to do is it's going to go to my page set, it's going to fetch each row out of that page set, make an associative array out of it, and assign it to the variable page; and then, for the rest of my loop, I'll be able to use page as my variable that I reference.
+
+And because it's an associative array, I can find its values by using the label. Then once I'm done going through that loop and I'm done with page set, it's a good practice to go ahead and free up that result. So I tell my SQL in PHP that I'm done with it. You can have your memory back; and then finally at the end in the (mumbles) footer, you'll remember we called DB disconnect. Pass it in that variable for DB, and it closes our connection. Again, those last two steps aren't strictly necessary; but they are a good practice. You may have noticed that I also added another line in here.
+
+I added in a line for subject ID. Let's go over and take a look at all this so you'll see what I'm doing there. Let's go to our main menu; I'm going to click pages. Here you see I got a dynamic list of pages. Those are coming out of the database, and you'll see also that I've added a column for subject ID. So I'm displaying the subject ID that matches for each one of those. That wasn't a part of our placeholder before. That's something new that I've added. It also wasn't part of the assignment, so you might want to just take a moment and just add that line in there so that you could see it. What I want you to see, though, is I'm sorting by position; but the thing is my positions really are based on what the subject ID is, right? I have position one, two, and three under a particular subject.
+
+Here I have several ones all together, several twos all together, and so on; and they're really not in the order that I would want. So I'm going to go back and just make a little change here. I'm going to go into my query function, and instead of just order by position ascending, I'm going to do order by subject ID ascending, comma, position ascending; and that's going to sort by the subject ID first and then by the position. Let's save that file, come back over, and let's reorder it; and now you can see that we're getting them actually in the order that we want.
+
+They're grouped by their subject. All the subject ID ones are together, and they're position one, two, three, four. All the subject ID twos are together, and they have position one, two, three, and so on. Hopefully, you were able to complete this challenge assignment and you got results that are similar to mine. If not, take a few minutes to review and make sure that you understand these fundamental database concepts before we move on to the next chapter.
 
 
+7. CRUD with PHP 
+
+7.1 Find a Single Record
+
+
+
+7.2 Use Form Data to Create Records
+
+
+
+7.3 Use Form Data to Update Records
+
+
+
+7.4 Form Options From Database Data
+
+
+
+7.5 Delete a Record
+
+
+
+7.6 Challenge: Pages CRUD
+
+
+
+7.7 Solution: Pages CRUD
 
 
 
