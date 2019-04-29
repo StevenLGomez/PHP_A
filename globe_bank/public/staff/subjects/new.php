@@ -1,22 +1,5 @@
 <?php
 require_once('../../../private/initialize.php');
-
-// Check for valid value in super global _GET
-// $id = $_GET['id'] ?? '1'; // Requires PHP > 7.0
-$test = isset($_GET['test']) ? $_GET['test'] : '1';
-
-if ($test == '404')
-{
-    error_404();
-}
-elseif ($test == '500')
-{
-    error_500();
-}
-elseif ($test == 'redirect')
-{
-    redirect_to(url_for('/staff/subjects/index.php'));
-}
 ?>
 
 <?php $page_title = 'Create Subject'; ?>
@@ -38,7 +21,15 @@ elseif ($test == 'redirect')
                 <dt>Position</dt>
                 <dd>
                 <select name="position">
-                    <option value="1">1</option>
+                    <?php
+            for($i=1; $i <= $subject_count; $i++) {
+              echo "<option value=\"{$i}\"";
+              if($subject["position"] == $i) {
+                echo " selected";
+              }
+              echo ">{$i}</option>";
+            }
+          ?>
                 </select>
                 </dd>
             </dl>
