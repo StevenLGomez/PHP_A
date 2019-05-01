@@ -5,7 +5,7 @@ PHP Essentials Course Instructor's Dialog
 Introduction
 ------------
 
-###Welcome
+**Welcome**
 
 Welcome to PHP with MySQL essential training part one. My name is Kevin Skoglund. In this course, we will learn to use PHP to create, read, update and delete records in a MySQL database. We will discover how to effectively organize the PHP pages in a project. We will build web pages in PHP that can send and read parameters in the URL. We will learn about headers, redirects, and the importance of output buffering. We will learn to create forms and to process form data. We will cover the basics of MySQL, use PHP to communicate with the database, and learn to perform the most common database operations.
 
@@ -23,9 +23,9 @@ And finally, we will learn how to validate and sanitize dynamic data to keep you
 
    So you can just work along with me, and your files will mirror what's in the exercise files. Remember, that you can pause the video, or rewind if you need more time to copy something down. You can also use the exercise files to check your work, or to get back in sync, if you experiment on your own.
 
-H2 1. Start a Database Driven Project
+## 1. Start a Database Driven Project
 
-H3 1.1 Blueprint the Application
+### 1.1 Blueprint the Application
 
    We will begin creating our database driven project by learning how to blueprint an application. The web application that we're going to be building is a Content Management System. Or CMS, for short. The idea is to have private webpages which administrators can use to create and edit website content. But the public has different pages where they can read the content but which are not editable. An essential first step when beginning any web project is to create a project blueprint. If the site is simple, you may be able to simply type up a few notes or draw a picture on a single piece of paper.
 
@@ -49,7 +49,7 @@ H3 1.1 Blueprint the Application
 
    There's also an option up here for creating a new subject. If I want to add a new subject to the database as well. So those are the basic ways we're going to interact with this content. We're going to do it for both subjects and, also, for our page content. Now that we have an overall understanding of what we're going to be creating, let's get started by creating the beginnings of our project.
 
-H3 1.2 Establish Your Work Area
+### 1.2 Establish Your Work Area
 
    Now that we have a blueprint for our application, let's begin creating the project files that we're going to need. I use a standard structure for all of my php projects and it looks something like this. I have the main project directory, here I've just called it basic_php_project/, but I would rename it to be whatever the project name was. But then, inside of there, I've got two subdirectories, or folders. One is called public/ and one is called private/. The idea is that we configure our web server to serve content from the public directory.
 
@@ -75,7 +75,7 @@ H3 1.2 Establish Your Work Area
 
    Okay, so now we have our basic project structure together. In the next movie, let's start working with the content of these pages.
 
-H3 1.3 Create and Style the First Page
+### 1.3 Create and Style the First Page
 
    In the previous movie, we created the starting structure of the files that we're going to need, the basics of our project. Now we want to bring those up in a text editor, so that we can work with them. For most text editors, you can simply drag the directory onto the icon for the text editor, in order to open up the entire project in a project view, all at once, I've already done that here. It works the same way whether you're using TextMate, or Sublime, or something else. The overall idea is that my project is now visible in one column, I can navigate the files that I want to edit, and I can edit them over in the window on the right.
 
@@ -107,7 +107,7 @@ H3 1.3 Create and Style the First Page
 
    Let's add that, div id="content". And there we go, save it, go back, and I think that should probably give it, yeah, a nice big chunk of space here, that we can fill in below. And then we've got one link on the page, which is Menu. If we click that, you can see it just brings us back to this same page, index.php. So for now, make sure that you're able to bring up pages in your browser, make sure that PHP works, so that you have a date at the bottom of the footer, and that you are able to access the style sheet, that you do have the ability to link to the staff style sheet.
 
-H3 1.4 Include and Require Files
+### 1.4 Include and Require Files
 
    One useful feature in PHP is the ability to include code from other files into a PHP page. It's an important feature because it helps us to stay organized, and to not repeat ourselves. For example, if we define a function that we want to use on one webpage of our site, and we need to use it again on another page, we don't want to copy and paste that a second time. That would mean that we now have two versions of the function, and if we find a bug or we make an improvement, we have to remember to update the code in more than one place. That leads to bugs and code that's hard to maintain.
 
@@ -143,7 +143,7 @@ H3 1.4 Include and Require Files
 
    You can see how this keeps our code well organized, and gives us reusable parts. In the next movie, we'll talk more about this idea.
 
-H3 1.5 Make Page Assets Reusable
+### 1.5 Make Page Assets Reusable
 
    In the previous movie, we learned to use include and require. In this movie, we'll learn some additional techniques that can help you to use them better in your projects. So, the first thing I want to show you is how we can use variables in PHP to work with these included and required files. Specifically, I want to be able to set a page title on this page, $page_title and I'm going to set it equal to, let's just call it Staff menu. I'll make it capital, Menu. Okay, so I'm setting this variable, $page_title, what I want to show you is that that variable is available inside this file.
 
@@ -169,9 +169,9 @@ H3 1.5 Make Page Assets Reusable
 
    Now, the style sheets still are broken, and in the next chapter, we're going to talk about how we can do the same kind of idea when working with links and URLs so that we can address our style sheet problem.
 
-H2 2. Build Web pages with PHP
+## 2. Build Web pages with PHP
 
-H3 2.1 Links and URLs
+### 2.1 Links and URLs
 
    In the previous chapter, we built a simple web page and learned how to create reusable page assets. In this chapter, we're going to work on building webpages using PHP. Let's begin by learning how to create links between pages. You should already know how to code a simple HTML link. We use a tags around the word that we want to link, and then we use the href attribute of the a tag to define where we want the link to go to, in this case, index.php. Now, the first thing you should know is that there's no such thing as a PHP link.
 
@@ -209,7 +209,7 @@ H3 2.1 Links and URLs
 
    It's a really handy tool to have.
 
-H3 2.2 Use URL Parameters
+### 2.2 Use URL Parameters
 
    In this movie, we'll learn send a value from one page to the next by using URL parameters. This can also be referred to as query parameters. The URL parameters are the part of the URL which comes after the question mark. The format is always name of the parameter, then an equal sign and then the value of the parameter, so here we have page equals two. URL parameters generally modify the behavior of the code used for the response, so, in this example, the same PHP code would be run, but its behavior would probably be modified, so that it return the second page of results.
 
@@ -243,7 +243,7 @@ H3 2.2 Use URL Parameters
 
    But I'll leave that as an exercise for you to do on your own.
 
-H3 2.3 Default Values for URL Parameters
+### 2.3 Default Values for URL Parameters
 
    In this movie, I want to talk about how to work with missing URL parameters and how to set default values for them. In the last movie, we learned how we can retrieve values from the associative array inside the GET super global. This process of retrieval and assignment works great, provided that there is a value to be found. In other words, if page wasn't sent in the URL, then a value would not be set inside the associative array and when PHP went to look for this value, it would raise either a warning or a notice to us telling us that the index can't be found.
 
@@ -263,7 +263,7 @@ H3 2.3 Default Values for URL Parameters
 
    I'll hit my back arrow. If I click on this one, it works to id=3. But if no id was sent at all, it goes back to default to one. So this is considered a best practice and a good habit to get in. Whenever you're pulling a value out of the super global, you want to check and make sure that it's there. And if you want, you can set a default value for it instead. You can also set it equal to null if you didn't want to set it to anything at all, but most of the time you're probably going to want to set it to some kind of a value.
 
-H3 2.4 Encode URL Parameters
+### 2.4 Encode URL Parameters
 
    Over the last few movies, we learned to send a value as a URL parameter. So far we used it to send simple data, like an ID or a page number. In this movie, I want us to discuss how to handle data, which could include certain special characters that require extra attention. And the reason why is because they might have special meaning to the URL. Let me give you an example. Let's imagine that we have a link that we want to use that passes along a query parameter that is the name of a company, so company equals, and then the name of the company. And one of our links happens to use the company name Widgets&More, and the name of the company is Widgets & More.
 
@@ -297,7 +297,7 @@ H3 2.4 Encode URL Parameters
 
    The problem here, is that at the top of my page I have not required those functions yet, so let's just do that real quick right here at the top. Require once initialized, let's come back and let's try it. There we go, and now it works just fine, and we get our encoded version.
 
-H3 2.5 Encode for HTML
+### 2.5 Encode for HTML
 
    Over the last few movies, we learned to send a value as a URL parameter. So far we used it to send simple data, like an ID or a page number. In this movie, I want us to discuss how to handle data, which could include certain special characters that require extra attention. And the reason why is because they might have special meaning to the URL. Let me give you an example. Let's imagine that we have a link that we want to use that passes along a query parameter that is the name of a company, so company equals, and then the name of the company. And one of our links happens to use the company name Widgets&More, and the name of the company is Widgets & More.
 
@@ -331,7 +331,7 @@ H3 2.5 Encode for HTML
 
    The problem here, is that at the top of my page I have not required those functions yet, so let's just do that real quick right here at the top. Require once initialized, let's come back and let's try it. There we go, and now it works just fine, and we get our encoded version.
 
-H3 2.6 Challenge -> Add Pages
+### 2.6 Challenge -> Add Pages
 
    It's time for your first challenge assignment. Over the last two chapters, we've covered the basics of building web pages with PHP. I've been demonstrating concepts by working with the subjects area of our content management system. From our initial project blueprint, we know that our content will be divided into subjects and into pages and we'll need to be able to manage the pages of our project as well. Your challenge assignment is to do the same work that I did on the subjects area, but to do it for the pages area. Let's run through some of the points that you'll want to make sure that you hit.
 
@@ -347,7 +347,7 @@ H3 2.6 Challenge -> Add Pages
 
    In the next movie, I'll show you the results that I came up with.
 
-H3 2.7 Solution -> Add Pages
+### 2.7 Solution -> Add Pages
 
    I hope you were able to complete the challenge assignment. In this movie, I'm going to show you the solution that I came up with. Make sure you watch it, because there are going to be a few extra points that I want to make along the way. Let's start by looking at it in a browser, and then we'll look at the code second. First, you can see that on the staff menu area, I've added a new link for my main menu to pages. When I click on that link, it takes me to staff/pages/index.php. And I've replaced the placeholder content that we had there, with a list of the pages. So now, I've got a list of pages, showing me the basic attributes of these four different pages we would potentially manage in the future.
 
@@ -377,9 +377,9 @@ H3 2.7 Solution -> Add Pages
 
    Right before I drop it onto my page, let's escape that value, and make sure that it's safe. So I went ahead and added that to my staff header as well. So hopefully you did well with the challenge. I know that there were a few other extras that I threw in there as well, that weren't specifically part of the challenge. Take a few moments, and make sure that you add those to your project as well.
 
-H2 3. Headers and Redirects
+## 3. Headers and Redirects
 
-H3 3.1 Modify Headers
+### 3.1 Modify Headers
 
    In this chapter, we will learn about page headers and page redirects. Page redirects in particular are an essential web development skill. We're going to begin by learning about headers and how to modify them. Let's begin by reviewing the way in which a web server processes a request that comes from a browser. A request goes from the browser, to the web server software. The web server software looks for the correct PHP file and then reads that file, processes the PHP code that's inside, assembles an HTML response and sends it back to the browser.
 
@@ -412,16 +412,16 @@ We're not going to talk about those here. There's an important point to remember
    It modified the header. And let's do the same thing, we'll test out our 500. And you'll see that we get back that 500 server error. Now those can be handled in a variety of different ways. We could have a custom error page re-returned, our web server can be configured to have a error page that it returns. Sometimes even the client, the browser can have something configured. Now that we know how to modify the header information we're ready to talk about page redirection in the next movie.
 
 ```
-<b>curl --head http://devserver/globe_bank/public/staff/pages/new.php</b>
+curl --head http://devserver/globe_bank/public/staff/pages/new.php
 ```
 ```
-<b>curl --head http://devserver/globe_bank/public/staff/pages/new.php?test=404</b>
+curl --head http://devserver/globe_bank/public/staff/pages/new.php?test=404
 ```
 ```
-<b>curl --head http://devserver/globe_bank/public/staff/pages/new.php?test=500</b>
+curl --head http://devserver/globe_bank/public/staff/pages/new.php?test=500
 ```
 
-H3 2.2 Page Redirection
+### 2.2 Page Redirection
 
    In this movie we're going to build on what we just learned about modifying header information to learn how to perform Page Redirection. In http a webserver can tell a webrowser that it ought to go to a new URL by something known as a "302 redirect". A 302 redirect has two parts to it, both of which are items that are in the header information that's sent back to the browser. The first is a status code of 302 Found and the second is a location attribute indicating the new URL that the browser ought to try instead.
 
@@ -449,7 +449,7 @@ H3 2.2 Page Redirection
 
    Let's try it out and make sure that it works. Let's go back here, let's go to new.php first and then let's tack on, test=redirect. Watch how fast this happens. Boom, right away I'm redirected to the new spot. Page redirection is an important skill to have in your web development toolbox.
 
-H3 2.3 Output Buffering
+### 2.3 Output Buffering
 
    In this chapter, we've been discussing headers and page redirection. One of the important points, which has come up a few times, is that it's essential that any changes to the headers come before any output to the HTML. In this movie, we'll look at that a little closer and also learn how we can use output buffering to help us. Let me start by giving you a metaphor for illustration. Let's imagine that our PHP code is a faucet, and our web server is a glass. Every time our PHP code outputs some data, it goes into the glass like drops of water.
 
@@ -473,9 +473,9 @@ H3 2.3 Output Buffering
 
    Ob_start and that lets us know that output buffering is turned on. Let's save our file. Let's just make sure that we haven't broken anything, we'll come back to FireFox, we'll click on our menu page, and everything works just fine. Click around, now our output buffering is on. It's buffering the page contents, but then in the end, it's taking those and flushing them to the web server, and then the web server is then returning them to the browser.
 
-H2 4. Build Forms with PHP
+## 4. Build Forms with PHP
 
-H3 4.1 Build Forms
+### 4.1 Build Forms
 
    In this chapter, we will learn to use PHP to build pages which have forms for submitting data, and we'll begin, by reviewing the basics of HTML forms and then adding some forms to our project. There are two main ways in which we can interact with websites using the HTTP protocol. The first is what we've been doing in the last few movies and that is, GET requests. Whenever you type a URL into your browser bar or when you click on a link, you're going to be issuing a GET request for the server, and it's called GET because the idea is that we're getting back information.
 
@@ -511,7 +511,7 @@ H3 4.1 Build Forms
 
    So the form action is likely to be different as well. So while there are a number of similarities between our new and edit forms, they're not exactly the same. 
 
-H3 4.2 Use Form Parameters
+### 4.2 Use Form Parameters
 
    In the last movie, we added some forms to our project. When one of those forms is submitted, the page that receives the form is going to need to work with the form values. PHP takes these form values and automatically assigns them to an associative array where we can access them. That array is stored in a super global variable called POST, or dollar-sign, underscore, and then in all caps P-O-S-T. Remember, for URLS and links, which were GET requests, we access the URL parameters using the super global GET.
 
@@ -529,7 +529,7 @@ H3 4.2 Use Form Parameters
 
    So you may be wondering, what about the fact that we're using both GET parameters and POST parameters? That's not a problem. PHP will take the URL parameters that come in from the URL and put those in the GET super global and it will take all of the parameters that come in from the form and put them in the POST super global. We can use both of them together. For now, we'll leave this edit action blank because I have a different idea in mind for what we'll do with it later on. 
 
-H3 4.3 Detect Form Submission
+### 4.3 Detect Form Submission
 
    In this movie, we'll discuss how we can tell when a form has been submitted. Let's begin by understanding why we might want to know that. Here I am on the create.php page that we created and used in the last movie. The way that we used it is that we had a new dot php page that submitted its form data over to create.php, so this was a POST request to create.php, which contained the form data here and then we had create.php that processed that data. It did some very simple processing, it just simply read the values back and put them on the screen for us.
 
@@ -551,7 +551,7 @@ H3 4.3 Detect Form Submission
 
    Having these two functions in your standard library can be really useful, to check to see whether something is a POST request or a GET request and respond appropriately based on each one. 
 
-H3 4.4 Single Page Form Processing
+### 4.4 Single Page Form Processing
 
    In the last movie we learned how to detect when a form was being submitted to a page or whether the page was being loaded directly. We used it to redirect whenever it was not a post request. We can also use this same technique to do something I call single-page form processing. The idea is that we have a single page which contains both the form and the code to process that form. In other words, we'll have a form that submits to itself. There's nothing wrong with having the form and the form processing on two separate pages like we did with new and create, but having them on one page adds a few nice perks.
 
@@ -579,7 +579,7 @@ H3 4.4 Single Page Form Processing
 
    You could potentially store these values and retrieve them, but that's really making something much harder that could be very easy. Single-page submission solves the problem for us in a simple way. 
 
-H3 4.5 Challenge -> Add Forms
+### 4.5 Challenge -> Add Forms
 
    It's time for another challenge assignment and like the challenge assignment that we had before, your goal is going to be to take the work that we did inside the subjects management area and to do the same thing inside the pages management area. Let's go over the points that you need to make sure you hit. The first is that you'll want to add a form under staff/pages/new.php. Replace any placeholder code you might have there and put in the correct page to display a form for creating a new page. Then you'll want to take that form and modify it so that you can also have an edit form so that you can edit an existing page.
 
@@ -589,7 +589,7 @@ H3 4.5 Challenge -> Add Forms
 
    Right now we were only working with that text input. This requires you to work with select options and check boxes. So we'll need to write some PHP to check and see if the select option value and the checkbox value match the submitted value for those two attributes. Do your best. Remember that you can refer to my work on subjects if you need to, but try to write as much of it on your own as possible. That's the way that you learn. And then in the next movie I'll show you the results that I came up with. 
 
-H3 4.6 Solution -> Add Forms
+### 4.6 Solution -> Add Forms
 
    I hope that you were successful with your challenge assignment. In this movie, I'm going to show you the solution that I came up with. First, let's look in a browser and then we'll take a look at the code. You can see, in the browser, I can click on Pages and I come up with my Pages area and I have a new link here now for Create New Page. And when I click on it, takes me to new.php and I get back a form to allow me to create a new page. So, I can add the Menu Name, I can type Position, and I can type Visible. So let's try just write Testing and I'll put in Visible true, and I'll click Create Page.
 
@@ -611,9 +611,9 @@ H3 4.6 Solution -> Add Forms
 
    Look at my code, pause the movie if you need to to compare, and make sure that you get everything right before you meet me in the next chapter. 
 
-H2 5. MySQL Basics
+## 5. MySQL Basics
 
-H3 5.1 MySQL Introduction 
+### 5.1 MySQL Introduction 
 
    We've learned to use PHP to build pages which link to other pages and to create web forms which can submit and process data. You can build a solid, dynamic website using only these tools, but for complex sites, you will reach the limits of what you can do with just PHP alone. Adding a database is the next step, and it offers many benefits. Databases provide a way to both read and write data. They allow you to store more information, and to keep that information organized, so that you can access it faster.
 
@@ -637,7 +637,7 @@ H3 5.1 MySQL Introduction
 
    There's one other term that's helpful to know when working with databases, and that's CRUD. It's an acronym for create, read, update, and delete. These are the four primary operations that we perform on databases. We create new records, we read existing records, we update those existing records, and we can delete records. We'll be performing these four operations over and over again on our database. So, we'll often just refer to it as CRUD as a shorthand. 
 
-H3 5.2 Create a Database
+### 5.2 Create a Database
 
    In this movie, we're going to log into MySQL and create our first database. In order to interact with MySQL, we're going to do that from our command line program. If you're on Windows, that program is going to be command prompt, on Mac it's going to be the Terminal. So here I am inside my Terminal application and the first thing we want to do, is make sure that we have MySQL installed. So if you don't have it installed already, you'll want to do that. Let's just check and see here, mysql version. You see I have Version 5.7 installed. It doesn't matter if your version is slightly different from mine, MySQL in general works pretty much the same in all the versions.
 
@@ -663,7 +663,7 @@ H3 5.2 Create a Database
 
    I'm going to use secretpassword, just to have a convenient one, but that's not a great password. You should hopefully pick a better password. So pick a good password that you can use for your user, and then let's hit return. Now we have a new user created called webuser, and that user can use their username and password to access our globe_bank database. 
 
-H3 5.3 Create a Database Table
+### 5.3 Create a Database Table
 
    In the last movie, we created a database that we could use. And now we're ready to add our first table to that database. The way that you create a table in MySQL is using this syntax. CREATE TABLE, and then the table name you want to create, and then inside parentheses, you're going to provide a set of definitions for what the columns in that table are going to look like. So you have column_name1, and then its definition, a comma, and then column_name2, and its definition, and so on. And at the end, there's the opportunity to provide a few extra options for how you're going to create that table.
 
@@ -689,7 +689,7 @@ H3 5.3 Create a Database Table
 
    I'm going to recreate it because I obviously want that table, so now when I say SHOW TABLES, it's there again. So that's it, that's how we create new tables in MySQL so that we can work with them. And because we granted access to all the tables to our web application user, we have access to any table that we create on this database, automatically. 
 
-H3 5.4 CRUD in MySQL
+### 5.4 CRUD in MySQL
 
    At the beginning of this chapter, I introduced you to this acronym: CRUD, C-R-U-D. In this movie, we're going to learn how you implement CRUD in MySQL. You recall that CRUD is an acronym for the four most basic operations that we perform on databases: Create, Read, Update, and Delete, and these are the four things that we're going to do over and over and over again with MySQL, so we need to learn the syntax that we can use to perform each one of these and there's a specific syntax and it's different for each one.
 
@@ -705,7 +705,7 @@ H3 5.4 CRUD in MySQL
 
    Now I certainly don't expect that you're going to remember all four of these right from the start, as a beginner, you're probably going to have to look them up often. My hope is that this movie can serve as a reference if you forget. The MySQL documentation also has the same commands and gives you details on the many other options that you can use with them. In the next movie, we going to get some hands on experience using them. 
 
-H3 5.5 Populate a MySQL Table
+### 5.5 Populate a MySQL Table
 
    In the previous movie, we learned the syntax that we used to create, read, update, and delete records in MySQL. Let's start adding data to our subjects table and take our new MySQL commands out for a test drive. For my command line you can see that I'm already using my globe bank database, and then when I show the tables that are on that database, you can see that I have my subjects table already created. So if we use select all from subjects then it'll show us all of the subjects that are in the subjects table currently. You can see that there's nothing in there.
 
@@ -731,7 +731,7 @@ H3 5.5 Populate a MySQL Table
 
    It still keeps track of the fact that 4 used to exist. Right, so it's never going to be used again, it goes on to 5. And that's not a problem. The ids do not have to be sequential without any breaks in them. The important thing is just that we have a unique identifier for each one of them.
 
-H3 5.6 Relational Database Tables
+### 5.6 Relational Database Tables
 
    So far, we've been able to create our subjects table and to populate it. We also know that we're going to need a pages table as well and our pages table is going to have a relationship to our subjects table. So it's worth taking a moment to talk about how relational database tables work. The idea behind them is simple, but the results are powerful. Imagine that for a subject like about globe bank, it's going to have a set of pages that should be listed underneath that subject. This is what what we would call a one-to-many relationship because we have one subject and then below it, there are many pages.
 
@@ -747,7 +747,7 @@ H3 5.6 Relational Database Tables
 
    Some people like to put fk_ for foreign key. Indexes go in columns which are used frequently for looking up information. And the two most common columns by far for looking up information are primary keys and foreign keys. Primary keys are automatically given an index so we don't need to worry about them, but foreign keys are not so you'll need to add this on foreign keys and it's a good rule to just have anytime you have a foreign key, put an index on it.
 
-H3 5.7 Challenge -> Pages Table
+### 5.7 Challenge -> Pages Table
 
    It's time for another challenge assignment. So far in this chapter, we've been learning how to use MySQL to create tables and to populate them with data. We've been doing that using our Subjects Table. Now, your challenge assignment is to do that same work but with the Pages Table that we're also going to need. Let me walk you though the points you need to make sure you hit. First, start by logging completely out of MySQL, so you can get a fresh start. Log into MySQL. Make sure that you can do that confidently. You want to do that as the root user, and supply a password.
 
@@ -765,7 +765,7 @@ H3 5.7 Challenge -> Pages Table
 
    In the next movie, I'll show you the solution that I came up with. Good luck.
 
-H3 5.8 Solution -> Pages Table
+### 5.8 Solution -> Pages Table
 
    I hope that you were able to complete the challenge assignment successfully. In this movie, I'm going to show you how I would do it. So if you had any problems, you can just follow along with me. The first thing I'm going to do, is go into my Command line application, that's Command Prompt on Windows, or Terminal on a Mac. And I'm going to use mysql -u root -p to login with my password as the root user. I'm also going to add another option here, which is globe_bank_. Now that I have my database created, I can specify it on the Command line here, and it'll drop me directly into it when I go into mySQL.
 
@@ -787,9 +787,9 @@ H3 5.8 Solution -> Pages Table
 
    If not, remember you can always drop your pages table and start from scratch to get it right.
 
-H2 6. Use PHP to Access MySQL
+## 6. Use PHP to Access MySQL
 
-H3 6.1 Database APIs in PHP
+### 6.1 Database APIs in PHP
 
    In this chapter, we will learn how to use PHP to issue database commands. PHP offers three different ways to connect to the MySQL database API is the technical term for each of these connection options. API stands for Application Prgramming Interface. And an API is just a set of functions which define the way we use the software. Let's review these three APIs, so we can decide which one to use. The first is MySQL. This is just the original MySQL API, the most basic way that we can connect to MySQL.
 
@@ -807,7 +807,7 @@ H3 6.1 Database APIs in PHP
 
    So you can see, there's almost a one-to-one relationship between the functions in the procedural version and the object-oriented version. If you want to find out more about the different APIs or get additional help in choosing the right one for you, there is a page in the PHP manual that can help you.
 
-H3 6.2 Connect to MySQL With PHP
+### 6.2 Connect to MySQL With PHP
 
    In this movie, we'll learn how to use PHP's MySQLi API to connect to our database. There're five fundamental steps to getting PHP to interact with the database. The first is that we need to create a database connection. That's essentially like logging in to MySQL. Once we're logged in, then we can perform a database query. We can use the results of that query to create whatever part of our page we need to output the results, or maybe just to do calculations inside PHP. But once we done working with the data, we can release the returned data and finally close the database connection or log out.
 
@@ -843,7 +843,7 @@ H3 6.2 Connect to MySQL With PHP
 
    Now, in the next movie, let's talk about how we actually query the database.
 
-H3 6.3 Retrieve Data
+### 6.3 Retrieve Data
 
    Now that we know how to connect to the database, in this movie, we will learn to retrieve data using the MySQLI API. In the last movie, we talked about the five essential steps for PHP database interaction, and in the last movie we learned about number one and number five, creating the connection and closing it when we're done. In this movie, we're going to learn about number two and number four, performing a database query, getting back results, and then releasing those results when we're done with them. To query the database, we'll use another MySQLI API function, MySQLI query, it has a companion function which is MySQLI free result.
 
@@ -875,7 +875,7 @@ H3 6.3 Retrieve Data
 
    Again, the data that we're seeing here on the page is actually coming from this hard-coded array here, subjects, it's still not coming from our subject set. So in the next movie, let's see how we can do that.
 
-H3 6.4 Work With Retrieved Data
+### 6.4 Work With Retrieved Data
 
    We've learned how to use PHP to connect the MySQL database and how to query the database to get back a result set. In this movie, we're going to learn the options we have for working with those result sets. There are three things were going to look at; We're going to look at mysqli_fetch_row, mysqli_fetch_assoc, short for association. And mysqli_fetch_array. Mysqli_fetch_row is going to return the results back from a results set as standard arrays. So for example, if we had a subjects result set that we pulled back from the database, use mysqli_fetch_row to get the first row of data from that.
 
@@ -901,7 +901,7 @@ H3 6.4 Work With Retrieved Data
 
    It's able to find those exactly like it ought to. And then our loop ends down here. Let's try it out. Let's save it, let's reload the page. Look at that. Now you can see that it changed because we went from having four items to three items. Your visible may have changed, mine has a false here. Maybe you had some other data. But now we're getting database driven data. We completed all the steps. We logged in the database. We executed our query, we're using those results to output this list by looping through them using while. And then at the very end, we do good behavior, and we free up our result, and then down in the footer, we actually close our database.
 
-H3 6.5 Error Handling
+### 6.5 Error Handling
 
    Over the last several movies, we've learned how to connect to a database, how to make a query for data, and then how to use that data in our website. Now, I want to talk about what to do when something goes wrong in that process and how can we handle it when it does. There are two more functions that we're going to to use from the MySQLi API for this. The first is mysqli_connect_errno, that's short for error number, E-R-R-N-O, short for error number. And then mysqli_connect_error. Errorno is going to return the error code from the last call that we made to connect to the database.
 
@@ -929,7 +929,7 @@ H3 6.5 Error Handling
 
    I add back in my space, I can take out my troubleshooting code, just comment it out, come back over, reload the page, and now everything works correctly. So that'll handle the two most common types of errors. One is that you're not able to connect to the database for some reason. The second is that you're able to connect, but there's something wrong with the query that you made.
 
-H3 6.6 Challenge: List Pages
+### 6.6 Challenge: List Pages
 
    It's time for another challenge assignment. Your challenge this time is to take what we've learned in this chapter so that you're able to connect to the database, retrieve records from the pages table, and then use that data to make a list of the key page attributes using PHP. Let's go over the points you want to make sure that you hit. The first is that you want to use the database connection that we've already set up, and you will remember, we assigned it to a variable in initialize dot PHP. Review that code, make sure that you understand it and that you know how to use it.
 
@@ -939,7 +939,7 @@ H3 6.6 Challenge: List Pages
 
    Now, if you get stuck, you can either use the database connection guide that we created, or you can refer to the work that we did on subjects, but try not to copy and paste it. You will learn the material better if you take the time to type it out. In the next movie, I'll show you the solution that I came up with.
 
-H3 6.7 Solution: List Pages
+### 6.7 Solution: List Pages
 
    Hopefully you were able to complete the challenge assignment on your own. If not, in this movie, I'm going to show you the solution that I came up with; and you can follow along with me. The first thing we know we need to do is we need to make a connection to the database. We had already created much of this functionality already in the chapter, and we're just going to reuse it; but it's good to review it to make sure that you understand it. The key part is here, what we're calling mysqli_connect, and we're passing in our credentials. Those are constants that we're getting out of the DB credentials file, and then I'm getting back from that connection a connection.
 
@@ -959,9 +959,9 @@ H3 6.7 Solution: List Pages
 
    They're grouped by their subject. All the subject ID ones are together, and they're position one, two, three, four. All the subject ID twos are together, and they have position one, two, three, and so on. Hopefully, you were able to complete this challenge assignment and you got results that are similar to mine. If not, take a few minutes to review and make sure that you understand these fundamental database concepts before we move on to the next chapter.
 
-H2 7. CRUD with PHP 
+## 7. CRUD with PHP 
 
-H3 7.1 Find a Single Record
+### 7.1 Find a Single Record
 
    In the previous chapter, we learned to use php to retrieve data from the database. In this chapter, we're going to learn how to use those skills to perform each part of the database CRUD. Remember that's create, read, update, and delete. And we'll begin by learning to find a single record. So far, we've querying the database for a list of subjects. But now, we want to find only a single subject or single record from the database. The process is similar but there are few key differences. It's still going to use an SQL select query just like we did when finding the list of subjects.
 
@@ -993,7 +993,7 @@ H3 7.1 Find a Single Record
 
    And right, and then down here, all I have to do is have subject equals find subject by ID and then pass in that ID. Nice and simple. See how clean that is? All of that code has been moved over to my functions file. Let's go back and just check it out. Make sure we didn't break anything in the process. Let's go back over here where we load our page. Still works. Back to list. Let's click on this one. View about Globe Bank. We can see it all still works. So that's the process for finding a single record from the database.
 
-H3 7.2 Use Form Data to Create Records
+### 7.2 Use Form Data to Create Records
 
    In this movie, we will learn to create new records in the database by using submitted form data. Let's start by reminding ourselves what an SQL insert statement looks like. We have insert into, and then the name of the table we're using, and then in parentheses we have a comma delimited list of the different columns we're going to be providing values for. Doesn't matter what order they're in, but the values have to correspond to the same order. And then you can see in the continuation there, we have values, and then in parentheses, the different values as a comma delimited list that matches the same order as the columns that we had above.
 
@@ -1033,7 +1033,7 @@ H3 7.2 Use Form Data to Create Records
 
    So I'm not going to build that into my function. Alright, let's try it out one more time and just make sure all of that's working as well. Let's click back to list, let's try create a new subject. I'm going to call this one Junk. Let's create our subject, and there we are. Now we're looking at our subject Junk. So now we've packaged up all of that creation logic, and moved it to a reusable function.
 
-H2 7.3 Use Form Data to Update Records
+### 7.3 Use Form Data to Update Records
 
    In this movie, we'll learn to use submitted form data in order to update records in the database. First, let's remind ourselves what an SQL update statement looks like. We have update, and then table, and then we use set, followed by each column, and the value we want to provide for that column. That's different than what we did with an insert statement. Here, the columns and their values are paired up using equals signs, and commas in between them. And then, in this case you can see that I'm also providing where ID equals one, because I'm targeting a specific row in the database for my update.
 
@@ -1075,19 +1075,19 @@ H2 7.3 Use Form Data to Update Records
 
    Once we get it back, update the subject if we got no errors, then we'll redirect back to this page. Let's save it, and let's try it all out. Let's go back over, click back to list and start from the beginning. Here we are on the page, let's change it to junk three. Now click, edit subject, and look at that. It still works even after we moved it to a function. Now you know how to find a single record in the database, you know how to create new records, and you know how to edit existing records. We still need to talk about how to delete a record, but before we do that, I want to talk about a problem that we have on our 
 
-H3 7.4 Form Options From Database Data
+### 7.4 Form Options From Database Data
 
 
 
-H3 7.5 Delete a Record
+### 7.5 Delete a Record
 
 
 
-H3 7.6 Challenge: Pages CRUD
+### 7.6 Challenge: Pages CRUD
 
 
 
-H3 7.7 Solution: Pages CRUD
+### 7.7 Solution: Pages CRUD
 
 
 
