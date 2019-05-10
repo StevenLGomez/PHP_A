@@ -1077,17 +1077,149 @@ curl --head http://devserver/globe_bank/public/staff/pages/new.php?test=500
 
 ### 7.4 Form Options From Database Data
 
+   In the last two movies we learned to create and edit records using form data. But there was a problem with the forms that we were using. And in this movie, we're going to learn how to use database data to address it. First, let's understand what the problem was. You can see here that I have a list of subjects that are being pulled from the database and there are five subjects currently in my database. Notice that the positions here are a little funky. I've got three position ones, and then position two and three. I would expect instead, that these would be numbered one through five. The reason why it's like this is because we're on our new subject form we only have the option to create position one.
 
+   The same thing is true on our edit form. Click on Edit here next to Junk 3, you can see we only have the choice of Position one. That's not ideal, what we really want is to have a list of positions that we could choose from. That list of positions is based on how many subjects are in the database. So that's what I want us to do here. Let's look at the code. You can see that for the position on the edit.php page we just have a single option. We're checking to see if that option is checked or not but we don't loop through multiple options.
+
+   So we want to change this to be a loop instead. I'm going to paste in some code just so you don't have to watch me type it. This is also included in the exercise files if you want to get it from there. The select is still called position but you can see that now I have a for loop that goes from one up to a variable called subject_count, we'll set that in a moment. But instead of outputting a single option now it will loop through a series of them and for each one it will output an option tag whose value is i, the number as we're counting through and whose label is also i.
+
+   And then we're going to do some checking here just to see if the position is equal to the current value then we'll mark it as being selected. We just need to come up with this value for subject_count let's do that up at the top of the page. Up here, if it is a post request we know we just want to process the request. But you can see that if it's a get request, or not a post request the we're going to find the subjects by its ID so that we can display the form. We don't want to just find the current subject though we also want to find out how many subjects there are. We want to come up with a subject_count.
+
+   So how can we do that? We know how to find subjects in the database subject_set and we wrote a custom function earlier called find_all_subjects that will return all the subjects to us. We also know that we have another function called mysqli_num_rows which we can pass that subject to and it will tell us how many rows there are. That'll give us a subject count. Let's also not forget, once we're done we can also call free result and free up that subject step.
+
+   So there we are, those three lines are going to tell us what our subject count is. Now, you could take all three of those and wrap them up into their own function called count_all_subjects if you wanted. I'm not going to do that, I'm going to leave them separate. Also, if you know SQL really well, you'll know that SQL also has the ability to just return a count. We can just simply create a query that says count the records for me, and return that count. If you know how to do that, you can do that instead. But I'm going to stick with the tools that we've learned and all know, which is how to find the records in the database and get back the number of rows.
+
+   So, now we have a subject count so our code down below should work. Let's save this, let's go try it out. Click back on this page, let's just reload this and when I click on it, now you see I have choices one, two, three, four, and five. There were five subjects, I have five choices, so let's make this choice number five, click Edit subject, and there it is, position number five. Back to the list, let's click on Commercial, let's make it position number four, Edit subject, back to list, and now I have subjects listed one, two, three, four, and five, exactly like I would expect.
+
+   We need to do the same thing on the new subject page as well. This only has a single number here let's take that same code that we were just working with. Let's go to new.php, and let's paste it in there. Again, we're just going through a loop, all we have to provide is the subject_count, as long as it has the subject_count, it should loop through it correctly. Although, notice that it also depends on checking the current value of the array subject and the value position, that's not a value that we have currently so we want to make sure that we set that value as well.
+
+   Let's just go up to the top and let's just make notes here that we're going to have to come up with the subject_count we also need to come up with the subject position and that's going to be inside an array we're going to need to create which I'll just call subject. Okay, so let's do this first one, subject_count we know how to do that, it's exactly the same as what we were doing over here for edit. Take those three lines and copy them, paste them in here, except that when we're creating a new subject, then the number should be one higher because we want to allow for the fact that we're going to put it in that top position plus one.
+
+   So the number of rows, plus one extra for the record we're creating now, and in fact, that's a good idea for the position by default, let's have it default to that highest position so if we have five records, it'll have choices one through six and it will default to being in the sixth position automatically. Let's save it and let's try it out. Come back here, click Back first and then let's click on Create New Subject. Here we go, position six is automatically set for us. So we have choices one through six and six is the default. So that solved our problem.
+
+   So now we successfully used database data to create these form options so that they draw on data in the database in order to create an appropriate looking form. Before we leave this subject I just want to do a bit of housekeeping here. Since we started using subject in the associative array format here, I want to do the same thing on create.php. I suggest that this is a possible exercise for you to do on your own, let's do it together now. You can see that here I have menu name, and I'm passing in the different attributes to insert subject.
+
+   Instead, what I want to do is just create a new subject array and then use that subject array, actually here, we're going to put each one of these as values inside, just like we did with Edit. Copy this, update these to be position and visible. Then all I have to do is pass in that whole array subject to insert subject.
+
+   So it's just wrapping these up into an associative array instead of being individual values. So if I change the syntax that I'm passing in to insert subject of course I have to go to query functions and I have to change it over here as well so this will just look for subject and then we'll need to get those values out of here, again, subject, menu_name, and this one's going to be position and this is going to be visible. So just a little bit of housekeeping just to make sure that we stay consistent. So now both insert_subject uses and array called subject, and update_subject does the same thing.
+
+   We can just test this out to make sure it's working go back to the list, Create New Subject, just say More Junk, mark it as Visible, Create Subject, and here we are, More Junk. Back to list, now shows our new subjects. 
 
 ### 7.5 Delete a Record
 
+   Throughout this chapter, we've been learning to implement CRUD in PHP and we've learned the first three of those. Create, Read and Update. In this movie, we're going to learn how to Delete records. First, let's refresh our memory about what an SQL Delete Statement looks like. You see we have 'DELETE FROM' and then the table we want to use to delete from and then 'WHERE id = 1'. We don't need to provide any data to deleting, we just have to have a condition telling it which record or records should be deleted. You can use delete to delete multiple records at a time but most of the time when we're working with CRUD, we're going to be deleting a single record at a time.
 
+   We'll want to specify the primary key, like we do here. We'll construct our SQL Delete Statement and we'll pass that in to MySQLi Query. Remember that when we're deleting a single record, it's going to require that we know what subject id we have so we're going to want to pass that in, make sure we have access to that so we can construct our where clause with it. With a delete, having a form for it is optional. You could simply have a link and you click the link and the record gets deleted. Some people like to put JavaScript on that link that pops up a confirm that says, 'Are you sure you want to delete?' and then it proceeds to delete and then that keeps it nice and simple.
+
+   But I like actually having another page that has a form on it, for two reasons. One, having this page gives us a way to double-check before we're deleting. It gives us a chance to have a page that says, 'Hey user, are you sure you really want to delete?' and then if they are, they'll submit it and it's a form that submits. The reason why that's important is because a Post request is desirable. You want to put your deletes behind Post requests, not Get requests. Why is that? Imagine for a moment that a search engine visits your site.
+
+   Search engine spiders will click on all links, which are Get requests. That's how they move around the site. But they will not submit any forms, which are Post requests. Imagine if a link simply deleted a record in the database. A search engine spider could delete everything in your database, just by following all those different links. Now of course, you probably would have these pages password protected to keep search engines out, but it still illustrates the principle. It's a good idea to have Deleting records only work when you have Post requests.
+
+   Of course, once we have our Delete query, it's only going to return True or False. We're not going to get back a record set to work with, just going to tell us whether it's succeeded. In our project, delete.php was not a page we'd created before so I've gone ahead and added it. It's also in the exercise files if you want to grab it from there. You can see that at the beginning it just has our require_once to initialize.php. It makes sure that we have an id, because we definitely need an id here to be able to delete it. Then it's going to find the subject by its id. Then we're going to have that subject and the reason why is because if it's not a Post request, we're going to display a form, just like we did when we were working with Edit.
+
+   We're going to display the form and then that form will submit back to this page and if it's a Post request, then in this block will actually delete the code. Let's scroll down and look at what's on this page. It just comes up and says 'Delete Subject' and it says 'Are you sure you want to delete this subject' and because we've found the subject in the database, we can display its name. We can say, 'Are you sure this is the one you want to delete?' and then they'll have a button that says 'Yes, delete subject' and when they click it, it's going to submit a form and that form doesn't have any attributes on it, it's just a Post request, that's the important part.
+
+   It's just a Post request that goes back to this same page but with an id, with a subject id, to tell it which one to delete. The important part is here we have a form just so we can get that Post request submitted. The Post request comes back and then if it's a Post request, what do we want to do? We want to construct SQL. Let's do, 'SQL = DELETE FROM subjects' and then we'll put a space and let me just add another line here where we'll concatenate together 'WHERE id=' and then we want to use single quotes around this value.
+
+   Again, it's not strictly required by SQL that it's there, but it is a good security practice. Then we want to drop in that 'id', that's all we have to do. Take that id, put it in here and say, 'Yes, please delete it.' Then I'm going to put a space here and the reason why is because there's one other line that I want to add, which is a good sanity check. It's just a good way to make sure that you don't accidentally screw something up, 'LIMIT 1' since we know we only want to delete one record, we're going to add this 'LIMIT 1' to make sure. Even if we screw something up in our SQL, it can't accidentally delete a bunch of subjects, it can only delete one.
+
+   Then we can assign the result from MySQLi_query and we'll pass in that database handle and the SQL we constructed and then we know what happens when we do that. We know that 'for DELETE' statements, the result is true-false. We can test to see if our result came back and if it did, let's redirect to url_for, now where do we want to redirect to? We can't go back to an existing record, because the record is just gone now so the only place really to go is back to the list, back to that index, that php page.
+
+   That's if it succeeded, if it didn't, then we're going to want to have some code for if it failed and I'm actually going to go over here to my query functions, to update subject because it's going to look exactly the same as this. Instead of update failed it's going to be these three lines. There we go. We're going to display the error, we'll disconnect and then we'll quit. This will say 'DELETE failed'. We'll also need to make sure on index.php, add a link.
+
+   Here we have delete, we'll want to link to that new delete.php page we had and pass in the id, make sure you do that as well. Here we are on the 'Subjects' page. You can see I have my 'Delete' pages, let's click on 'More Junk' first. Click on 'Delete' and look what we get. It uses the id up here to find the subject. It says, here's the subject name, it's called 'More Junk'. Are you sure you want to delete this subject? When I click 'Delete Subject' it goes back to the same page but as a Post request, it deletes it in the database and then redirects me back to index.php and we can see that it's gone.
+
+   See how that works? Let's try taking all of that delete that we just did and let's move that into a function. We've been doing that to great effect so far. Let's just cut this code, let's move it over to our query functions and let's add a new one here. 'Function delete_subject' and in this case, we just need to pass it an id. We don't need to actually pass it a whole subject array. Let's paste in our code. We know we're also going to need to make sure we have access to global db.
+
+   Oops, not sure what's going on down here with my text editor, there we go. 'Global $db', semicolon, 'DELETE FROM subjects' here we have the id that we passed in and we'll create the result. We don't want to automatically redirect to this page every time, so let's just return true. I cut that text so we can come back over here and we can use it. We're going to redirect after we call 'delete_subject' with the id. Now we could trap the result here but the result in truth is always going to be true.
+
+   So it doesn't really matter. That'll delete the subject and then redirect us. Let's make one minor change here. If we're deleting, there's no reason to find the subject here. You could, you could check and make sure that the subject actually is in the database before we try and delete it but it's really not necessary. Let's go ahead and just change this so that it only finds the subject if it's not a Post request. Either we delete the subject or we find the subject, one of those two things. Let's try it out, make sure it still works. Let's go back to our site. Let's click on 'Junk 3', click on 'Delete'.
+
+   Still works, 'Delete Subject', here's 'Junk 3', click 'Delete Subject' and now it's gone. Now we just have our four main subjects. With that, we've concluded learning about CRUD. You can see that we have some nice functions built up here that will do that CRUD for us. We can review them and remember how it works. We can find all subjects, find subjects by specific id, we can insert new subjects, update subjects or delete subjects. 
 
 ### 7.6 Challenge: Pages CRUD
 
+   It's time for another challenge assignment. Similar to the other challenges we've had, your goal is going to be to take the work that we've done throughout this chapter on the Subjects area, and do it for yourself in the Pages area. To develop the Pages CRUD. Let's go over the points that you need to make sure you hit. First, you want to make sure that you can read back a single page. In the last chapter we already added pages/index.php So you have a list of pages, now we want to find a single page using its ID. Next, you want to enable our form that we already have for new.php, just submit those form values to the database in order to create a new record.
 
+   Then you'll want to update an existing record, remember, this is a two part process. First, you need to read the existing database record, so that we can display the form with those values. And then, once it's submitted, then you actually will update the data in the database. And finally, the last item in our CRUD, is to delete a page. Pass in a page iD to tell it which page that it ought to delete. Remember, we're doing that using a web form so that we make sure it's behind a post request. Now also, don't forget that on show.php, new.php, edit.php there are a couple of extra attributes that are on the Pages table that are not on the Subjects table.
+
+   We have the foreign key for subject ID, also one for content. So you want to make sure that you include both of those on your form and in your form processing. Once you've got those work on the select-option for the position of each of the pages. You're going to want to look at the database to find out how many existing pages there are, and then create a loop that will loop through that many times to display that many options. Checking to see whether the current value matches the option at each step along the way. And then, once you've got all of that, I've got a couple of advanced challenges for you.
+
+   The first bonus challenge, is to display subject names anytime you would normally just display a subject ID. Now I'm not talking about on forms here, I'm talking about on index.php, and on show.php, instead of just displaying a number, instead display the subject name. It's going to require you to make a trip to the database, to find out that information. And then, if you're really up for a hard challenge, create a select-option on the new.php and edit.php pages to allow you to choose from a list of subjects in order to know what the foreign key ought to be.
+
+   The value that you're going to submit on the form, is still going to be subject ID, because that's what the database needs. But, on the option, we can use the subject name as a label for each one of the options. The user sees the subject name, but the ID is submitted quietly in the background in the form data. I'll give you a hint for this one, you may want to use a while loop instead of a for loop for these select options. You can go back and review the work that we did throughout the chapter if you get stuck. But it's better if you try not to cut and paste the work you did for subjects before.
+
+   Try to create it from scratch. That's the best way that you can learn and solidify this information in your head. In the next movie, I'll show you the solution that I came up with. 
 
 ### 7.7 Solution: Pages CRUD
+
+   Hopefully you were able to complete the challenge assignment and you were able to implement the all the elements of CRUD for your page management area. If you ran into problems, don't worry. In this movie, I'm going to show you the solution that I came up with step-by-step. Let's begin by looking all the different query functions that I developed and I put those all in the query_functions.php file. You can see, we already had find_all_pages but I added one for find_by_page. It takes the id as an argument and what it does is just simply finds from the pages where the id is equal to that id.
+
+   It passes that into mysqli_query, it gets back a result set, we make sure that it is a result set using our custom function. We don't want to have a set anymore. We just want to get the values out of that set. So I went ahead and used fetch association to get an associative array, assign that to page, and then I can free up the result and return the page back from the function. Then we have insert_page. For insert_page, I'm going to pass in an associative array of all the values that we want to use. I construct an insert statement: INSERT INTO pages.
+
+   Notice that in includes subject_id and content. And then each of the values correspond to the same order that I have there. I have subject_id and content as well. Notice that each one of these has single quotes around it, a comma at the end of every line except for the last line. I pass that into mysqli_query. The result I get back is going to be true or false. And I handle the case when it might be an error or else, return true. Alright, let's look now at update_page. It also takes in an associative array. The sql is UPDATE pages SET and then we take each one of those attributes and its value as pairs so subject_id equals and then the subject_id that was passed in.
+
+   So notice that I've got subject_id and content included there as well. Each one of these lines has single quotes around the value and it has a comma at the end of the line except for the last line. But we don't want to update all pages. We only want to update one specific one so we use the WHERE clause in order to find just where the specific id we want and I'm using LIMIT 1 just as a safety measure to make sure I don't accidentally update too many pages. And then I pass that into mysqli_query. I get back a result, I handle the case when there's an error. Otherwise, I return true. And the we have delete_page.
+
+   For delete_page, we just pass in an id. It constructs the query with DELETE FROM pages where id is equal to that id and it uses LIMIT 1 as the safety check to make sure we don't accidentally delete too many pages. Pass it into mysqli_query, returns true or false and we handle any errors or else return true. Okay, so those are the basic CRUD functions. Now, how do we use those on our different pages? On the show.php page, I simply call find_page_by_id. That's all I need to do. Pass in the id and I get back an associative array ready for me to use.
+
+   So then further down on this page, we have the ability to display that information: page and the menu name. Make sure that you escape these values with html escape as well. So I've got Menu Name, Position, Visible, Content, et cetera You may still have Subject ID up here. We'll come back and talk about that a little later. For now, just notice that we have a list of all the different attributes on the show page. Then we've got new.php. New.php will display a blank form by default but if its a post request, you will actually submit it to the database.
+
+   So let's look first at when its not a post request. In that case, I'm going to initialize a new associative array called page and assign default values for all the different attributes. I'm also going to find all the pages to find out how many there are. So I'm going to have a page count. I'm going to add 1 to that because we're adding a new page and then I can free up that result. If we look down at the form, you can see that when we get to Position that its for a for loop here that's going to iterate through until it gets to the page_count and output those option values for us.
+
+   Now once we submit the form, it's actually going to be a post request and so we're going to grab those form values and put them in our associative array. We're going to pass all that into insert_page. The result should be true if it succeeds. We'll then ask for the last id, the insert_id and then we'll redirect the user back to the show page using that id. And then on the edit form... Now on the edit form, it's similar. If it's a post request, we'll actually update the database but if its not a post request then we want to find the existing page by it's id.
+
+   So we do that so we can display the current values in the form. We also want to find out the page count so we do that again but we don't add 1 this time. And then down here on the form, you can see that we have all the different values that we're outputting and the position is looping through just like we did on the new page. Now once we submit this form then, of course, its going to be a post request so we're going to get those form values, we're going to put them in an associative array, and send it to update_page and at the end, send the user back to the show page so they can view the results of their updates. And the we've got delete.php.
+
+   Delete.php when its not a post request is going to find the page by the id mostly just so we can display a bit of text here that says "Are you sure you want to delete this page?" and it provides the menu name for the user. Then we have a form, they click "Delete Page" that submits a post request because this form uses the method post. Therefore the post request happens here and we have delete_page by it's id and then we send them back to the index.php because the page they were on has now disappeared. And finally the last thing we need to do is on index.php.
+
+   We need to make sure that since delete.php was a new page that you add a link to it. So we just add a link to delete.php with it's id. That completes the main objectives of your challenge assignment. Take a minute if you need to, to get caught up and make sure you've got everything working. Next, I want to show you the solution to the bonus and the advanced challenges. For the bonus challenge, instead of just displaying a subject id on the list, what we want to do is display the name. And see here, its much nicer to the user if they don't have to look at subject id 1.
+
+   Instead they see About Globe Bank. That's much more meaningful to them. And same thing on the view page. We want to see About Globe Bank here instead of the id 1. The way that we do that: Let's go to the show page You can see that before I display it, I just simply make a call. Instead of displaying the subject_id, that foreign key, I simply ask for find_subject_by_id and I get back an associative array and I can then display it's menu name. I did the same thing on index.php but I did it inside the loop so as its looping through each of the pages, we just take that subject_id, find the subject, and then down here I can display it using subject menu_name.
+
+   Now that completes the bonus assignment and it makes those pages work well. But what about our forms? We also want our forms to have a nice pull-down like this so that we can choose between the different subjects instead of just having to enter in a text box some arbitrary number which we may not even know. So in order to implement that, let's go to our new.php page and take a look. Down here on the form, you can see that I'm finding all the subjects, just like we did before when we listed the subjects on the index.php page.
+
+   I'm using a while loop just like I did on the index.php page but instead of outputting rows of all sorts of information about each subject... Instead I'm turning those into option tags. Along the way I'm also checking to see if the current page subject_id is equal to this subject id and if it is I'm marking it as selected. And then at the end, of course, we want to make sure that we free up that result. So it's a very similar process to what we were doing here on this page, the subjects page.
+
+   It's very similar to what we're doing here where we're listing off these four. The only difference is that we're doing it over here on the form page as a select option. And then I did the same thing on edit.php. If you come down here, you'll see that we find_all_subjects and we iterate through them in order to come up with that option list. 
+
+## 8 Validate Data with PHP
+
+
+
+### 8.1 Common Data Validation Types
+
+
+
+### 8.2 Validate Form Values
+
+
+
+### 8.3 Display Validation Errors
+
+
+
+### 8.4 Problems With Validation Logic
+
+
+
+### 8.5 Challenge: Validations
+
+
+
+### 8.6 Solution: Validations
+
+
+
+
+## 9 Prevent SQL Injection
+### 9.1 Understand SQL Injection
+### 9.2 Sanitize Data for SQL
+### 9.3 Delimit Data Values
+### 9.4 Prepared Statements
+
+## 10 Conclustion
+### 10.1 Next Steps
 
 
 
