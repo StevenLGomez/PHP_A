@@ -1302,14 +1302,22 @@ curl --head http://devserver/globe_bank/public/staff/pages/new.php?test=500
 
    The same is true for every single one of these. Take a moment, pause the movie if you need to. Spend some time looking at these, and realize how surprising some of these are. For example, in the right column, you'll notice that the number three is equal to the string "3 dogs". You'll also notice down at the bottom that the number 100 is equal to the string "1e2". What's going on here? These are all surprisingly true evaluations. In PHP if you compare these, it's going to come back in every single one of these cases and say yep, these look the same to me.
 
-   Suprisingly True
-   0 == FALSE           "abc" == TRUE"
-   4 == TRUE            100 == 100.00
-   0 == NULL            3 == "3 dogs"
-   0 == "0"             "1" == "01"
-   0 == ""              "123" == "    123"
-   0 == "a"             "123" == "+0123"
-   "" == NULL           100 == "1e2"
+   Suprisingly True:
+
+   `0 == FALSE`
+   `"abc" == TRUE"`
+   `4 == TRUE`
+   `100 == 100.00`
+   `0 == NULL`
+   `3 == "3 dogs"`
+   `0 == "0"`
+   `"1" == "01"`
+   `0 == ""`
+   `"123" == "    123"`
+   `0 == "a"`
+   `"123" == "+0123"`
+   `"" == NULL`
+   `100 == "1e2"`
 
    Part of the reason why is because when PHP is doing a comparison, it does something called type juggling. That is, when two different items have different types, let's say one is a string, and one is an integer. Or one of them is null, and one of them is a Boolean. PHP has to decide how to compare two objects which have a completely different type. And it does that by trying to make some adjustments. So if we're comparing a string versus null, PHP converts null to be an empty string to allow you to still do the comparison.
 
