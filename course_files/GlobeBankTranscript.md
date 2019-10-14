@@ -1304,20 +1304,22 @@ curl --head http://devserver/globe_bank/public/staff/pages/new.php?test=500
 
    Suprisingly True:
 
-   `0 == FALSE`
-   `"abc" == TRUE"`
-   `4 == TRUE`
-   `100 == 100.00`
-   `0 == NULL`
-   `3 == "3 dogs"`
-   `0 == "0"`
-   `"1" == "01"`
-   `0 == ""`
-   `"123" == "    123"`
-   `0 == "a"`
-   `"123" == "+0123"`
-   `"" == NULL`
-   `100 == "1e2"`
+```
+   0 == FALSE
+   "abc" == TRUE"
+   4 == TRUE
+   100 == 100.00
+   0 == NULL
+   3 == "3 dogs"
+   0 == "0"
+   "1" == "01"
+   0 == ""
+   "123" == "    123"
+   0 == "a"
+   "123" == "+0123"
+   "" == NULL
+   100 == "1e2"
+```
 
    Part of the reason why is because when PHP is doing a comparison, it does something called type juggling. That is, when two different items have different types, let's say one is a string, and one is an integer. Or one of them is null, and one of them is a Boolean. PHP has to decide how to compare two objects which have a completely different type. And it does that by trying to make some adjustments. So if we're comparing a string versus null, PHP converts null to be an empty string to allow you to still do the comparison.
 
@@ -1331,7 +1333,16 @@ curl --head http://devserver/globe_bank/public/staff/pages/new.php?test=500
 
    Another place where it's easy to go wrong with PHP, is working with the function empty. If you call the function empty on an empty string, on zero, on a string that contains zero, on null, on false, or on an empty array, those will all return true. Those are all considered empty by PHP. This is exactly why we did not use empty as a part of our is blank validation. Because entering a zero in a text field should not count as being blank.
 
-   Suprisingly Empty "" 0 "0" null false array()
+   Suprisingly Empty: 
+
+```
+   "" 
+   0 
+   "0"
+   null
+   false
+   array()
+```
 
    There's a string in it, it's a zero. But PHP would consider it to be empty. Another place to be careful is just with working with basic operators. Less than, less than equals to, greater than, greater than or equal to, make sure that you've got those right. Sometimes using less than instead of less than and equal to, or vice versa can mess up your validation logic. The same thing is true when using joining operators. The double would join two different operators together, whereas the upright pipes means or. So it's one or the other.
 
