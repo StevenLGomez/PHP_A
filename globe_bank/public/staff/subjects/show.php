@@ -37,3 +37,4 @@ $subject = find_subject_by_id($id);
   </div>
 
 </div>
+<?php include(SHARED_PATH . '/staff_footer.php'); ?>
