@@ -8,6 +8,8 @@
 
 	<body>
 		<h1> Globe Bank: Coming Soon</h1>
+
+        <a href="./staff/index.php">Cheat shortcut to Staff Home</a>
 	
 	</body>
 </html>
