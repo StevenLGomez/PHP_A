@@ -1,26 +1,23 @@
 
 -- subjects table
-INSERT INTO subjects (menu_name, position, visible) VALUES ('About Widget Corp', 1, 1);
-INSERT INTO subjects (menu_name, position, visible) VALUES ('Products', 2, 1);
-INSERT INTO subjects (menu_name, position, visible) VALUES ('Services', 3, 1);
-INSERT INTO subjects (menu_name, position, visible) VALUES ('Misc', 4, 0);
+INSERT INTO subjects VALUES 
+    (1,'About Globe Bank',1,1),
+    (2,'Consumer',2,1),
+    (3,'Small Business',3,0),
+    (5,'Commercial',4,1)
+    ;
 
 -- pages table
-INSERT INTO pages (subject_id, menu_name, position, visible, content)
-    VALUES(1, 'Our Mission', 1, 1, 'Our mission has always been ...');
- 
-INSERT INTO pages (subject_id, menu_name, position, visible, content)
-    VALUES(1, 'Our History', 2, 1, 'Founded in 1898 by two enterprising engineers ...');
- 
-INSERT INTO pages (subject_id, menu_name, position, visible, content)
-    VALUES(2, 'Large Widgets', 1, 1, 'Our large widgets have to be seem to be believed...');
- 
-INSERT INTO pages (subject_id, menu_name, position, visible, content)
-    VALUES(2, 'Small Widgets', 2, 1, 'They say big things come in small packages...');
- 
-INSERT INTO pages (subject_id, menu_name, position, visible, content)
-    VALUES(3, 'Retrofitting', 1, 1, 'We love to replace widgets...');
- 
-INSERT INTO pages (subject_id, menu_name, position, visible, content)
-    VALUES(3, 'Certification', 2, 1, 'We can certify any widget, not just our own...');
+INSERT INTO pages VALUES 
+    (1,1,'Globe Bank',1,1,NULL),
+    (2,1,'History',2,1,NULL),
+    (3,1,'Leadership',3,1,NULL),
+    (4,1,'Contact Us',4,1,NULL),
+    (5,2,'Banking',1,1,NULL),
+    (6,2,'Credit Cards',2,1,NULL),
+    (7,2,'Mortgages',3,1,NULL),
+    (8,3,'Checking',1,1,NULL),
+    (9,3,'Loans',2,1,NULL),
+    (10,3,'Merchant Services',3,1,NULL)
+    ;
  

@@ -1,4 +1,5 @@
 
+DROP TABLE IF EXISTS subjects;
 CREATE TABLE subjects(
     id INT(11) NOT NULL AUTO_INCREMENT,
     menu_name VARCHAR(30) NOT NULL,
@@ -7,6 +8,7 @@ CREATE TABLE subjects(
     PRIMARY KEY (id)
     );
 
+DROP TABLE IF EXISTS pages;
 CREATE TABLE pages(
     id INT(11) NOT NULL AUTO_INCREMENT,
     subject_id INT(11) NOT NULL,
@@ -15,9 +17,10 @@ CREATE TABLE pages(
     visible TINYINT(1) NOT NULL,
     content TEXT,
     PRIMARY KEY (id),
-    INDEX (subject_id)
+    KEY fk_subject_id (subject_id)
     );
 
+DROP TABLE IF EXISTS admins;
 CREATE TABLE admins(
     id INT(11) NOT NULL AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL,
