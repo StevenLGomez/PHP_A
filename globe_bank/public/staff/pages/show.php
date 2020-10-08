@@ -17,21 +17,21 @@ $page = find_page_by_id($id);
 
   <div class="page show">
 
-    <h1>Page: <?php echo h($page['menu_name']); ?></h1>
+    <h1>Page: <?php echo htmlsc($page['menu_name']); ?></h1>
 
     <div class="attributes">
       <?php $subject = find_subject_by_id($page['subject_id']); ?>
       <dl>
         <dt>Subject</dt>
-        <dd><?php echo h($subject['menu_name']); ?></dd>
+        <dd><?php echo htmlsc($subject['menu_name']); ?></dd>
       </dl>
       <dl>
         <dt>Menu Name</dt>
-        <dd><?php echo h($page['menu_name']); ?></dd>
+        <dd><?php echo htmlsc($page['menu_name']); ?></dd>
       </dl>
       <dl>
         <dt>Position</dt>
-        <dd><?php echo h($page['position']); ?></dd>
+        <dd><?php echo htmlsc($page['position']); ?></dd>
       </dl>
       <dl>
         <dt>Visible</dt>
@@ -39,7 +39,7 @@ $page = find_page_by_id($id);
       </dl>
       <dl>
         <dt>Content</dt>
-        <dd><?php echo h($page['content']); ?></dd>
+        <dd><?php echo htmlsc($page['content']); ?></dd>
       </dl>
     </div>
 

@@ -56,11 +56,11 @@ mysqli_free_result($page_set);
           <?php
             $subject_set = find_all_subjects();
             while($subject = mysqli_fetch_assoc($subject_set)) {
-              echo "<option value=\"" . h($subject['id']) . "\"";
+              echo "<option value=\"" . htmlsc($subject['id']) . "\"";
               if($page["subject_id"] == $subject['id']) {
                 echo " selected";
               }
-              echo ">" . h($subject['menu_name']) . "</option>";
+              echo ">" . htmlsc($subject['menu_name']) . "</option>";
             }
             mysqli_free_result($subject_set);
           ?>
@@ -69,7 +69,7 @@ mysqli_free_result($page_set);
       </dl>
       <dl>
         <dt>Menu Name</dt>
-        <dd><input type="text" name="menu_name" value="<?php echo h($page['menu_name']); ?>" /></dd>
+        <dd><input type="text" name="menu_name" value="<?php echo htmlsc($page['menu_name']); ?>" /></dd>
       </dl>
       <dl>
         <dt>Position</dt>
@@ -97,7 +97,7 @@ mysqli_free_result($page_set);
       <dl>
         <dt>Content</dt>
         <dd>
-          <textarea name="content" cols="60" rows="10"><?php echo h($page['content']); ?></textarea>
+          <textarea name="content" cols="60" rows="10"><?php echo htmlsc($page['content']); ?></textarea>
         </dd>
       </dl>
       <div id="operations">

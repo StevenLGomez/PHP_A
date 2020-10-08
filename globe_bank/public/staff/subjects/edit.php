@@ -49,10 +49,10 @@ mysqli_free_result($subject_set);
 
     <?php echo display_errors($errors); ?>
 
-    <form action="<?php echo url_for('/staff/subjects/edit.php?id=' . h(u($id))); ?>" method="post">
+    <form action="<?php echo url_for('/staff/subjects/edit.php?id=' . htmlsc(u($id))); ?>" method="post">
       <dl>
         <dt>Menu Name</dt>
-        <dd><input type="text" name="menu_name" value="<?php echo h($subject['menu_name']); ?>" /></dd>
+        <dd><input type="text" name="menu_name" value="<?php echo htmlsc($subject['menu_name']); ?>" /></dd>
       </dl>
       <dl>
         <dt>Position</dt>

@@ -19,7 +19,7 @@ function raw_u($string = "")
     return rawurlencode($string);
 }
 
-function h($string = "")
+function htmlsc($string = "")
 {
     return htmlspecialchars($string);
 }
@@ -42,13 +42,15 @@ function redirect_to($location)
     exit;
 }
 
-function is_post_request(){
-                           return $_SERVER['REQUEST_METHOD'] == 'POST';
-                           }
+function is_post_request()
+{
+    return $_SERVER['REQUEST_METHOD'] == 'POST';
+}
 
-function is_get_request(){
-                          return $_SERVER['REQUEST_METHOD'] == 'GET';
-                          }
+function is_get_request()
+{
+    return $_SERVER['REQUEST_METHOD'] == 'GET';
+}
 
 function display_errors($errors = array())
 {
@@ -60,7 +62,7 @@ function display_errors($errors = array())
         $output .= "<ul>";
         foreach ($errors as $error)
         {
-            $output .= "<li>" . h($error) . "</li>";
+            $output .= "<li>" . htmlsc($error) . "</li>";
         }
         $output .= "</ul>";
         $output .= "</div>";
