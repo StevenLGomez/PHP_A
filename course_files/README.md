@@ -7,239 +7,711 @@ Introduction
 
 **Welcome**
 
-Welcome to PHP with MySQL essential training part one. My name is Kevin Skoglund. In this course, we will learn to use PHP to create, read, update and delete records in a MySQL database. We will discover how to effectively organize the PHP pages in a project. We will build web pages in PHP that can send and read parameters in the URL. We will learn about headers, redirects, and the importance of output buffering. We will learn to create forms and to process form data. We will cover the basics of MySQL, use PHP to communicate with the database, and learn to perform the most common database operations.
+Welcome to PHP with MySQL essential training part one. My name is Kevin Skoglund. In this course, we will learn to use PHP to create,
+read, update and delete records in a MySQL database. We will discover how to effectively organize the PHP pages in a project. 
+We will build web pages in PHP that can send and read parameters in the URL. We will learn about headers, redirects, and the 
+importance of output buffering. We will learn to create forms and to process form data. We will cover the basics of MySQL, 
+use PHP to communicate with the database, and learn to perform the most common database operations.
 
-And finally, we will learn how to validate and sanitize dynamic data to keep your application and its data in good shape. Once you're ready, let's get started learning to use PHP with MySQL.
+And finally, we will learn how to validate and sanitize dynamic data to keep your application and its data in good shape. 
+Once you're ready, let's get started learning to use PHP with MySQL.
 
 **How to use the Exercise Files**
 
-   This course includes exercise files. In order to make use of those files, you'll want to first make sure that you have PHP and MySQL installed and working. The exercise files are arranged by chapter, and by movie. And you can find the exercise files that correspond to the movie that you're watching by first looking for the chapter number, and then the movie number. You should copy the exercise files into your web document route directory. That's the location where your web server will look for files when a browser requests them. On my Mac, that will be inside my User directory, inside the Sites directory.
+   This course includes exercise files. In order to make use of those files, you'll want to first make sure that you have 
+   PHP and MySQL installed and working. The exercise files are arranged by chapter, and by movie. And you can find the 
+   exercise files that correspond to the movie that you're watching by first looking for the chapter number, and then 
+   the movie number. You should copy the exercise files into your web document route directory. That's the location 
+   where your web server will look for files when a browser requests them. On my Mac, that will be inside my User 
+   directory, inside the Sites directory.
 
-   It's always a good idea to make a copy of the exercise files so that you'll still have the original to refer back to if you make changes. I'm going to opt + drag the folder to create a new copy. Beginning in chapter five, we'll be incorporating a database into our project, and for the exercise files to work, your database needs to match what the files expect. In the exercise files for these chapters, you will find a database file that you can load into MySQL to put your database into the same state as mine. If you don't already have a database, the first few movies of chapter five will get you started.
+   It's always a good idea to make a copy of the exercise files so that you'll still have the original to refer back 
+   to if you make changes. I'm going to opt + drag the folder to create a new copy. Beginning in chapter five, we'll 
+   be incorporating a database into our project, and for the exercise files to work, your database needs to match what 
+   the files expect. In the exercise files for these chapters, you will find a database file that you can load into MySQL 
+   to put your database into the same state as mine. If you don't already have a database, the first few movies of chapter 
+   five will get you started.
 
-   You can load that file directly into a MySQL database, either by using a tool such as phpMyAdmin, or by going to a command line program, and typing, mysql, then a space, -u, and then a space, and then a username that's authorized to access the database, and then, -p. Follow that with the database name that you want to import into, and then a less than sign, and finally, the path to the exercise file. If you're on a Mac, you may be able to just drag that file into the window, in order to get the full path to that file.
+   You can load that file directly into a MySQL database, either by using a tool such as phpMyAdmin, or by going to a 
+   command line program, and typing, mysql, then a space, -u, and then a space, and then a username that's authorized 
+   to access the database, and then, -p. Follow that with the database name that you want to import into, and then a 
+   less than sign, and finally, the path to the exercise file. If you're on a Mac, you may be able to just drag that 
+   file into the window, in order to get the full path to that file.
 
-   When we finally hit Return, it'll prompt you for a password, and you enter the password for the user that you specified. And then the data will be imported. Note that the import will remove all old database data at the same time as it imports new data. Importing can also be useful if you do a lot of experimenting on your own, but then want to get your data back in sync with mine. Once you have the same files in the same database, you'll be able to follow along with me. Everything that's in the exercise files, we will create together during the tutorials.
+   When we finally hit Return, it'll prompt you for a password, and you enter the password for the user that you specified. 
+   And then the data will be imported. Note that the import will remove all old database data at the same time as it imports 
+   new data. Importing can also be useful if you do a lot of experimenting on your own, but then want to get your data back 
+   in sync with mine. Once you have the same files in the same database, you'll be able to follow along with me. 
+   Everything that's in the exercise files, we will create together during the tutorials.
 
-   So you can just work along with me, and your files will mirror what's in the exercise files. Remember, that you can pause the video, or rewind if you need more time to copy something down. You can also use the exercise files to check your work, or to get back in sync, if you experiment on your own.
+   So you can just work along with me, and your files will mirror what's in the exercise files. Remember, that you can 
+   pause the video, or rewind if you need more time to copy something down. You can also use the exercise files to check 
+   your work, or to get back in sync, if you experiment on your own.
 
 ## 1. Start a Database Driven Project
 
 ### 1.1 Blueprint the Application
 
-   We will begin creating our database driven project by learning how to blueprint an application. The web application that we're going to be building is a Content Management System. Or CMS, for short. The idea is to have private webpages which administrators can use to create and edit website content. But the public has different pages where they can read the content but which are not editable. An essential first step when beginning any web project is to create a project blueprint. If the site is simple, you may be able to simply type up a few notes or draw a picture on a single piece of paper.
+   We will begin creating our database driven project by learning how to blueprint an application. The web application that 
+   we're going to be building is a Content Management System. Or CMS, for short. The idea is to have private webpages which 
+   administrators can use to create and edit website content. But the public has different pages where they can read the 
+   content but which are not editable. An essential first step when beginning any web project is to create a project blueprint. 
+   If the site is simple, you may be able to simply type up a few notes or draw a picture on a single piece of paper.
 
-   If your site's complex, you may need page mock-ups and flowcharts to keep track of everything. The fundamental idea, in either case, is to take what's in your head and to put it on paper. So that you can look it over and assess it before you start your work. It helps you to clarify the work that's ahead. And forces you to think about problems that you might otherwise have put off until you were well down the road with your development. I usually do my blueprinting by getting out pen and paper and drawing boxes to represent different parts of the site. I draw connections between the boxes and I make notes and details that I don't want to forget.
+   If your site's complex, you may need page mock-ups and flowcharts to keep track of everything. The fundamental idea, 
+   in either case, is to take what's in your head and to put it on paper. So that you can look it over and assess it 
+   before you start your work. It helps you to clarify the work that's ahead. And forces you to think about problems that 
+   you might otherwise have put off until you were well down the road with your development. I usually do my blueprinting 
+   by getting out pen and paper and drawing boxes to represent different parts of the site. I draw connections between the 
+   boxes and I make notes and details that I don't want to forget.
 
-   By the end, I have the full picture in front of me. And I don't have to hold all the moving parts in my head anymore. Instead, I can use that part of my brain for development. I also don't have to try and build the whole site all at once. I can begin to tackle it piece by piece. Moving through it in a methodical fashion. I can also tack my blueprint up on the wall in front of me. So that I can refer to it constantly as I'm developing. It's efficient and it's liberating. So let's begin our blueprint for our Content Management System.
+   By the end, I have the full picture in front of me. And I don't have to hold all the moving parts in my head anymore. 
+   Instead, I can use that part of my brain for development. I also don't have to try and build the whole site all at once. 
+   I can begin to tackle it piece by piece. Moving through it in a methodical fashion. I can also tack my blueprint up on 
+   the wall in front of me. So that I can refer to it constantly as I'm developing. It's efficient and it's liberating. 
+   So let's begin our blueprint for our Content Management System.
 
-   We know that we're going to need to have two areas. The Public Area and the Admin Area. The Public Area is going to be fairly simple. The pages are all going to have a similar page structure. An area for navigation, like a menu of content, and then an area to view that page content. So users will pick a navigation item and then the PHP page that loads will show that pages content. Pick a new navigation item, get new page content. For the Admin Area, I know that I'm going to need to start with a login page. Where we can ask admin users to provide a user name and password to authenticate themselves and gain access.
+   We know that we're going to need to have two areas. The Public Area and the Admin Area. The Public Area is going to 
+   be fairly simple. The pages are all going to have a similar page structure. An area for navigation, like a menu of 
+   content, and then an area to view that page content. So users will pick a navigation item and then the PHP page that 
+   loads will show that pages content. Pick a new navigation item, get new page content. For the Admin Area, I know that 
+   I'm going to need to start with a login page. Where we can ask admin users to provide a user name and password to 
+   authenticate themselves and gain access.
 
-   That'll keep the public out. If they log in successfully, then we'll take them to an admin menu page. This is a simple landing page that lists the options in the admin area. Those options are just links to those other pages. The menu choices will be manage content, manage admins, and logout. In the manage content area, I want to divide our website content into two parts. Subjects and pages. So the webpage content will be stored on pages but then those pages are going to be grouped by their subject.
+   That'll keep the public out. If they log in successfully, then we'll take them to an admin menu page. This is a simple 
+   landing page that lists the options in the admin area. Those options are just links to those other pages. The menu 
+   choices will be manage content, manage admins, and logout. In the manage content area, I want to divide our website 
+   content into two parts. Subjects and pages. So the webpage content will be stored on pages but then those pages are 
+   going to be grouped by their subject.
 
-   We'll see an example of this in just a moment. Next, we'll need a section to maintain the admin users. That is the users who can access this admin area and use the CMS to update content. And, of course, the final menu option is going to be, simply, logout. Which will perform that action of logging us out of the admin area. In this course, which is part one of a two part series, we're going to focus on building the Admin Area section that allows us to manage page content. Our subjects and our pages. This is going to give us an opportunity to learn how to interact with the database and to create new records, read existing records in the database, edit those records and delete records.
+   We'll see an example of this in just a moment. Next, we'll need a section to maintain the admin users. That is the 
+   users who can access this admin area and use the CMS to update content. And, of course, the final menu option is 
+   going to be, simply, logout. Which will perform that action of logging us out of the admin area. In this course, 
+   which is part one of a two part series, we're going to focus on building the Admin Area section that allows us 
+   to manage page content. Our subjects and our pages. This is going to give us an opportunity to learn how to interact 
+   with the database and to create new records, read existing records in the database, edit those records and delete records.
 
-   Then, in part two of this course, we'll build on those fundamentals of database interaction to complete our Content Management System. So that completes the blueprint of our application architecture. Let me show you some examples so that you'll have a better idea of where we're headed. This is what the public facing version of our website is going to look like. At the moment, these are just simple HTML pages. You can see that we have the name of our fictitious website, Globe Bank International, up at the top. And then we have a navigation over here that allows us to select different subjects that we might want to view the content for.
+   Then, in part two of this course, we'll build on those fundamentals of database interaction to complete our Content 
+   Management System. So that completes the blueprint of our application architecture. Let me show you some examples so 
+   that you'll have a better idea of where we're headed. This is what the public facing version of our website is going to 
+   look like. At the moment, these are just simple HTML pages. You can see that we have the name of our fictitious website, 
+   Globe Bank International, up at the top. And then we have a navigation over here that allows us to select different 
+   subjects that we might want to view the content for.
 
-   We also get a default homepage that's here. If we click About Globe Bank, you'll see that it loads up the About Globe Bank page. This is a page content below the subject. We also have History, Leadership, Contact Us, and so on. And each one of these subjects has different pages that are listed underneath it. So, again, this is our navigation. This is our page content area. So that's what we're going to be building on the public side, eventually. What we're going to be building in this course is going to be the Content Management System portion that'll allow us to manage this page content.
+   We also get a default homepage that's here. If we click About Globe Bank, you'll see that it loads up the About Globe 
+   Bank page. This is a page content below the subject. We also have History, Leadership, Contact Us, and so on. And each 
+   one of these subjects has different pages that are listed underneath it. So, again, this is our navigation. This is our 
+   page content area. So that's what we're going to be building on the public side, eventually. What we're going to be 
+   building in this course is going to be the Content Management System portion that'll allow us to manage this page content.
 
-   Here's an example of what that might look like. So here's an example of the Staff Area that we're going to be building in this course. Now there is no login or logout at the moment. We don't have any admin users, there's no passwords or anything like that. We're going to be building all of that in part two. We'll learn about user authentication. We'll learn how to password protect all this content. For this course, we're going to be focused exclusively on how we interact with the database. So that we can manage the content of our subjects and our pages. So let's click on Subjects to get an idea of what that looks like.
+   Here's an example of what that might look like. So here's an example of the Staff Area that we're going to be building 
+   in this course. Now there is no login or logout at the moment. We don't have any admin users, there's no passwords or 
+   anything like that. We're going to be building all of that in part two. We'll learn about user authentication. We'll 
+   learn how to password protect all this content. For this course, we're going to be focused exclusively on how we 
+   interact with the database. So that we can manage the content of our subjects and our pages. So let's click on Subjects 
+   to get an idea of what that looks like.
 
-   When I click on Subjects, you'll see I get a list of the subjects that are in the database. Notice this is PHP, it is pulling content from the database. And I'm getting a list of all the subjects that are currently in the database. It's reading those back and displaying them. Then I also have the ability to view detail on any one of those. I'll click View. And you can see I get a detailed view about what's in each one of those records. I also have options for editing. Or, I'll go back, I have an option for deleting. If I want to delete the content.
+   When I click on Subjects, you'll see I get a list of the subjects that are in the database. Notice this is PHP, it is 
+   pulling content from the database. And I'm getting a list of all the subjects that are currently in the database. It's 
+   reading those back and displaying them. Then I also have the ability to view detail on any one of those. I'll click View. 
+   And you can see I get a detailed view about what's in each one of those records. I also have options for editing. Or, 
+   I'll go back, I have an option for deleting. If I want to delete the content.
 
-   There's also an option up here for creating a new subject. If I want to add a new subject to the database as well. So those are the basic ways we're going to interact with this content. We're going to do it for both subjects and, also, for our page content. Now that we have an overall understanding of what we're going to be creating, let's get started by creating the beginnings of our project.
+   There's also an option up here for creating a new subject. If I want to add a new subject to the database as well. 
+   So those are the basic ways we're going to interact with this content. We're going to do it for both subjects and, 
+   also, for our page content. Now that we have an overall understanding of what we're going to be creating, let's get 
+   started by creating the beginnings of our project.
 
 ### 1.2 Establish Your Work Area
 
-   Now that we have a blueprint for our application, let's begin creating the project files that we're going to need. I use a standard structure for all of my php projects and it looks something like this. I have the main project directory, here I've just called it basic_php_project/, but I would rename it to be whatever the project name was. But then, inside of there, I've got two subdirectories, or folders. One is called public/ and one is called private/. The idea is that we configure our web server to serve content from the public directory.
+   Now that we have a blueprint for our application, let's begin creating the project files that we're going to need. I 
+   use a standard structure for all of my php projects and it looks something like this. I have the main project directory, 
+   here I've just called it basic_php_project/, but I would rename it to be whatever the project name was. But then, inside 
+   of there, I've got two subdirectories, or folders. One is called public/ and one is called private/. The idea is that we
+    configure our web server to serve content from the public directory.
 
-   In other words, public/ becomes our web document route. If our website was called coolsite.com, then a request for coolsite.com would come to our web server and our web server would look for files in this public directory. Therefore, everything in public/ is public. This is the place where we'd put all of the webpages that a user ought to be able to see, as well as images, style sheets, java scripts, or any other media or assets that our website needs to function. Those are all the things that the public should be able to get their hands on.
+   In other words, public/ becomes our web document route. If our website was called coolsite.com, then a request for 
+   coolsite.com would come to our web server and our web server would look for files in this public directory. Therefore, 
+   everything in public/ is public. This is the place where we'd put all of the webpages that a user ought to be able to 
+   see, as well as images, style sheets, java scripts, or any other media or assets that our website needs to function. 
+   Those are all the things that the public should be able to get their hands on.
 
-   In our private/ directory; however, we can put content that should not be accessible by the public. There's no way for a request for coolsite.com to be sent, via the web server, to that private/ directory. So this is a place then, we can put libraries of php code and the public won't be able to access it directly; however, the php files that are in the public directory, can still access that code stored in the private/ directory because they have access via the file system. That is, they can navigate the hard drive structure in order to load those files.
+   In our private/ directory; however, we can put content that should not be accessible by the public. There's no way 
+   for a request for coolsite.com to be sent, via the web server, to that private/ directory. So this is a place then, 
+   we can put libraries of php code and the public won't be able to access it directly; however, the php files that are 
+   in the public directory, can still access that code stored in the private/ directory because they have access via 
+   the file system. That is, they can navigate the hard drive structure in order to load those files.
 
-   We'll see how to do that later in this chapter and we'll also talk about the roles of initialize.php and functions.php when we do. For now, notice also that public/ has an index.php file already in place. It's a best practice to always have an index.php page in every single public directory that you create. The reason why, is that it's possible to have a web server which is configured to display the contents of the directory whenever an index.php page is not present, and that's probably not desirable.
+   We'll see how to do that later in this chapter and we'll also talk about the roles of initialize.php and functions.php 
+   when we do. For now, notice also that public/ has an index.php file already in place. It's a best practice to always 
+   have an index.php page in every single public directory that you create. The reason why, is that it's possible to have 
+   a web server which is configured to display the contents of the directory whenever an index.php page is not present, 
+   and that's probably not desirable.
 
-   That might give away information about some files that are present on our web server that we don't want the public to know. So, by putting that index.php page there, it prevents that web server behavior. So, let's start with that basic_php_project/, I'm going to open up my sites directory, this is my web document route, currently, for development, and I'm going to take my basic_php_project and I'm just going to drag it in there. And you can see that I've got all those files that we just talked about, they're in a different order now because they're being alphabetized, so you can see that I've got private here on top, with functions and initialize and shared; and I've got public with images, index.php, and stylesheets here.
+   That might give away information about some files that are present on our web server that we don't want the public 
+   to know. So, by putting that index.php page there, it prevents that web server behavior. So, let's start with that 
+   basic_php_project/, I'm going to open up my sites directory, this is my web document route, currently, for development, 
+   and I'm going to take my basic_php_project and I'm just going to drag it in there. And you can see that I've got all 
+   those files that we just talked about, they're in a different order now because they're being alphabetized, so you 
+   can see that I've got private here on top, with functions and initialize and shared; and I've got public with images, 
+   index.php, and stylesheets here.
 
-   So, now that we it in our sites directory, I'm just going to change the name of this and the name of our project is goin' to be globe_bank, so globe bank is going to be the name of the project that we're going to be working with. So now that we have the basic structure of our project in place, now let's talk about what we're going to be creating in this course. We're going to be working in the staff area. So, let's create a new directory. It's going to be inside the public directory because we want it to be publicly accessible. Now, it's going to be password protected, so that only certain people can get in there, but it still is accessible by someone via our web server so it goes in the public directory.
+   So, now that we it in our sites directory, I'm just going to change the name of this and the name of our project is 
+   goin' to be globe_bank, so globe bank is going to be the name of the project that we're going to be working with. 
+   So now that we have the basic structure of our project in place, now let's talk about what we're going to be 
+   creating in this course. We're going to be working in the staff area. So, let's create a new directory. It's going 
+   to be inside the public directory because we want it to be publicly accessible. Now, it's going to be password 
+   protected, so that only certain people can get in there, but it still is accessible by someone via our web server 
+   so it goes in the public directory.
 
-   So public doesn't mean it's accessible by the general public, it just means that it's accessible by some of the public. So let's call that staff. and inside staff, we know that we want to have index.php declared. Now, this file doesn't actually do anything at the moment, if we actually open it up, you'll see that it just contains some basic html, just as a starter template for us. For now, we just want to make sure that we remember to have some place holder that's in there. Let's talk for a moment about the contents of this admin, or staff area, that we're creating.
+   So public doesn't mean it's accessible by the general public, it just means that it's accessible by some of the 
+   public. So let's call that staff. and inside staff, we know that we want to have index.php declared. Now, this 
+   file doesn't actually do anything at the moment, if we actually open it up, you'll see that it just contains 
+   some basic html, just as a starter template for us. For now, we just want to make sure that we remember to have s
+   ome place holder that's in there. Let's talk for a moment about the contents of this admin, or staff area, that 
+   we're creating.
 
-   We could create a flat staff area, where we have all of our php files for all the things that you can do inside that staff area just listed directly in that folder. So, for example, we might have page_edit, page_delete, page_list, page_new, page_show, subject_edit, subject_delete, subject_list, subject_new, subject_show. You can see each one is named with the resource that we're working with, either page or subject, at the beginning of it, and then a underscore followed by the action that we want to perform. That's a good way to keep ourselves organized and be able to have different pages that accomplish these different features of our website.
+   We could create a flat staff area, where we have all of our php files for all the things that you can do inside 
+   that staff area just listed directly in that folder. So, for example, we might have page_edit, page_delete, page_
+   list, page_new, page_show, subject_edit, subject_delete, subject_list, subject_new, subject_show. You can see 
+   each one is named with the resource that we're working with, either page or subject, at the beginning of it, 
+   and then a underscore followed by the action that we want to perform. That's a good way to keep ourselves 
+   organized and be able to have different pages that accomplish these different features of our website.
 
-   That's fine for a small website, but it doesn't scale really well if we start to have a much larger website. So I want to show you another idea, which is to group them into resource folders. You can see here, I have the same thing, but instead of pages_edit, I have a directory called pages_ and then a file called edit inside that directory. Now, inside my staff area, I'll have a folder called pages/ and a folder called subjects/ and I'll know that everything having to do with subjects is inside that subjects/ folder.
+   That's fine for a small website, but it doesn't scale really well if we start to have a much larger website. 
+   So I want to show you another idea, which is to group them into resource folders. You can see here, I have 
+   the same thing, but instead of pages_edit, I have a directory called pages_ and then a file called edit inside 
+   that directory. Now, inside my staff area, I'll have a folder called pages/ and a folder called subjects/ and 
+   I'll know that everything having to do with subjects is inside that subjects/ folder.
 
-   It really just helps you to stay organized. Notice also, that I've renamed list.php to be index.php and that's because we need an index.php file in each one of these directories anyway. So it's a convenient way to handle both of those at once. So this is what I'm going to be working with. Now, we're going to come back and create all of those php files later, but for now, let's go ahead and create pages/ and subjects/ for the directories that we're going to be working with. So back to my desktop here, I'm going to take the staff directory, which has index.php in it already, and I'm just going to option drag that to get a copy.
+   It really just helps you to stay organized. Notice also, that I've renamed list.php to be index.php and that's 
+   because we need an index.php file in each one of these directories anyway. So it's a convenient way to handle 
+   both of those at once. So this is what I'm going to be working with. Now, we're going to come back and create 
+   all of those php files later, but for now, let's go ahead and create pages/ and subjects/ for the directories 
+   that we're going to be working with. So back to my desktop here, I'm going to take the staff directory, which 
+   has index.php in it already, and I'm just going to option drag that to get a copy.
 
-   And I think I can do that, just drop it right in there. No, it came out here, but that's alright, I'll move it up here. Now I've got staff.index.php and I'm going to rename that as being subjects and then I'll just option drag that one, create a duplicate, and I'll call that one pages. You can also copy paste it. A number of different ways you create that file. But the overall idea is we want to have pages, we want to have subjects, and we want to make sure we create that default index.php just so we get in that good habit.
+   And I think I can do that, just drop it right in there. No, it came out here, but that's alright, I'll move 
+   it up here. Now I've got staff.index.php and I'm going to rename that as being subjects and then I'll just 
+   option drag that one, create a duplicate, and I'll call that one pages. You can also copy paste it. A number 
+   of different ways you create that file. But the overall idea is we want to have pages, we want to have subjects, 
+   and we want to make sure we create that default index.php just so we get in that good habit.
 
-   Okay, so now we have our basic project structure together. In the next movie, let's start working with the content of these pages.
+   Okay, so now we have our basic project structure together. In the next movie, let's start working with the 
+   content of these pages.
 
 ### 1.3 Create and Style the First Page
 
-   In the previous movie, we created the starting structure of the files that we're going to need, the basics of our project. Now we want to bring those up in a text editor, so that we can work with them. For most text editors, you can simply drag the directory onto the icon for the text editor, in order to open up the entire project in a project view, all at once, I've already done that here. It works the same way whether you're using TextMate, or Sublime, or something else. The overall idea is that my project is now visible in one column, I can navigate the files that I want to edit, and I can edit them over in the window on the right.
+   In the previous movie, we created the starting structure of the files that we're going to need, the basics of our 
+   project. Now we want to bring those up in a text editor, so that we can work with them. For most text editors,
+    you can simply drag the directory onto the icon for the text editor, in order to open up the entire project i
+    n a project view, all at once, I've already done that here. It works the same way whether you're using TextMate, 
+    or Sublime, or something else. The overall idea is that my project is now visible in one column, I can navigate 
+    the files that I want to edit, and I can edit them over in the window on the right.
 
-   Let's begin by opening up the index.php page. It's immediately inside the public directory. Inside this file, you'll see that I've included a very simple HTML5 template. Nothing special about this, it's just the beginning of an HTML5 document, that we could then serve up to the public. PHP pages are just HTML pages that have PHP embedded in them, so this makes sense, that we would have this as a starting point. Now let's think for a moment, index.php, inside the public directory, is going to be the root of our website.
+   Let's begin by opening up the index.php page. It's immediately inside the public directory. Inside this file, 
+   you'll see that I've included a very simple HTML5 template. Nothing special about this, it's just the beginning 
+   of an HTML5 document, that we could then serve up to the public. PHP pages are just HTML pages that have PHP 
+   embedded in them, so this makes sense, that we would have this as a starting point. Now let's think for a moment, 
+   index.php, inside the public directory, is going to be the root of our website.
 
-   That's because we're going to tell our web server that the document root that it should serve to the public is this public directory, so for example, if we had a globebank.com as our URL, then globebank.com would load up index.php as its default page. So I'm going to put in here for the title, just Globe Bank. And then in the body, for now, I'm going to put h1, Globe Bank: Coming Soon. Now we're going to come back and work on the public site later, for now, I just want to have a placeholder here that we can look at.
+   That's because we're going to tell our web server that the document root that it should serve to the public is 
+   this public directory, so for example, if we had a globebank.com as our URL, then globebank.com would load up 
+   index.php as its default page. So I'm going to put in here for the title, just Globe Bank. And then in the body, 
+   for now, I'm going to put h1, Globe Bank: Coming Soon. Now we're going to come back and work on the public site 
+   later, for now, I just want to have a placeholder here that we can look at.
 
-   Let's save that file, and let's bring it up in our web browser, so we can see that it's working. At this point, you should have already installed PHP, and have it enabled for your web server. You'll also want to make sure that your web server, whichever one you choose to use, is running, and able to serve files when your browser requests them. If you need help with any of that, you can refer to the course on installing and setting up PHP with MySQL. I'm going to navigate to that project. Now for me, in development, my web document for development, is localhost, and then ~kevinskoglund.
+   Let's save that file, and let's bring it up in our web browser, so we can see that it's working. At this point, 
+   you should have already installed PHP, and have it enabled for your web server. You'll also want to make sure 
+   that your web server, whichever one you choose to use, is running, and able to serve files when your browser 
+   requests them. If you need help with any of that, you can refer to the course on installing and setting up PHP 
+   with MySQL. I'm going to navigate to that project. Now for me, in development, my web document for development, 
+   is localhost, and then ~kevinskoglund.
 
-   Now yours may be different, you'll have to use whatever is your default, it might just simply be localhost on its own, or it might be something different. Change it to fit your needs, but that's going to be my document root. And from there, then I'll need to have my project, which is globe_bank, and then the public directory. That's how I'm going to navigate to that index.php page. Now when we launch this to the public, remember, the public's not going to type all that. The public's just going to type our URL, globebank.com, and it's going to go to this exact same spot, right here, to start with.
+   Now yours may be different, you'll have to use whatever is your default, it might just simply be localhost on its 
+   own, or it might be something different. Change it to fit your needs, but that's going to be my document root. And 
+   from there, then I'll need to have my project, which is globe_bank, and then the public directory. That's how I'm 
+   going to navigate to that index.php page. Now when we launch this to the public, remember, the public's not going 
+   to type all that. The public's just going to type our URL, globebank.com, and it's going to go to this exact same s
+   pot, right here, to start with.
 
-   So all of that is just for development, that's why we're going to have that full root path in there while we're developing. And you see that I get Globe Bank: Coming Soon. So that's great, we now know that we're able to locate the correct file via our browser, and our web server was able to handle the fact that it was a PHP file, with no problem. All right, so now let's go back over to our project, and now, let's take a look at this staff page, staff/index.php. Now here, let's just change the title. Let's make it GBI, just the initials for Globe Bank International, and let's add in here, to our body, a little bit more, let's add a header tag, and let's do one for navigation.
+   So all of that is just for development, that's why we're going to have that full root path in there while we're 
+   developing. And you see that I get Globe Bank: Coming Soon. So that's great, we now know that we're able to locate 
+   the correct file via our browser, and our web server was able to handle the fact that it was a PHP file, with no 
+   problem. All right, so now let's go back over to our project, and now, let's take a look at this staff page, 
+   staff/index.php. Now here, let's just change the title. Let's make it GBI, just the initials for Globe Bank 
+   International, and let's add in here, to our body, a little bit more, let's add a header tag, and let's do 
+   one for navigation.
 
-   Just mistyped that, there we go, and let's do one for footer. Okay, those are just some basic HTML5 tags. Inside the header, we'll put h1, and let's make this one just say, GBI Staff Area. That's indented a little too far, let's take one of those out. For the navigation, let's put in ul tags. We'll put in one li tag, which is going to be a link, a href="index.php", and, it's going to be Menu.
+   Just mistyped that, there we go, and let's do one for footer. Okay, those are just some basic HTML5 tags. 
+   Inside the header, we'll put h1, and let's make this one just say, GBI Staff Area. That's indented a little 
+   too far, let's take one of those out. For the navigation, let's put in ul tags. We'll put in one li tag, 
+   which is going to be a link, a href="index.php", and, it's going to be Menu.
 
-   And then let's close our li tag, and close our ul tag. And then down here in the footer, let's put &copy; that'll be the HTML entity for the copyright symbol, 2017 Globe Bank. Okay, so we can save that file, and we should be able to bring this up in our browser. But before we do that, I'm just going to go ahead and add in our first bit of PHP code here. I'm just going to drop in, instead of 2017 for the date, we're going to go put in php echo date, capital Y.
+   And then let's close our li tag, and close our ul tag. And then down here in the footer, let's put &copy; that'll 
+   be the HTML entity for the copyright symbol, 2017 Globe Bank. Okay, so we can save that file, and we should be able 
+   to bring this up in our browser. But before we do that, I'm just going to go ahead and add in our first bit of PHP 
+   code here. I'm just going to drop in, instead of 2017 for the date, we're going to go put in php echo date, capital Y.
 
-   That'll call the PHP date function, it'll return the current year. So now we've actually got our first bit of PHP code, and we're going to make sure that that is working correctly, as well. If not, you'll need to troubleshoot that, and make sure you've got PHP working. So let's go back now, now, in order to get to this page, it's in the public directory, and then, inside staff. Now we could type out index.php, but by default, it should render that index.php page. And sure enough, here it is, GBI Staff Area, and you see we've got Menu link, and the PHP code did load up correctly.
+   That'll call the PHP date function, it'll return the current year. So now we've actually got our first bit of 
+   PHP code, and we're going to make sure that that is working correctly, as well. If not, you'll need to 
+   troubleshoot that, and make sure you've got PHP working. So let's go back now, now, in order to get to this 
+   page, it's in the public directory, and then, inside staff. Now we could type out index.php, but by default, 
+   it should render that index.php page. And sure enough, here it is, GBI Staff Area, and you see we've got 
+   Menu link, and the PHP code did load up correctly.
 
-   We did get the year's 2017. Now if you're watching this in the future, your year will be different, that's not a problem. Just make sure that you did, in fact, get a year there, and not an error saying the PHP code didn't render. Okay, so we've now got it working, but this is pretty ugly. What we need to do is introduce a style sheet, so that we can style this code, and to do that, I'm just going to hide these files for a moment, and I'm going to go here to this staff.css file. I've already got a style sheet written up, we'll take a look at it, but I'm going to drag it into my stylesheets directory of my project.
+   We did get the year's 2017. Now if you're watching this in the future, your year will be different, that's not a 
+   problem. Just make sure that you did, in fact, get a year there, and not an error saying the PHP code didn't render. 
+   Okay, so we've now got it working, but this is pretty ugly. What we need to do is introduce a style sheet, so that 
+   we can style this code, and to do that, I'm just going to hide these files for a moment, and I'm going to go here 
+   to this staff.css file. I've already got a style sheet written up, we'll take a look at it, but I'm going to drag 
+   it into my stylesheets directory of my project.
 
-   Then I can come in here, to my project again, and let's take a look at what's in there. So you can see, I've just got some basic styling. You can pause the movie if you want to copy this down, it's also included in the exercise files. So you go down here, you see we've got a header, header h1. I've got navigation, I've got some styling on the navigation ul and li elements. I've got content, which we're going to add in later. I've got in the footer, and then I've got some styles here that we're going to be using as we go on. I wanted to go ahead and add them now, so that we don't have to come back to them.
+   Then I can come in here, to my project again, and let's take a look at what's in there. So you can see, I've just 
+   got some basic styling. You can pause the movie if you want to copy this down, it's also included in the exercise 
+   files. So you go down here, you see we've got a header, header h1. I've got navigation, I've got some styling on 
+   the navigation ul and li elements. I've got content, which we're going to add in later. I've got in the footer, and 
+   then I've got some styles here that we're going to be using as we go on. I wanted to go ahead and add them now, so 
+   that we don't have to come back to them.
 
-   I'm styling some of the different elements that we're going to be using as we create forms, and create all the different parts of the website. So there we go, we've got our errors. So that's it, it's a pretty simple style sheet, altogether. Again, it's included in your exercise files. Now we need to tell our page that it's going to use that style sheet. So the way we do that is we come up here into the head of our index.php that's in the staff page, and we're going to add a link tag, with rel=stylesheet, and the media for that is going to be all.
+   I'm styling some of the different elements that we're going to be using as we create forms, and create all the 
+   different parts of the website. So there we go, we've got our errors. So that's it, it's a pretty simple style 
+   sheet, altogether. Again, it's included in your exercise files. Now we need to tell our page that it's going to 
+   use that style sheet. So the way we do that is we come up here into the head of our index.php that's in the staff 
+   page, and we're going to add a link tag, with rel=stylesheet, and the media for that is going to be all.
 
-   Everyone should get this style sheet, href=, and I'm just go leave that blank for now, and then close out the rest of the tag. Okay, so now we need the path to the style sheet. So what is the path to this style sheet? If you've worked with HTML before, then you already know how you do this. You need to navigate backwards one directory, because we're in the staff directory now, and we need to go out of the staff directory, and then into the stylesheets directory to get to staff.css. So that means that we've got to go .., which means go backwards a directory to the parent directory, and then locate the stylesheets directory, and then staff.css.
+   Everyone should get this style sheet, href=, and I'm just go leave that blank for now, and then close out the 
+   rest of the tag. Okay, so now we need the path to the style sheet. So what is the path to this style sheet? If 
+   you've worked with HTML before, then you already know how you do this. You need to navigate backwards one 
+   directory, because we're in the staff directory now, and we need to go out of the staff directory, and then 
+   into the stylesheets directory to get to staff.css. So that means that we've got to go .., which means go 
+   backwards a directory to the parent directory, and then locate the stylesheets directory, and then staff.css.
 
-   Now this href is telling it to go backwards in the URL. This is a browser path, not a file path. Now they're very similar, because it also happens to be the file path, as well, but I just wanted to make that point. We're going to come back to it a couple of times. This is the browser path, it's telling the browser to back up one level, and then look for stylesheets, staff.css. So let's save it, and let's go back and try it, see if it worked out, let's reload our page. And there you go, now there's not a lot there at the moment, because I don't have my content element, I think that's the one that probably gives it the real meat.
+   Now this href is telling it to go backwards in the URL. This is a browser path, not a file path. Now they're 
+   very similar, because it also happens to be the file path, as well, but I just wanted to make that point. 
+   We're going to come back to it a couple of times. This is the browser path, it's telling the browser to back
+    up one level, and then look for stylesheets, staff.css. So let's save it, and let's go back and try it, see 
+    if it worked out, let's reload our page. And there you go, now there's not a lot there at the moment, because 
+    I don't have my content element, I think that's the one that probably gives it the real meat.
 
-   Let's add that, div id="content". And there we go, save it, go back, and I think that should probably give it, yeah, a nice big chunk of space here, that we can fill in below. And then we've got one link on the page, which is Menu. If we click that, you can see it just brings us back to this same page, index.php. So for now, make sure that you're able to bring up pages in your browser, make sure that PHP works, so that you have a date at the bottom of the footer, and that you are able to access the style sheet, that you do have the ability to link to the staff style sheet.
+   Let's add that, div id="content". And there we go, save it, go back, and I think that should probably give it, 
+   yeah, a nice big chunk of space here, that we can fill in below. And then we've got one link on the page, 
+   which is Menu. If we click that, you can see it just brings us back to this same page, index.php. So for now, 
+   make sure that you're able to bring up pages in your browser, make sure that PHP works, so that you have a 
+   date at the bottom of the footer, and that you are able to access the style sheet, that you do have the 
+   ability to link to the staff style sheet.
 
 ### 1.4 Include and Require Files
 
-   One useful feature in PHP is the ability to include code from other files into a PHP page. It's an important feature because it helps us to stay organized, and to not repeat ourselves. For example, if we define a function that we want to use on one webpage of our site, and we need to use it again on another page, we don't want to copy and paste that a second time. That would mean that we now have two versions of the function, and if we find a bug or we make an improvement, we have to remember to update the code in more than one place. That leads to bugs and code that's hard to maintain.
+   One useful feature in PHP is the ability to include code from other files into a PHP page. It's an important 
+   feature because it helps us to stay organized, and to not repeat ourselves. For example, if we define a function 
+   that we want to use on one webpage of our site, and we need to use it again on another page, we don't want to 
+   copy and paste that a second time. That would mean that we now have two versions of the function, and if we 
+   find a bug or we make an improvement, we have to remember to update the code in more than one place. That 
+   leads to bugs and code that's hard to maintain.
 
-   It's much better if we can put that function in a single file, and then load it in to both PHP pages, so that they're using the same version of the function all the time. And remember, that's the main reason we create functions, is to have reusable code. The way that we can do this in PHP is by using the include function. So inside our PHP tags we use include, and then the file name that we want to include. Functions are probably the most common thing that we include, but they're not the only thing. In addition to having libraries of functions, we can also load in sections of our page, such as the header, the footer, the navigation of the sidebar.
+   It's much better if we can put that function in a single file, and then load it in to both PHP pages, so 
+   that they're using the same version of the function all the time. And remember, that's the main reason we 
+   create functions, is to have reusable code. The way that we can do this in PHP is by using the include function. 
+   So inside our PHP tags we use include, and then the file name that we want to include. Functions are probably 
+   the most common thing that we include, but they're not the only thing. In addition to having libraries of 
+   functions, we can also load in sections of our page, such as the header, the footer, the navigation of the sidebar.
 
-   This allows us to take those sections of the website and create reusable portions of them that can be loaded into different pages. And now that code is all self-contained in one area where it's easy to find, and easy to update. And the same thing is true for really any reusable section of code, whether it has HTML, PHP, JavaScript or something else. Maybe there's code that defines how a banner ad ought to display, or page analytics, or the way that we want to display images on the site. All those can be packaged up into reusable portions that then we can use include and require to load them in as needed.
+   This allows us to take those sections of the website and create reusable portions of them that can be loaded 
+   into different pages. And now that code is all self-contained in one area where it's easy to find, and easy 
+   to update. And the same thing is true for really any reusable section of code, whether it has HTML, PHP, J
+   avaScript or something else. Maybe there's code that defines how a banner ad ought to display, or page analytics, 
+   or the way that we want to display images on the site. All those can be packaged up into reusable portions that 
+   then we can use include and require to load them in as needed.
 
-   Now include is not the only way we can do that. We can also use require, and then variations on those, include_once and require_once. Require works exactly like include does, except it raises an error if the file is not found and able to be loaded. So really you use require if the file is essential to the operation of the rest of the page. If we get to require and something goes wrong, the rest of the PHP code will simply not execute. Include doesn't do that.
+   Now include is not the only way we can do that. We can also use require, and then variations on those, include_once 
+   and require_once. Require works exactly like include does, except it raises an error if the file is not found and 
+   able to be loaded. So really you use require if the file is essential to the operation of the rest of the page. 
+   If we get to require and something goes wrong, the rest of the PHP code will simply not execute. Include doesn't do that.
 
-   Include_once and require_once work the same way as include and require, except that they also keep track in PHP when a file is loaded. And if you ask it to load that file again, it'll skip over it. For something like PHP functions, this is an important feature, because you don't want to define a function more than once. PHP will give you an error, it'll say, "Sorry, you've already defined that function before." But if we wanted to do something like include code to load up a web advertisement on a page in three different places, then we'd want to use include and require, because we do want it to load three different times.
+   Include_once and require_once work the same way as include and require, except that they also keep track in PHP 
+   when a file is loaded. And if you ask it to load that file again, it'll skip over it. For something like PHP 
+   functions, this is an important feature, because you don't want to define a function more than once. PHP will 
+   give you an error, it'll say, "Sorry, you've already defined that function before." But if we wanted to do 
+   something like include code to load up a web advertisement on a page in three different places, then we'd want 
+   to use include and require, because we do want it to load three different times.
 
-   Now in practice, many times all four of these will work the same. They'll load in the code that you asked it to. But it's still a good programming habit to try to use the correct one for the current circumstances. Let's try doing this inside our project. I'm going to go into initialize.php, you can see I've already got some PHP tags here, and what I want to do is I want to tell initialize.php that it should load up all the code that's in functions.php. Now at the moment, that's empty, there's nothing that's in there either. But that's a place where we would define a library of functions that we could use.
+   Now in practice, many times all four of these will work the same. They'll load in the code that you asked it to. 
+   But it's still a good programming habit to try to use the correct one for the current circumstances. Let's try 
+   doing this inside our project. I'm going to go into initialize.php, you can see I've already got some PHP tags 
+   here, and what I want to do is I want to tell initialize.php that it should load up all the code that's in 
+   functions.php. Now at the moment, that's empty, there's nothing that's in there either. But that's a place 
+   where we would define a library of functions that we could use.
 
-   The idea is that initialize is going to take care of loading not only this functions.php file, but other libraries of code as well. For example, I might want to have another file that contains all of my login functions, once I have login ability to the staff area. Or when I have another set of functions that's dedicated just to working with forms, and how we output forms on a page. I can separate all those out into separate files, and then initialize will take care of loading all of them in for me.
+   The idea is that initialize is going to take care of loading not only this functions.php file, but other libraries 
+   of code as well. For example, I might want to have another file that contains all of my login functions, once I 
+   have login ability to the staff area. Or when I have another set of functions that's dedicated just to working 
+   with forms, and how we output forms on a page. I can separate all those out into separate files, and then 
+   initialize will take care of loading all of them in for me.
 
-   Now we want to use require, because the functions are required for our site to work correctly, and we want to use once because we only want to load them one time. So require_once, functions.php. And that's going to load up that functions.php file. If I had other files I would list them right underneath here, and we will. Later we'll have for example, database functionality. We'll keep that in a separate file. Now the reason I want to have it all in initialize.php is because then, let's say this file, I want to come back over here to my staff area, and on this staff page, I want to tell it that it should load up the functions, but I don't want to have to tell it to load up the basic functions and my form functions and my database functions.
+   Now we want to use require, because the functions are required for our site to work correctly, and we want to 
+   use once because we only want to load them one time. So require_once, functions.php. And that's going to load 
+   up that functions.php file. If I had other files I would list them right underneath here, and we will. Later 
+   we'll have for example, database functionality. We'll keep that in a separate file. Now the reason I want to 
+   have it all in initialize.php is because then, let's say this file, I want to come back over here to my staff 
+   area, and on this staff page, I want to tell it that it should load up the functions, but I don't want to have 
+   to tell it to load up the basic functions and my form functions and my database functions.
 
-   I want to tell it just to load up initialize. And if it loads up initialize, I'll know that I've got all the functions that I need, all loaded in the correct order, and all available to me. So I'm going to have one line here at the very top of my file, it's going to be PHP, and it's going to be require_once, and it's going to be initialize.php, and let's close my tags. Okay so right here at the top of the file I'm going to load in that initialize.php file, and it will take care of loading everything else that needs to be loaded, getting everything all set up for me so I'm good to go.
+   I want to tell it just to load up initialize. And if it loads up initialize, I'll know that I've got all the 
+   functions that I need, all loaded in the correct order, and all available to me. So I'm going to have one line 
+   here at the very top of my file, it's going to be PHP, and it's going to be require_once, and it's going to be 
+   initialize.php, and let's close my tags. Okay so right here at the top of the file I'm going to load in that 
+   initialize.php file, and it will take care of loading everything else that needs to be loaded, getting e
+   verything all set up for me so I'm good to go.
 
-   But this isn't going to work quite right. When I was over here and I used require_once, functions.php was sitting in the same directory as initialize, so it found it no problem. Here I've got to tell this how to find initialize.php, it's not in the same directory. What I have to do is navigate the file system to get into the private directory and locate it. And I do that by first going backwards one directory, from the staff directory into the public directory, and then going backwards one more directory into the globe_bank directory.
+   But this isn't going to work quite right. When I was over here and I used require_once, functions.php was 
+   sitting in the same directory as initialize, so it found it no problem. Here I've got to tell this how to 
+   find initialize.php, it's not in the same directory. What I have to do is navigate the file system to get 
+   into the private directory and locate it. And I do that by first going backwards one directory, from the s
+   taff directory into the public directory, and then going backwards one more directory into the globe_bank 
+   directory.
 
-   Now I'm in the root of my project, and I can go forward into the private directory. Dot dot means go backwards, it means the parent directory. Notice here we're navigating the file system, not the browser URL like we were down here. It's different from this version. So dot dot does the same thing, it has the same concept to it, but here we're working with a URL, here we're working with the file system. I also want to make one important footnote here which is that you should always use static strings inside include and require_once.
+   Now I'm in the root of my project, and I can go forward into the private directory. Dot dot means go 
+   backwards, it means the parent directory. Notice here we're navigating the file system, not the browser 
+   URL like we were down here. It's different from this version. So dot dot does the same thing, it has the 
+   same concept to it, but here we're working with a URL, here we're working with the file system. I also 
+   want to make one important footnote here which is that you should always use static strings inside 
+   include and require_once.
 
-   Don't use dynamic data, if you do you can create major security issues where users can potentially load up files on your computer that they should not have access to. So just use static strings in here to keep yourself safe. Alright let's save that file. Now we could put a function in here and then try it out on this page to make sure we have access to it. I'm not going to do that. You can try that on your own if you want. Instead, what I want us to do, is I want us to look at the part of this page here that we have, all the beginning, everything up to the navigation, is going to be the same on every single page of our staff area.
+   Don't use dynamic data, if you do you can create major security issues where users can potentially load 
+   up files on your computer that they should not have access to. So just use static strings in here to keep 
+   yourself safe. Alright let's save that file. Now we could put a function in here and then try it out on 
+   this page to make sure we have access to it. I'm not going to do that. You can try that on your own if 
+   you want. Instead, what I want us to do, is I want us to look at the part of this page here that we have, 
+   all the beginning, everything up to the navigation, is going to be the same on every single page of our 
+   staff area.
 
-   And the footer is also going to be the same on every single page of the staff area. So again, that's reusable code. Even though it's not PHP code, it's mostly HTML, it's still what we're going to be using over and over again. So this is a good candidate for code that should also be included and required. So what I'm going to do is I'm going to take that code and I'm just going to cut the top of it, everything above content, and inside shared, I'm going to create a new file in there, and I'm going to call that file staff_header.php.
+   And the footer is also going to be the same on every single page of the staff area. So again, that's 
+   reusable code. Even though it's not PHP code, it's mostly HTML, it's still what we're going to be using 
+   over and over again. So this is a good candidate for code that should also be included and required. So 
+   what I'm going to do is I'm going to take that code and I'm just going to cut the top of it, everything 
+   above content, and inside shared, I'm going to create a new file in there, and I'm going to call that 
+   file staff_header.php.
 
-   I'm going to paste my code in there. So now, all that staff header is in there, and let's go back to this file, and let's grab the footer, I'm going to cut that, and let's go into shared, create a new file, footer.php. Let me just open those so you can see them, oops, not footer, sorry let me rename that. Should be staff_footer, there we go. And let's paste that in there. So now we've got our staff footer as well. Let's save that, now you'll see that our index.php page is really limited to just the content that's unique to that page.
+   I'm going to paste my code in there. So now, all that staff header is in there, and let's go back to 
+   this file, and let's grab the footer, I'm going to cut that, and let's go into shared, create a new 
+   file, footer.php. Let me just open those so you can see them, oops, not footer, sorry let me rename that. 
+   Should be staff_footer, there we go. And let's paste that in there. So now we've got our staff footer as 
+   well. Let's save that, now you'll see that our index.php page is really limited to just the content 
+   that's unique to that page.
 
-   All we need to do is add in our shared code, include, and I'm using include now because it's really not a show-stopper if we didn't get it. You could also use require, it would work exactly the same, but I'm going to use include and say that it should go backwards two directories, it should go into private, and then into shared, and get staff_header.php. I'll copy that line, let's come down here, do the same thing, but this time it's staff_footer.php.
+   All we need to do is add in our shared code, include, and I'm using include now because it's really not 
+   a show-stopper if we didn't get it. You could also use require, it would work exactly the same, but I'm 
+   going to use include and say that it should go backwards two directories, it should go into private, and 
+   then into shared, and get staff_header.php. I'll copy that line, let's come down here, do the same thing, 
+   but this time it's staff_footer.php.
 
-   And I'm just going to take away the indentation there. So now we've got our basic code, staff/index.php, let's load it up in our browser and see if it all worked correctly. And let's reload our page. And sure enough, it works exactly the same, reading the exact same code there. You can reload it, force reload it with option if you want to make sure that you're getting a new one, or actually modify the header and footer so you can verify that you did get the new one. But you can see now I'm loading up the functions that I need, I'm loading up the header, then I just have to define what's unique to this page, and then I have the standard footer at the bottom.
+   And I'm just going to take away the indentation there. So now we've got our basic code, staff/index.php, 
+   let's load it up in our browser and see if it all worked correctly. And let's reload our page. And sure 
+   enough, it works exactly the same, reading the exact same code there. You can reload it, force reload it 
+   with option if you want to make sure that you're getting a new one, or actually modify the header and 
+   footer so you can verify that you did get the new one. But you can see now I'm loading up the functions 
+   that I need, I'm loading up the header, then I just have to define what's unique to this page, and then 
+   I have the standard footer at the bottom.
 
-   You can see how this keeps our code well organized, and gives us reusable parts. In the next movie, we'll talk more about this idea.
+   You can see how this keeps our code well organized, and gives us reusable parts. In the next movie, 
+   we'll talk more about this idea.
 
 ### 1.5 Make Page Assets Reusable
 
-   In the previous movie, we learned to use include and require. In this movie, we'll learn some additional techniques that can help you to use them better in your projects. So, the first thing I want to show you is how we can use variables in PHP to work with these included and required files. Specifically, I want to be able to set a page title on this page, $page_title and I'm going to set it equal to, let's just call it Staff menu. I'll make it capital, Menu. Okay, so I'm setting this variable, $page_title, what I want to show you is that that variable is available inside this file.
+   In the previous movie, we learned to use include and require. In this movie, we'll learn some additional 
+   techniques that can help you to use them better in your projects. So, the first thing I want to show you is 
+   how we can use variables in PHP to work with these included and required files. Specifically, I want to be 
+   able to set a page title on this page, $page_title and I'm going to set it equal to, let's just call it Staff 
+   menu. I'll make it capital, Menu. Okay, so I'm setting this variable, $page_title, what I want to show you 
+   is that that variable is available inside this file.
 
-   It's an exactly as if that PHP code were right in this spot. Right at line four, all of the content of staff_header right there. That means we have access to any variables that have been set. I just want to make sure that that's clear to you. So, here we go, let's put in a dash and let's do echo our assigned page title. Now, of course, we want to make sure that page title is set. So let's go up here to the very top, let's put in a bit of PHP which says, if it's not set, page_title, then page_title will be equal to, and let's have it just say Staff Area.
+   It's an exactly as if that PHP code were right in this spot. Right at line four, all of the content of 
+   staff_header right there. That means we have access to any variables that have been set. I just want to 
+   make sure that that's clear to you. So, here we go, let's put in a dash and let's do echo our assigned 
+   page title. Now, of course, we want to make sure that page title is set. So let's go up here to the very 
+   top, let's put in a bit of PHP which says, if it's not set, page_title, then page_title will be equal to, 
+   and let's have it just say Staff Area.
 
-   That'll make sure we have a default page title set. We won't have a problem when we get down here because either we'll have one that's been passed in, or we have a default that'll kick in. So let's try it out, let's see if that works. Let's save this, let's go back to index.php, make sure we save that page as well. Let's go to out browser, let's reload our page. Notice now it says GBI - Staff Menu. So that's the first thing I want to make sure I showed you is that variables are still available inside those included files. That can be useful to know. The second thing is, let's take all of this code from index.php, and I'm going to copy it, and let's go to subjects index.php, where I also just have a basic HTML5 template.
+   That'll make sure we have a default page title set. We won't have a problem when we get down here because 
+   either we'll have one that's been passed in, or we have a default that'll kick in. So let's try it out, 
+   let's see if that works. Let's save this, let's go back to index.php, make sure we save that page as well. 
+   Let's go to out browser, let's reload our page. Notice now it says GBI - Staff Menu. So that's the first thing 
+   I want to make sure I showed you is that variables are still available inside those included files. That can 
+   be useful to know. The second thing is, let's take all of this code from index.php, and I'm going to copy it, 
+   and let's go to subjects index.php, where I also just have a basic HTML5 template.
 
-   I'm going to just replace that. I'm going to remove everything that's there and paste in my new code instead. It's not the Staff Menu now, instead now we're looking at the list of subjects. So that's the page title, is Subjects. So it should be able to now use a different page title with the staff_header. So let's save this file, and let's go try it out. Let's go back to Firefox, and this time, it's going to be staff/subjects, and you could put the index.php after it if you wanted. Notice that I get a warning followed by a fatal error.
+   I'm going to just replace that. I'm going to remove everything that's there and paste in my new code instead. 
+   It's not the Staff Menu now, instead now we're looking at the list of subjects. So that's the page title, is 
+   Subjects. So it should be able to now use a different page title with the staff_header. So let's save this file, 
+   and let's go try it out. Let's go back to Firefox, and this time, it's going to be staff/subjects, and you could 
+   put the index.php after it if you wanted. Notice that I get a warning followed by a fatal error.
 
-   Require_once was not able to find the file that it was looking for. So the problem here is that now my index.php page is nested inside the subjects directory. So the path to initialize.php is not the same. Now I have to go backwards one more directory. And the same thing for finding the staff header. Dot dot, slash. And the footer, dot dot, slash. Have to go one level further back. Let's save it, let's go back, let's reload our page, and now you see that the page opens up.
+   Require_once was not able to find the file that it was looking for. So the problem here is that now my index.php 
+   page is nested inside the subjects directory. So the path to initialize.php is not the same. Now I have to go i
+   backwards one more directory. And the same thing for finding the staff header. Dot dot, slash. And the footer, 
+   dot dot, slash. Have to go one level further back. Let's save it, let's go back, let's reload our page, and now 
+   you see that the page opens up.
 
-   So now the page loads as expected and we don't get errors anymore. Now you'll notice that our style sheet is broken. We're not getting the big blue header and footer that we would expect to get from our style sheet. We'll come back to that issue in a moment. For now, I instead want to just deal with the issue of these dot dots. This can be a little bit of a hassle to remember where you're nested. To remember whether you're nested one level deep or two levels deep. One good solution to work from that is to set up some constants that you can use to define the path to these files.
+   So now the page loads as expected and we don't get errors anymore. Now you'll notice that our style sheet is 
+   broken. We're not getting the big blue header and footer that we would expect to get from our style sheet. 
+   We'll come back to that issue in a moment. For now, I instead want to just deal with the issue of these dot dots. 
+   This can be a little bit of a hassle to remember where you're nested. To remember whether you're nested one level 
+   deep or two levels deep. One good solution to work from that is to set up some constants that you can use to 
+   define the path to these files.
 
-   So what I'm going to do is I'm going to come over to initialize.php, and before we even get to our functions, I'm going to paste in some code here. Let's just indent that a bit. And what I'm doing is I'm defining several constants. I'm defining a constant called private path, and that's using the current file, __FILE__, all in caps, returns the current path to this file, that file being initialize.php, tells PHP, hey, find this file's location and get its directory.
+   So what I'm going to do is I'm going to come over to initialize.php, and before we even get to our functions, 
+   I'm going to paste in some code here. Let's just indent that a bit. And what I'm doing is I'm defining several 
+   constants. I'm defining a constant called private path, and that's using the current file, __FILE__, all in caps, 
+   returns the current path to this file, that file being initialize.php, tells PHP, hey, find this file's location 
+   and get its directory.
 
-   So what's the directory? Well, it's the private directory, so that's what we're calling PRIVATE_PATH, that's the same thing as the private folder, here. So what is our project path? Well, that's one directory above that. So I ask for the directory name, and that says go backwards one, and that tells us globe_bank. So now I have my private path, my project path, my public path is going to be the project path plus public. And my shared path, where my footer and header live, is going to be the private path plus the shared directory. Now I have these constants defined in PHP that I can use the easily locate those files.
+   So what's the directory? Well, it's the private directory, so that's what we're calling PRIVATE_PATH, that's the 
+   same thing as the private folder, here. So what is our project path? Well, that's one directory above that. So I 
+   ask for the directory name, and that says go backwards one, and that tells us globe_bank. So now I have my private 
+   path, my project path, my public path is going to be the project path plus public. And my shared path, where my 
+   footer and header live, is going to be the private path plus the shared directory. Now I have these constants 
+   defined in PHP that I can use the easily locate those files.
 
-   So let me show you how we could use those. Let's save this file, come back over to index.php, this is the main index page. Now, instead of having all of these, let's remove all of this, and let's add in SHARED_PATH in all caps, and concatenate that together with staff_header.php. See how that works? Just copy this, do the same thing here, we'll just remove everything except for that forward slash. See how much nicer that is? It says, find that shared path folder, that's where you're going to find this file.
+   So let me show you how we could use those. Let's save this file, come back over to index.php, this is the main 
+   index page. Now, instead of having all of these, let's remove all of this, and let's add in SHARED_PATH in all 
+   caps, and concatenate that together with staff_header.php. See how that works? Just copy this, do the same thing 
+   here, we'll just remove everything except for that forward slash. See how much nicer that is? It says, find that 
+   shared path folder, that's where you're going to find this file.
 
-   So this is a handy tool for being able to locate directories. Now, again, this is file paths that we're working with. Now, you might think, well, what about this one? Can I use private path here? No, you can't. And the reason why is because initialize.php is where all of this is defined. So there's one place that we still have to use the dot dots to get everything located correctly. And that's here when we first require the initialize. After that, we have our constant setup that we can work with. So let's save this file, and now let's come back over here.
+   So this is a handy tool for being able to locate directories. Now, again, this is file paths that we're working 
+   with. Now, you might think, well, what about this one? Can I use private path here? No, you can't. And the reason 
+   why is because initialize.php is where all of this is defined. So there's one place that we still have to use t
+   he dot dots to get everything located correctly. And that's here when we first require the initialize. After t
+   hat, we have our constant setup that we can work with. So let's save this file, and now let's come back over here.
 
-   Let me just copy these, and let's go into our subjects. Now, my subjects, I can just take those same lines and paste them in there. See how nice that is? So now my shared path is always the same. I still have to have an extra dot dot here that I didn't have there, because I do have to load up that initialize.php as the very first thing. Let's try it one last time, make sure it's all working. Come here, we'll reload it, and you'll see it still works exactly the same. And if we take subjects out and go back to this other page, it works correctly here.
+   Let me just copy these, and let's go into our subjects. Now, my subjects, I can just take those same lines and 
+   paste them in there. See how nice that is? So now my shared path is always the same. I still have to have an 
+   extra dot dot here that I didn't have there, because I do have to load up that initialize.php as the very first 
+   thing. Let's try it one last time, make sure it's all working. Come here, we'll reload it, and you'll see it 
+   still works exactly the same. And if we take subjects out and go back to this other page, it works correctly here.
 
-   Now, the style sheets still are broken, and in the next chapter, we're going to talk about how we can do the same kind of idea when working with links and URLs so that we can address our style sheet problem.
+   Now, the style sheets still are broken, and in the next chapter, we're going to talk about how we can do the 
+   same kind of idea when working with links and URLs so that we can address our style sheet problem.
 
 ## 2. Build Web pages with PHP
 
 ### 2.1 Links and URLs
 
-   In the previous chapter, we built a simple web page and learned how to create reusable page assets. In this chapter, we're going to work on building webpages using PHP. Let's begin by learning how to create links between pages. You should already know how to code a simple HTML link. We use a tags around the word that we want to link, and then we use the href attribute of the a tag to define where we want the link to go to, in this case, index.php. Now, the first thing you should know is that there's no such thing as a PHP link.
+   In the previous chapter, we built a simple web page and learned how to create reusable page assets. In this chapter, 
+   we're going to work on building webpages using PHP. Let's begin by learning how to create links between pages. You 
+   should already know how to code a simple HTML link. We use a tags around the word that we want to link, and then 
+   we use the href attribute of the a tag to define where we want the link to go to, in this case, index.php. Now, 
+   the first thing you should know is that there's no such thing as a PHP link.
 
-   It's still an HTML link. We can use PHP in order to generate the link, but the output will still be a string that creates an HTML link. So, the second example is using PHP, but it's still creating an HTML link exactly like the first one. Notice that it's using the word echo to output the string index.php. echo is very important. We have to make sure that we actually output the content from PHP into the HTML in order to have it work. Let's start by adding a link to our project to the main menu page.
+   It's still an HTML link. We can use PHP in order to generate the link, but the output will still be a string that c
+   reates an HTML link. So, the second example is using PHP, but it's still creating an HTML link exactly like the 
+   first one. Notice that it's using the word echo to output the string index.php. echo is very important. We have 
+   to make sure that we actually output the content from PHP into the HTML in order to have it work. Let's start by 
+   adding a link to our project to the main menu page.
 
-   So, that's staff, index.php, and inside the content area here I'm just going to paste some HTML. It's just going to be the main menu div that I'm creating. And let me just indent this a bit. There we go. And I'm missing a final div here. Here we go, div. All right, so you see it has a div, id main-menu, has h2 tags that says Main Menu, and then I've got ul tags that will just be a list of all the different things that we can do in the site. And you can see I've got an HTML link here for the subjects, right? So, that's going to link to the Subjects page, and the path to that page is inside the subjects directory, index.php.
+   So, that's staff, index.php, and inside the content area here I'm just going to paste some HTML. It's just going 
+   to be the main menu div that I'm creating. And let me just indent this a bit. There we go. And I'm missing a 
+   final div here. Here we go, div. All right, so you see it has a div, id main-menu, has h2 tags that says Main Menu, 
+   and then I've got ul tags that will just be a list of all the different things that we can do in the site. And you 
+   can see I've got an HTML link here for the subjects, right? So, that's going to link to the Subjects page, and the 
+   path to that page is inside the subjects directory, index.php.
 
-   Right, so let's save this file, and let's try it out. Let's save it. We'll come over here to Firefox. Let's reload our page. And sure enough, Main Menu, and it says Subjects. Okay, so let's click on the subjects link and see where it takes us. It came up with a page not found. Notice the URL that it went to right here, localhost/subjects/index.php. Now, if you are on a production server and the root of your website was the same as the domain, this would've worked fine, but it didn't work for us, because we're nested several layers deep here.
+   Right, so let's save this file, and let's try it out. Let's save it. We'll come over here to Firefox. Let's reload 
+   our page. And sure enough, Main Menu, and it says Subjects. Okay, so let's click on the subjects link and see where 
+   it takes us. It came up with a page not found. Notice the URL that it went to right here, localhost/subjects/index.php. 
+   Now, if you are on a production server and the root of your website was the same as the domain, this would've worked 
+   fine, but it didn't work for us, because we're nested several layers deep here.
 
-   It's not localhost. It's localhost and then a bunch of directories after that. When we use this forward slash, it gives us an absolute URL, and that's not what we want. What we want is a relative URL. So, let's take that out, let's save the file, and let's go back. Let's reload the page, and now let's click subjects again, and now it takes us to the correct page, staff/subjects/index.php. That's where we wanted to be. So, it works because we used a relative path instead.
+   It's not localhost. It's localhost and then a bunch of directories after that. When we use this forward slash, it 
+   gives us an absolute URL, and that's not what we want. What we want is a relative URL. So, let's take that out, 
+   let's save the file, and let's go back. Let's reload the page, and now let's click subjects again, and now it takes 
+   us to the correct page, staff/subjects/index.php. That's where we wanted to be. So, it works because we used a 
+   relative path instead.
 
-   All right? So, now let's go up here. We've got that link there. Let's jump over to staff_header, and notice that I've got this link that says menu at the top of all my pages. The idea is that I have that menu link, and no matter where I am in the staff area, I could always click menu, and it'll just shoot me right back to that main menu so that I can navigate from there. So, right now it's index.php. We already know that we can use PHP there, and we can echo index.php, and it does the exact same thing, so let's try that.
+   All right? So, now let's go up here. We've got that link there. Let's jump over to staff_header, and notice that 
+   I've got this link that says menu at the top of all my pages. The idea is that I have that menu link, and no 
+   matter where I am in the staff area, I could always click menu, and it'll just shoot me right back to that main 
+   menu so that I can navigate from there. So, right now it's index.php. We already know that we can use PHP there, 
+   and we can echo index.php, and it does the exact same thing, so let's try that.
 
-   Let's go back here. We'll load up the page. We'll reload our main menu, and if I click menu, it takes me where we would expect, takes me back to this same page, the page I'm already on. Let's click on subjects though, 'cause that's what we really want, is to be able to click menu on this page and shoot back to that other menu. So, let's click it. And it didn't work, and the reason it didn't work is not because we used PHP. The reason it didn't work is because it's a relative URL, and index.php is taking us back to the same page that it's already on, subjects, index.php.
+   Let's go back here. We'll load up the page. We'll reload our main menu, and if I click menu, it takes me where we 
+   would expect, takes me back to this same page, the page I'm already on. Let's click on subjects though, 'cause t
+   hat's what we really want, is to be able to click menu on this page and shoot back to that other menu. So, let's 
+   click it. And it didn't work, and the reason it didn't work is not because we used PHP. The reason it didn't work 
+   is because it's a relative URL, and index.php is taking us back to the same page that it's already on, 
+   subjects, index.php.
 
-   What we really want is to tell it that it needs to go backwards a directory. It needs to go from relative from this page, we want to shoot backwards one. Let's save it. Let's go back over and go to Firefox, and let's reload this page. And now when I click menu, it takes me to the right page. Well, let's click menu again up here at the top of this page. Can you guess what's going to happen? Takes me back to my main home page. Why? Because I said relative to this page, go up one directory, right? We look back at our structure. It went from this index.php page back to this one.
+   What we really want is to tell it that it needs to go backwards a directory. It needs to go from relative from 
+   this page, we want to shoot backwards one. Let's save it. Let's go back over and go to Firefox, and let's reload 
+   this page. And now when I click menu, it takes me to the right page. Well, let's click menu again up here at the 
+   top of this page. Can you guess what's going to happen? Takes me back to my main home page. Why? Because I said 
+   relative to this page, go up one directory, right? We look back at our structure. It went from this index.php 
+   page back to this one.
 
-   That's not what we wanted. So, you can see that we have a problem here, and the problem is that we have a shared header file that we're using on multiple pages, and the links that we want to use, we want to use relative links, but they're relative to pages that are in different places. They're not in the same directory. Some of them are nested one level deeper, and they might even be nested several levels deeper. That's the exact same problem that we had with our stylesheets before. The the stylesheet works correctly when we're on our staff index.php page, but when we go to subjects, what we really need is ../../stylesheets/staff.css.
+   That's not what we wanted. So, you can see that we have a problem here, and the problem is that we have a shared 
+   header file that we're using on multiple pages, and the links that we want to use, we want to use relative links, 
+   but they're relative to pages that are in different places. They're not in the same directory. Some of them are 
+   nested one level deeper, and they might even be nested several levels deeper. That's the exact same problem that 
+   we had with our stylesheets before. The the stylesheet works correctly when we're on our staff index.php page, 
+   but when we go to subjects, what we really need is ../../stylesheets/staff.css.
 
-   So, PHP enabled us to have this shared template, but now we've got a problem. How do we solve it? PHP can help us to do that. A good trick is to set a constant that defines the web root. Let me just jump over here to initialize.php, and we can define it here. Now, this is similar to what we did at the end of the last movie with SHARED_PATH. You see that right here. But it's not the same, because there we were talking about file paths on the hard drive. If you actually output SHARED_PATH and do echo on it on one of your pages, you'll see that's a path on your hard drive, from the root of your hard drive, all the way to the file that it's trying to find.
+   So, PHP enabled us to have this shared template, but now we've got a problem. How do we solve it? PHP can help us 
+   to do that. A good trick is to set a constant that defines the web root. Let me just jump over here to initialize.php, 
+   and we can define it here. Now, this is similar to what we did at the end of the last movie with SHARED_PATH. You see 
+   that right here. But it's not the same, because there we were talking about file paths on the hard drive. If you 
+   actually output SHARED_PATH and do echo on it on one of your pages, you'll see that's a path on your hard drive, 
+   from the root of your hard drive, all the way to the file that it's trying to find.
 
-   That's not what we want here. We want a path for the URL. So, we can do that a couple of different ways. I'm going to paste in some code. Some of it is instructions telling you you don't need to include the domain name. We want to use the same document root as the web server uses, and you can set a hard-coded value, like this. That would define WW_ROOT, and it would set it equal to my path, which is ~kevinskoglund/globe_bank/public. That's not the same for you. If you are on a production machine, you might define it as just being the root.
+   That's not what we want here. We want a path for the URL. So, we can do that a couple of different ways. I'm going 
+   to paste in some code. Some of it is instructions telling you you don't need to include the domain name. We want 
+   to use the same document root as the web server uses, and you can set a hard-coded value, like this. That would 
+   define WW_ROOT, and it would set it equal to my path, which is ~kevinskoglund/globe_bank/public. That's not the 
+   same for you. If you are on a production machine, you might define it as just being the root.
 
-   It's just simply whatever the domain name is. It's not nested anything deeper, or what I've got here, something that finds it dynamically. I'm doing it this way so that if you grab the code out of the exercise files, it'll work automatically for you in development. What it does is it looks for the presence of the word /public in the URL and figures out that that must be where the document root is. So, that's how it defines WWW_ROOT dynamically. And any of these would work. The main thing is to make sure that you set this value equal to an absolute value that we can then use on all our pages.
+   It's just simply whatever the domain name is. It's not nested anything deeper, or what I've got here, something 
+   that finds it dynamically. I'm doing it this way so that if you grab the code out of the exercise files, it'll 
+   work automatically for you in development. What it does is it looks for the presence of the word /public in the 
+   URL and figures out that that must be where the document root is. So, that's how it defines WWW_ROOT dynamically. 
+   And any of these would work. The main thing is to make sure that you set this value equal to an absolute value 
+   that we can then use on all our pages.
 
-   And once we have that set, now we can go back over to our staff_header and instead, we can use WWW_ROOT and append it with /staff/index.php. Now, I have to include the staff now, because WW_ROOT is the root of the entire website, not the staff area. I could also define another one of these called STAFF_ROOT if I wanted, but here I'm using WW_ROOT so that I can just use something generic. Let's try it, and let's see the difference.
+   And once we have that set, now we can go back over to our staff_header and instead, we can use WWW_ROOT and 
+   append it with /staff/index.php. Now, I have to include the staff now, because WW_ROOT is the root of the entire 
+   website, not the staff area. I could also define another one of these called STAFF_ROOT if I wanted, but here 
+   I'm using WW_ROOT so that I can just use something generic. Let's try it, and let's see the difference.
 
-   Let's take this stylesheet back to what it was, save our file, come back over here, and we'll reload our page. And now when I click Menu, it's correct here. When I click Subjects, now it's correct there. Both of them work the same, and we can do the same thing for our stylesheets. Before we do that though, I want to show you that there's another nice trick, which is that we can actually roll all this up into a function that we can use. So, I'm going to define a function, I'm going to put it in functions.php, and I call it url_for, so url_for, and pass it in the path that you want.
+   Let's take this stylesheet back to what it was, save our file, come back over here, and we'll reload our page. 
+   And now when I click Menu, it's correct here. When I click Subjects, now it's correct there. Both of them work 
+   the same, and we can do the same thing for our stylesheets. Before we do that though, I want to show you that 
+   there's another nice trick, which is that we can actually roll all this up into a function that we can use. 
+   So, I'm going to define a function, I'm going to put it in functions.php, and I call it url_for, so url_for, a
+   nd pass it in the path that you want.
 
-   It goes ahead and takes care of figuring out whether you have the leading forward slash or not. If it's not there, it adds it for you in case you forget, and then it appends it to that WW_ROOT and returns the value. It doesn't echo it. You still have to do the echoing, but it will calculate that value for you using that constant. All right, so let's save that. Now, we've got our function. Let's come back over here into our header, and let's use it. We're going to use it right here. php echo, we still need to echo, url_for, and then, in parentheses, let's just take stylesheets.
+   It goes ahead and takes care of figuring out whether you have the leading forward slash or not. If it's not there, 
+   it adds it for you in case you forget, and then it appends it to that WW_ROOT and returns the value. It doesn't 
+   echo it. You still have to do the echoing, but it will calculate that value for you using that constant. All right, 
+   so let's save that. Now, we've got our function. Let's come back over here into our header, and let's use it. We're 
+   going to use it right here. php echo, we still need to echo, url_for, and then, in parentheses, let's just 
+   take stylesheets.
 
-   It doesn't matter whether we put the forward slash or not. And close our php tags. All right, let's do the same thing down here. We'll do url_for, and we'll just surround the whole thing in parentheses. Oops. Tapped one key too many. There we go. Okay. So, now that we've got that, let's try it out. Let's reload the page. It works correctly. Menu works correctly. Click on Subjects. Look at that. Our CSS is fixed now.
+   It doesn't matter whether we put the forward slash or not. And close our php tags. All right, let's do the same 
+   thing down here. We'll do url_for, and we'll just surround the whole thing in parentheses. Oops. Tapped one key 
+   too many. There we go. Okay. So, now that we've got that, let's try it out. Let's reload the page. It works 
+   correctly. Menu works correctly. Click on Subjects. Look at that. Our CSS is fixed now.
 
-   And menu works correctly. So, let's just review, why does all that work correctly? It's because we've defined an absolute point that we can base all of our other URLs off of. We've basically said here's the root of the website. Base everything off of that. So, now we have a single function that we can use which will make sure that we always have a URL that takes care of whether or not it's on a shared piece of code or whether it's something that's nested several layers deep. It'll always be a URL to the correct place.
+   And menu works correctly. So, let's just review, why does all that work correctly? It's because we've defined 
+   an absolute point that we can base all of our other URLs off of. We've basically said here's the root of the
+    website. Base everything off of that. So, now we have a single function that we can use which will make sure 
+    that we always have a URL that takes care of whether or not it's on a shared piece of code or whether it's 
+    something that's nested several layers deep. It'll always be a URL to the correct place.
 
    It's a really handy tool to have.
 
 ### 2.2 Use URL Parameters
 
-   In this movie, we'll learn send a value from one page to the next by using URL parameters. This can also be referred to as query parameters. The URL parameters are the part of the URL which comes after the question mark. The format is always name of the parameter, then an equal sign and then the value of the parameter, so here we have page equals two. URL parameters generally modify the behavior of the code used for the response, so, in this example, the same PHP code would be run, but its behavior would probably be modified, so that it return the second page of results.
+   In this movie, we'll learn send a value from one page to the next by using URL parameters. This can also be 
+   referred to as query parameters. The URL parameters are the part of the URL which comes after the question mark. T
+   he format is always name of the parameter, then an equal sign and then the value of the parameter, so here we 
+   have page equals two. URL parameters generally modify the behavior of the code used for the response, so, in 
+   this example, the same PHP code would be run, but its behavior would probably be modified, so that it return 
+   the second page of results.
 
-   You can send more than one URL parameter by using an ampersand in-between them. Here you I have category equals seven and page equals three. If you surf around on sites like Google and Amazon, you'll see many examples of URL parameters being used. URL parameters are useful, because they allow us to pass data from one page to another via links. When a new page request is received, PHP is automatically going to take all of those URL parameters that were sent and put them into an associate of array where we can access them.
+   You can send more than one URL parameter by using an ampersand in-between them. Here you I have category equals 
+   seven and page equals three. If you surf around on sites like Google and Amazon, you'll see many examples of 
+   URL parameters being used. URL parameters are useful, because they allow us to pass data from one page to 
+   another via links. When a new page request is received, PHP is automatically going to take all of those URL 
+   parameters that were sent and put them into an associate of array where we can access them.
 
-   That array is what's called a Super global variable and the name for the one we're using here is going to be $_ and then capital GET and that makes sense, because get is the name of the HTTP method that relates to URLs and links. We'll learn more about get and post when we talk about forms. Notice that it has an underscore at the beginning and that it uses all capital letters. That's how all super globals are going to be named. There are about nine super globals altogether and we'll be looking at a few more later on.
+   That array is what's called a Super global variable and the name for the one we're using here is going to be $_ 
+   and then capital GET and that makes sense, because get is the name of the HTTP method that relates to URLs and 
+   links. We'll learn more about get and post when we talk about forms. Notice that it has an underscore at the 
+   beginning and that it uses all capital letters. That's how all super globals are going to be named. There are 
+   about nine super globals altogether and we'll be looking at a few more later on.
 
-   Super globals are always available in all variable scopes. Basically, that just means that you have access to them from anywhere inside your code. That's not true for all variables and PHP is going to set those values for the super globals before our page of code even starts processing. They're available for us right at the start. Let's see how we can access them. In our PHP code, we would ask the super global get for its value for page and remember, it's an associative array, so we use the square bracket notation to access the array values, so here I'm asking the associative array that's stored in the super global get for the value that corresponds to page.
+   Super globals are always available in all variable scopes. Basically, that just means that you have access to 
+   them from anywhere inside your code. That's not true for all variables and PHP is going to set those values for 
+   the super globals before our page of code even starts processing. They're available for us right at the start. 
+   Let's see how we can access them. In our PHP code, we would ask the super global get for its value for page and 
+   remember, it's an associative array, so we use the square bracket notation to access the array values, so here 
+   I'm asking the associative array that's stored in the super global get for the value that corresponds to page.
 
-   So, I'm retrieving that value and then I'm taking the variable page; a local variable and setting that value equal to it. This process of retrieving values from the super globals and assigning them to local variables is very common to have at the top of your PHP page. It's also important to note that the values that you retrieve from super globals are always going to be strings. Even if the value being set was a number like 99, the value that's retrieved is going to be a string containing the number 99; you'll need to change its PHP type to an integer if you want to use it as a number.
+   So, I'm retrieving that value and then I'm taking the variable page; a local variable and setting that value 
+   equal to it. This process of retrieving values from the super globals and assigning them to local variables 
+   is very common to have at the top of your PHP page. It's also important to note that the values that you 
+   retrieve from super globals are always going to be strings. Even if the value being set was a number like 99, 
+   the value that's retrieved is going to be a string containing the number 99; you'll need to change its PHP 
+   type to an integer if you want to use it as a number.
 
-   Here I've got a simple example; using get type, you can see that when we ask for get type of just the value that came straight out of get page, it's a string; if we typecast it using parenthesis int in front of it, that forces it to become an integer. Now, when we ask for its type, it's integer. So, just keep that in mind; the values are always strings no matter what. Let's try adding it to our project. Since the last movie, I've made a couple of changes to our project; let's take a look at what they are. The first it that on the staff many page.
+   Here I've got a simple example; using get type, you can see that when we ask for get type of just the value 
+   that came straight out of get page, it's a string; if we typecast it using parenthesis int in front of it, 
+   that forces it to become an integer. Now, when we ask for its type, it's integer. So, just keep that in mind; 
+   the values are always strings no matter what. Let's try adding it to our project. Since the last movie, I've 
+   made a couple of changes to our project; let's take a look at what they are. The first it that on the staff 
+   many page.
 
-   I simply added in the url_for function that we wrote in the last movie, so now I'm using url_for here for my links to the subjects index page; otherwise, that's the same. Then, on the subjects index page, I've put quite a bit of code and this code is included in the exercise files and you can get it directly from there; there's no need to pause it and copy it down. Let's see what I've done here. The first thing is that I've got a variable called subjects and that variable contains an array and inside that array are four other arrays.
+   I simply added in the url_for function that we wrote in the last movie, so now I'm using url_for here for my 
+   links to the subjects index page; otherwise, that's the same. Then, on the subjects index page, I've put quite 
+   a bit of code and this code is included in the exercise files and you can get it directly from there; there's 
+   no need to pause it and copy it down. Let's see what I've done here. The first thing is that I've got a variable 
+   called subjects and that variable contains an array and inside that array are four other arrays.
 
-   Each one of those arrays is a standing for record that would be in the database. We don't have a database yet; we are not working with databases until a little later on, but we're going to fake it here a bit. Database records work very much the same way. They work like arrays that have label bits of data. So, we have an ID, we have a position, we have visible and we have menu name and we have values for each of those stored in our database; here we just simply have arrays with that data hard-coded in. We'll come back and talk about this idea later on, but this just gives us a set of subjects that we can then display on our subjects listing page.
+   Each one of those arrays is a standing for record that would be in the database. We don't have a database yet; 
+   we are not working with databases until a little later on, but we're going to fake it here a bit. Database 
+   records work very much the same way. They work like arrays that have label bits of data. So, we have an ID, 
+   we have a position, we have visible and we have menu name and we have values for each of those stored in our 
+   database; here we just simply have arrays with that data hard-coded in. We'll come back and talk about this 
+   idea later on, but this just gives us a set of subjects that we can then display on our subjects listing page.
 
-   Let's scroll down and look at that listing. You can see at the top, I've got an h1 tag that just says subjects; I've got a link for create new subject; that link doesn't go anywhere yet, but it's a placeholder for it and then I've got a table and that table is a list of all the subjects that are going to be in my database later on. Right now, it's a list of all the subjects that are in my array. I have headers at the top that label each of the columns and then I'm looping through that array using foreach. So, foreach, one of the subjects in the array. I'm going to make each array called subject and now I can ask for the values inside that array for ID, position, visible and menu name.
+   Let's scroll down and look at that listing. You can see at the top, I've got an h1 tag that just says subjects; 
+   I've got a link for create new subject; that link doesn't go anywhere yet, but it's a placeholder for it and 
+   then I've got a table and that table is a list of all the subjects that are going to be in my database later 
+   on. Right now, it's a list of all the subjects that are in my array. I have headers at the top that label each 
+   of the columns and then I'm looping through that array using foreach. So, foreach, one of the subjects in the 
+   array. I'm going to make each array called subject and now I can ask for the values inside that array for ID, 
+   position, visible and menu name.
 
-   I've also got placeholder links for view, edit and delete, but those don't go anywhere either. Let's go ahead and just bring this up, so that we can see what it looks like in our browser. Let's make sure we save it; let's go to Firefox (mumbles) start with my menu; I've got my subjects link. I click on that; it takes my into a Subjects page and now it's looping through that array in order to list out each one of these subjects. I've got About Glove Bank, Consumer, Small Business, etc. Now, this would be my listing of all the subjects that are in the database. What I want is to have a show page that will show me detail about just one subject.
+   I've also got placeholder links for view, edit and delete, but those don't go anywhere either. Let's go ahead and 
+   just bring this up, so that we can see what it looks like in our browser. Let's make sure we save it; let's go to 
+   Firefox (mumbles) start with my menu; I've got my subjects link. I click on that; it takes my into a Subjects page 
+   and now it's looping through that array in order to list out each one of these subjects. I've got About 
+   Glove Bank, Consumer, Small Business, etc. Now, this would be my listing of all the subjects that are in the 
+   database. What I want is to have a show page that will show me detail about just one subject.
 
-   So, when I send a link to go to that page, I need to tell it which one I want it to be. These four links have to all be different. One has to say: When you go to the next page, show me details about the subject about Globe Bank. This one should show me details about the subject called Consumer, so the way that we do that with databases is we use an ID to identify each record, so if I send along a URL parameter that includes the ID, then the next page will know which one I was referring to. It will be able to go to the database and retrieve that ID and bring back more information about it, so passing around these IDs is something that happens very frequently when we're doing web development, so let's edit this View link, so that it has that URL parameter in it.
+   So, when I send a link to go to that page, I need to tell it which one I want it to be. These four links have to 
+   all be different. One has to say: When you go to the next page, show me details about the subject about Globe Bank. 
+   This one should show me details about the subject called Consumer, so the way that we do that with databases is we 
+   use an ID to identify each record, so if I send along a URL parameter that includes the ID, then the next page will 
+   know which one I was referring to. It will be able to go to the database and retrieve that ID and bring back more 
+   information about it, so passing around these IDs is something that happens very frequently when we're doing web 
+   development, so let's edit this View link, so that it has that URL parameter in it.
 
-   Let's go right here; Let's start by just putting in echo url_for and I'm just going to leave that blank for a second, finish my PHP link and then let's come back here and let's think about what are url_for (mumbles) be. It's going to be /staff and then it's going to be subjects and then show.php; now, I've already created that page. It's in here, as well, but it's just blank. There is nothing in it at the moment. We'll come back to that in a moment. So, we need to think about what do we need to send after that; after it loads the page; what other parameter does it need to load properly? It needs to know the ID; question mark, ID equals and then we would want to provide the value.
+   Let's go right here; Let's start by just putting in echo url_for and I'm just going to leave that blank for a 
+   second, finish my PHP link and then let's come back here and let's think about what are url_for (mumbles) be. 
+   It's going to be /staff and then it's going to be subjects and then show.php; now, I've already created that page. 
+   It's in here, as well, but it's just blank. There is nothing in it at the moment. We'll come back to that in a 
+   moment. So, we need to think about what do we need to send after that; after it loads the page; what other 
+   parameter does it need to load properly? It needs to know the ID; question mark, ID equals and then we would 
+   want to provide the value.
 
-   The value could just be five, for example, but we want that to be dynamic. As we are looping through each of these subjects, we want it to change for each and everyone, so what I want to do is I want to use this value for the ID; copy that and I'm just going to use a period to concatenate it together, so ID equals and then whatever that value is. That'll build up a string and it'll create a different link for each one of these. Let's save it and try it out and let's reload our page. Now, when I click View; the second one down, you'll see it sends ID equals two.
+   The value could just be five, for example, but we want that to be dynamic. As we are looping through each of 
+   these subjects, we want it to change for each and everyone, so what I want to do is I want to use this value 
+   for the ID; copy that and I'm just going to use a period to concatenate it together, so ID equals and then 
+   whatever that value is. That'll build up a string and it'll create a different link for each one of these. 
+   Let's save it and try it out and let's reload our page. Now, when I click View; the second one down, you'll 
+   see it sends ID equals two.
 
-   At the back arrow; let's try the last one. Since ID equals four; so, now we're sending the correct query parameter; we're passing information from one page to the next; now, we just need to receive that information on the show page and we know how to do that; id equals underscore GET and then square brackets, id; that's going to get the value and assign it to our local variable and then let's just use echo id, so that we can see the results of that; let's go back and try it out. Click here on the link number four and here it is; it says four.
+   At the back arrow; let's try the last one. Since ID equals four; so, now we're sending the correct query 
+   parameter; we're passing information from one page to the next; now, we just need to receive that information 
+   on the show page and we know how to do that; id equals underscore GET and then square brackets, id; that's going 
+   to get the value and assign it to our local variable and then let's just use echo id, so that we can see the 
+   results of that; let's go back and try it out. Click here on the link number four and here it is; it says four.
 
-   I'll click Go back; let's click two and it says two, so we're passing that data and on the next page, we are reading that data; now, that's sets us up for later on being able to take that value and make another database request based on that. That what we're going to eventually be doing. For now, we're just learning how to pass that value back and forth. If you want, you can also try adding additional parameters. For example, you could add page equals one ampersand and try passing multiple values if you want.
+   I'll click Go back; let's click two and it says two, so we're passing that data and on the next page, we are 
+   reading that data; now, that's sets us up for later on being able to take that value and make another database 
+   request based on that. That what we're going to eventually be doing. For now, we're just learning how to pass 
+   that value back and forth. If you want, you can also try adding additional parameters. For example, you could 
+   add page equals one ampersand and try passing multiple values if you want.
 
    But I'll leave that as an exercise for you to do on your own.
 
